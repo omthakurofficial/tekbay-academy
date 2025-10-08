@@ -1,6 +1,6 @@
 import React from 'react';
 import './Pricing.css';
-import { getAssetPath, getUnsplashImage } from '../../utils/assetUtils';
+import { getAssetPath } from '../../utils/assetUtils';
 
 const Pricing: React.FC = () => {
   const features = [

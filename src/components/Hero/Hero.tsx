@@ -1,6 +1,6 @@
 import React from 'react';
 import './Hero.css';
-import { getAssetPath, getUnsplashImage } from '../../utils/assetUtils';
+import { getAssetPath } from '../../utils/assetUtils';
 
 const Hero: React.FC = () => {
   return (

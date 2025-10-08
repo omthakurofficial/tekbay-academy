@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
-import { getAssetPath, getUnsplashImage } from '../../utils/assetUtils';
+import { getAssetPath } from '../../utils/assetUtils';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);

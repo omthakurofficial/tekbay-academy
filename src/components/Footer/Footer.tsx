@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import { getAssetPath, getUnsplashImage } from '../../utils/assetUtils';
+import { getAssetPath } from '../../utils/assetUtils';
 
 const Footer: React.FC = () => {
   return (

@@ -1,13 +1,16 @@
 /**
  * Helper function to get the correct URL for assets in both development and production
- * @param relativePath - The relative path to the asset
+ * @param relativePath - The relative path to the asset (e.g., '/images/logo.png')
  * @returns The correct URL for the asset
  */
 export const getAssetPath = (relativePath: string): string => {
-  // For local development, use relative paths
-  // For production with GitHub Pages, use the PUBLIC_URL environment variable
-  const basePath = process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL || '' : '';
-  return `${basePath}${relativePath}`;
+  // In Create React App, files in /public are served from the root
+  // During development: http://localhost:3000/images/logo.png
+  // In production with GitHub Pages: https://username.github.io/repo/images/logo.png
+  const publicUrl = process.env.PUBLIC_URL || '';
+  // Ensure relativePath starts with /
+  const path = relativePath.startsWith('/') ? relativePath : `/${relativePath}`;
+  return `${publicUrl}${path}`;
 };
 
 /**
