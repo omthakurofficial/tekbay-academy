@@ -271,24 +271,46 @@
   .demand-header {
     grid-template-columns: 1fr;
     text-align: center;
+    padding: 30px 20px;
   }
 
   .demand-headline {
     font-size: 36px;
   }
+  
+  .demand-question {
+    font-size: 24px;
+    padding: 15px 20px;
+  }
 
   .demand-content {
     grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .stats-title {
+    font-size: 28px;
+    text-align: center;
+  }
+  
+  .bridge-section {
+    padding: 30px 20px;
+  }
+  
+  .bridge-title {
+    font-size: 28px;
   }
 
   .bridge-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 
   .final-offer {
     flex-direction: column;
     gap: 15px;
     text-align: center;
+    padding: 20px;
   }
 
   .offer-price {
@@ -297,5 +319,50 @@
 
   .offer-note {
     position: static;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .demand-headline {
+    font-size: 28px;
+  }
+  
+  .demand-question {
+    font-size: 20px;
+  }
+  
+  .bridge-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bridge-card {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .bridge-icon {
+    font-size: 36px;
+  }
+  
+  .stat-card {
+    padding: 15px;
+  }
+  
+  .stat-icon {
+    font-size: 36px;
+    min-width: 40px;
+  }
+  
+  .stat-percentage {
+    font-size: 18px;
+  }
+  
+  .benefits-box {
+    padding: 20px;
+  }
+  
+  .benefits-title {
+    font-size: 22px;
   }
 }

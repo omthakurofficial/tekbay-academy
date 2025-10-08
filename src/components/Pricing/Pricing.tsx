@@ -1,5 +1,6 @@
 import React from 'react';
 import './Pricing.css';
+import { getAssetPath, getUnsplashImage } from '../../utils/assetUtils';
 
 const Pricing: React.FC = () => {
   const features = [
@@ -30,7 +31,7 @@ const Pricing: React.FC = () => {
       <div className="container">
         <div className="pricing-content">
           <div className="pricing-image">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&q=80" alt="Student with MacBook" />
+            <img src={getUnsplashImage(800, 600, 'student macbook studying')} alt="Student with MacBook" />
           </div>
 
           <div className="pricing-details">

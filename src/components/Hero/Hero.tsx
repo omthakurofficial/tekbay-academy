@@ -1,5 +1,6 @@
 import React from 'react';
 import './Hero.css';
+import { getAssetPath, getUnsplashImage } from '../../utils/assetUtils';
 
 const Hero: React.FC = () => {
   return (
@@ -19,7 +20,7 @@ const Hero: React.FC = () => {
             </p>
           </div>
           <div className="hero-image">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Happy students learning cloud computing" />
+            <img src={getUnsplashImage(800, 600, 'students learning programming laptop')} alt="Happy students learning cloud computing" />
           </div>
         </div>
       </div>

@@ -126,10 +126,35 @@
   }
 
   .instructors {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .benefits-title {
     font-size: 32px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .instructors {
+    grid-template-columns: 1fr;
+  }
+  
+  .benefit-item {
+    padding: 15px;
+  }
+  
+  .benefit-icon {
+    font-size: 36px;
+    min-width: 40px;
+  }
+  
+  .benefit-text {
+    font-size: 16px;
+  }
+  
+  .instructor-image {
+    width: 100px;
+    height: 100px;
   }
 }

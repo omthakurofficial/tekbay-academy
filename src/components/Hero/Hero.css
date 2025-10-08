@@ -78,3 +78,22 @@
     clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 35%);
   }
 }
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 50px 0;
+  }
+  
+  .hero-title {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+  
+  .hero-subtitle {
+    font-size: 16px;
+  }
+  
+  .hero-image img {
+    border-radius: 8px;
+  }
+}
