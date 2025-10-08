@@ -1,0 +1,135 @@
+.benefits {
+  background-color: white;
+}
+
+.benefits-title {
+  font-size: 40px;
+  color: var(--color-secondary-blue);
+  margin-bottom: 50px;
+  font-weight: 800;
+}
+
+.benefits-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--color-primary-light);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateX(10px);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit-icon {
+  font-size: 48px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.benefit-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  line-height: 1.4;
+}
+
+.instructors-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.instructors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.instructor-card {
+  background: linear-gradient(135deg, var(--color-secondary-blue) 0%, var(--color-primary-dark) 100%);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.instructor-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px;
+  border: 4px solid white;
+}
+
+.instructor-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.instructor-title {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background-color: var(--color-primary-lavender);
+  border-radius: 8px;
+  border-left: 4px solid var(--color-secondary-blue);
+}
+
+.stat-icon {
+  font-size: 24px;
+}
+
+.stat-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 968px) {
+  .benefits-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .instructors {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits-title {
+    font-size: 32px;
+  }
+}
