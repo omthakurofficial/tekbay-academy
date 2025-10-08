@@ -1,13 +1,13 @@
 # TekBay Cloud Apprenticeship Landing Page
 
-[![Deploy Status](https://github.com/YOUR_USERNAME/tekbay-academy/workflows/Deploy%20TekBay%20Academy/badge.svg)](https://github.com/YOUR_USERNAME/tekbay-academy/actions)
+[![Deploy Status](https://github.com/omthakurofficial/tekbay-academy/workflows/Deploy%20TekBay%20Academy/badge.svg)](https://github.com/omthakurofficial/tekbay-academy/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 > A modern, responsive landing page for TekBay's AWS Cloud Apprenticeship Program built with React and TypeScript.
 
 ## 🌐 Live Demo
 
-- **GitHub Pages:** https://YOUR_USERNAME.github.io/tekbay-academy/
+- **GitHub Pages:** https://omthakurofficial.github.io/tekbay-academy/
 - **Local Development:** http://localhost:3000
 
 ## ✨ Features
