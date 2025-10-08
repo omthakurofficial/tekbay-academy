@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tekbay-academy/static/css/main.1c2a16fc.css",
-    "main.js": "/tekbay-academy/static/js/main.eaf0018c.js",
+    "main.css": "/tekbay-academy/static/css/main.86af706e.css",
+    "main.js": "/tekbay-academy/static/js/main.246e036a.js",
     "index.html": "/tekbay-academy/index.html",
-    "main.1c2a16fc.css.map": "/tekbay-academy/static/css/main.1c2a16fc.css.map",
-    "main.eaf0018c.js.map": "/tekbay-academy/static/js/main.eaf0018c.js.map"
+    "main.86af706e.css.map": "/tekbay-academy/static/css/main.86af706e.css.map",
+    "main.246e036a.js.map": "/tekbay-academy/static/js/main.246e036a.js.map"
   },
   "entrypoints": [
-    "static/css/main.1c2a16fc.css",
-    "static/js/main.eaf0018c.js"
+    "static/css/main.86af706e.css",
+    "static/js/main.246e036a.js"
   ]
 }
