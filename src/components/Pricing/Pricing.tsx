@@ -31,7 +31,7 @@ const Pricing: React.FC = () => {
       <div className="container">
         <div className="pricing-content">
           <div className="pricing-image">
-            <img src={getUnsplashImage(800, 600, 'student macbook studying')} alt="Student with MacBook" />
+            <img src={getAssetPath('/images/student-macbook.jpg')} alt="Student with MacBook" />
           </div>
 
           <div className="pricing-details">

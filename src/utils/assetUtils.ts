@@ -4,8 +4,9 @@
  * @returns The correct URL for the asset
  */
 export const getAssetPath = (relativePath: string): string => {
-  // In React apps, PUBLIC_URL is available as process.env.PUBLIC_URL
-  const basePath = process.env.PUBLIC_URL || '';
+  // For local development, use relative paths
+  // For production with GitHub Pages, use the PUBLIC_URL environment variable
+  const basePath = process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL || '' : '';
   return `${basePath}${relativePath}`;
 };
 

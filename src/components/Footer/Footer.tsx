@@ -9,11 +9,7 @@ const Footer: React.FC = () => {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <img src="https://logo.clearbit.com/tekbay.com" 
-                   onError={(e) => {
-                     e.currentTarget.src = getUnsplashImage(200, 200, 'tech logo abstract');
-                     e.currentTarget.onerror = null;
-                   }}
+              <img src={getAssetPath('/images/logo.png')}
                    alt="TekBay" 
                    className="footer-logo-image" />
               <span className="footer-logo-text">

@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
             </p>
           </div>
           <div className="hero-image">
-            <img src={getUnsplashImage(800, 600, 'students learning programming laptop')} alt="Happy students learning cloud computing" />
+            <img src={getAssetPath('/images/hero-students.jpg')} alt="Happy students learning cloud computing" />
           </div>
         </div>
       </div>
