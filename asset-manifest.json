@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tekbay-academy/static/css/main.1c2a16fc.css",
+    "main.js": "/tekbay-academy/static/js/main.eaf0018c.js",
+    "index.html": "/tekbay-academy/index.html",
+    "main.1c2a16fc.css.map": "/tekbay-academy/static/css/main.1c2a16fc.css.map",
+    "main.eaf0018c.js.map": "/tekbay-academy/static/js/main.eaf0018c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c2a16fc.css",
+    "static/js/main.eaf0018c.js"
+  ]
+}
