@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
@@ -37,6 +38,14 @@ const Footer: React.FC = () => {
               <ul className="footer-list">
                 <li><a href="mailto:apprentice@tekbay.digital">apprentice@tekbay.digital</a></li>
                 <li><a href="#contact">Get in Touch</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-column">
+              <h4 className="footer-title">Legal</h4>
+              <ul className="footer-list">
+                <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+                <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
               </ul>
             </div>
           </div>
