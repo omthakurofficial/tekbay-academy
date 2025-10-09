@@ -74,7 +74,6 @@ const Header: React.FC = () => {
           <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
             <Link to="/" className="logo-link" style={{ display: 'none' }}>Home</Link>
             <button onClick={() => handleNavClick('program')} className="nav-link nav-button">Program</button>
-            <button onClick={() => handleNavClick('benefits')} className="nav-link nav-button">Benefits</button>
             <a href="https://learn.tekbay.digital" target="_blank" rel="noopener noreferrer" className="nav-link" onClick={closeMenu}>LMS Access</a>
             <button onClick={() => handleNavClick('pricing')} className="nav-link nav-button">Pricing</button>
             <button onClick={() => handleNavClick('faqs')} className="nav-link nav-button">FAQs</button>
