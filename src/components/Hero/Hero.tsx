@@ -2,7 +2,11 @@ import React from 'react';
 import './Hero.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onJoinNow?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
   return (
     <section className="hero">
       <div className="hero-background">
@@ -28,20 +32,20 @@ const Hero: React.FC = () => {
               <span className="subtitle-highlight">Join 1000+ students who transformed their careers</span>
             </p>
             <div className="hero-cta">
-              <button className="btn-primary">Start Learning Today</button>
+              <button className="btn-primary" onClick={onJoinNow}>Start Learning Today</button>
               <button className="btn-secondary">Watch Demo</button>
             </div>
             <div className="hero-stats">
-              <div className="stat">
+              {/* <div className="stat">
                 <span className="stat-number">95%</span>
                 <span className="stat-label">Job Placement</span>
-              </div>
+              </div> */}
               <div className="stat">
                 <span className="stat-number">8 Weeks</span>
                 <span className="stat-label">To Certification</span>
               </div>
               <div className="stat">
-                <span className="stat-number">1000+</span>
+                <span className="stat-number">500+</span>
                 <span className="stat-label">Success Stories</span>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/global.css';
 import Header from './components/Header/Header';
@@ -11,12 +11,13 @@ import FAQs from './components/FAQs/FAQs';
 import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions/TermsAndConditions';
+import RegistrationModal from './components/RegistrationModal/RegistrationModal';
 
 // Home page component
-const HomePage: React.FC = () => {
+const HomePage: React.FC<{ onJoinNow: () => void }> = ({ onJoinNow }) => {
   return (
     <>
-      <Hero />
+      <Hero onJoinNow={onJoinNow} />
       <ProgramOverview />
       <Benefits />
       <Pricing />
@@ -27,16 +28,26 @@ const HomePage: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+
+  const handleJoinNow = () => {
+    setIsRegistrationModalOpen(true);
+  };
+
   return (
     <Router basename="/tekbay-academy">
       <div className="App">
-        <Header />
+        <Header onJoinNow={handleJoinNow} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage onJoinNow={handleJoinNow} />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         </Routes>
-        <Footer />
+        <Footer onJoinNow={handleJoinNow} />
+        <RegistrationModal 
+          isOpen={isRegistrationModalOpen} 
+          onClose={() => setIsRegistrationModalOpen(false)} 
+        />
       </div>
     </Router>
   );
