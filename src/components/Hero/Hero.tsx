@@ -2,7 +2,11 @@ import React from 'react';
 import './Hero.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onJoinNow?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
   return (
     <section className="hero">
       <div className="hero-background">
@@ -28,7 +32,7 @@ const Hero: React.FC = () => {
               <span className="subtitle-highlight">Join 1000+ students who transformed their careers</span>
             </p>
             <div className="hero-cta">
-              <button className="btn-primary">Start Learning Today</button>
+              <button className="btn-primary" onClick={onJoinNow}>Start Learning Today</button>
               <button className="btn-secondary">Watch Demo</button>
             </div>
             <div className="hero-stats">

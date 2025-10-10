@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import './Footer.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onJoinNow?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onJoinNow }) => {
   return (
     <footer className="footer" id="contact">
       <div className="container">
@@ -56,9 +60,9 @@ const Footer: React.FC = () => {
             © {new Date().getFullYear()} TekBay. All rights reserved.
           </p>
           <div className="footer-cta">
-            <a href="mailto:apprentice@tekbay.digital" className="footer-button">
+            <button onClick={onJoinNow} className="footer-button">
               Start Your Cloud Career Today - Join Now
-            </a>
+            </button>
           </div>
         </div>
       </div>

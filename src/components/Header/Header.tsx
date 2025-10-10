@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
-const Header: React.FC = () => {
+const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,6 +26,13 @@ const Header: React.FC = () => {
 
   const closeMenu = () => {
     setMenuOpen(false);
+  };
+
+  const handleJoinNow = () => {
+    closeMenu();
+    if (onJoinNow) {
+      onJoinNow();
+    }
   };
 
   const handleNavClick = (sectionId: string) => {
@@ -77,7 +84,7 @@ const Header: React.FC = () => {
             <a href="https://learn.tekbay.digital" target="_blank" rel="noopener noreferrer" className="nav-link" onClick={closeMenu}>LMS Access</a>
             <button onClick={() => handleNavClick('pricing')} className="nav-link nav-button">Pricing</button>
             <button onClick={() => handleNavClick('faqs')} className="nav-link nav-button">FAQs</button>
-            <button onClick={() => handleNavClick('contact')} className="nav-link nav-button cta-button">Join Now</button>
+            <button onClick={handleJoinNow} className="nav-link nav-button cta-button">Join Now</button>
           </nav>
         </div>
       </div>
