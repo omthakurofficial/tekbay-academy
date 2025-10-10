@@ -36,16 +36,16 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
               <button className="btn-secondary">Watch Demo</button>
             </div>
             <div className="hero-stats">
-              <div className="stat">
+              {/* <div className="stat">
                 <span className="stat-number">95%</span>
                 <span className="stat-label">Job Placement</span>
-              </div>
+              </div> */}
               <div className="stat">
                 <span className="stat-number">8 Weeks</span>
                 <span className="stat-label">To Certification</span>
               </div>
               <div className="stat">
-                <span className="stat-number">1000+</span>
+                <span className="stat-number">500+</span>
                 <span className="stat-label">Success Stories</span>
               </div>
             </div>
