@@ -6,7 +6,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 80px 0 60px;
 }
 
 /* Animated Background Shapes */
@@ -199,15 +199,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 60px;
+  padding: 80px 40px;
   overflow: visible;
-  min-height: 600px;
+  min-height: 700px;
 }
 
 .hero-image-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
   z-index: 5;
 }
 
@@ -237,10 +237,10 @@
 /* Floating Elements */
 .floating-elements {
   position: absolute;
-  width: 140%;
-  height: 140%;
-  top: -20%;
-  left: -20%;
+  width: 180%;
+  height: 180%;
+  top: -40%;
+  left: -40%;
   pointer-events: none;
   overflow: visible;
 }
@@ -265,20 +265,20 @@
 }
 
 .card-1 {
-  top: 20%;
-  right: 15%;
+  top: 10%;
+  right: 5%;
   animation-delay: 0s;
 }
 
 .card-2 {
-  bottom: 25%;
-  left: 15%;
+  bottom: 20%;
+  left: 5%;
   animation-delay: 1.5s;
 }
 
 .card-3 {
-  top: 60%;
-  right: 10%;
+  top: 45%;
+  right: 5%;
   animation-delay: 3s;
 }
 
@@ -309,8 +309,19 @@
   }
   
   .hero-visual {
-    padding: 60px 40px;
-    min-height: 500px;
+    padding: 60px 30px;
+    min-height: 550px;
+  }
+  
+  .hero-image-container {
+    max-width: 550px;
+  }
+  
+  .floating-elements {
+    width: 160%;
+    height: 160%;
+    top: -30%;
+    left: -30%;
   }
   
   .floating-card {
@@ -324,30 +335,30 @@
   }
   
   .card-1 {
-    top: 15%;
-    right: 10%;
+    top: 8%;
+    right: 3%;
   }
   
   .card-2 {
-    bottom: 20%;
-    left: 10%;
+    bottom: 18%;
+    left: 2%;
   }
   
   .card-3 {
-    top: 55%;
-    right: 5%;
+    top: 48%;
+    right: 2%;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
-    padding: 100px 0 60px;
+    padding: 70px 0 50px;
   }
   
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 50px;
     text-align: center;
   }
   
@@ -361,6 +372,7 @@
   
   .hero-cta {
     justify-content: center;
+    gap: 12px;
   }
   
   .hero-stats {
@@ -373,15 +385,20 @@
   }
   
   .hero-visual {
-    padding: 40px 20px;
-    min-height: 400px;
+    padding: 30px 15px;
+    min-height: 450px;
+    order: -1;
+  }
+  
+  .hero-image-container {
+    max-width: 400px;
   }
   
   .floating-elements {
-    width: 120%;
-    height: 120%;
-    top: -10%;
-    left: -10%;
+    width: 140%;
+    height: 140%;
+    top: -20%;
+    left: -20%;
   }
   
   .floating-card {
@@ -395,7 +412,7 @@
   }
   
   .card-1 {
-    top: 10%;
+    top: 12%;
     right: 5%;
   }
   
@@ -406,33 +423,45 @@
   
   .card-3 {
     top: 50%;
-    right: 0%;
+    right: 5%;
   }
 }
 
 @media (max-width: 576px) {
   .hero {
-    padding: 80px 0 40px;
+    padding: 60px 0 35px;
+  }
+  
+  .hero-content {
+    gap: 40px;
   }
   
   .hero-title {
-    font-size: 36px;
+    font-size: 32px;
     letter-spacing: -1px;
+    line-height: 1.2;
   }
   
   .hero-subtitle {
     font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .subtitle-highlight {
+    margin-top: 6px;
   }
   
   .btn-primary,
   .btn-secondary {
     padding: 14px 24px;
-    font-size: 14px;
+    font-size: 15px;
+    border-radius: 40px;
   }
   
   .hero-cta {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
   
   .btn-primary,
@@ -442,12 +471,68 @@
   }
   
   .hero-stats {
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .stat-number {
+    font-size: 28px;
+  }
+  
+  .stat-label {
+    font-size: 13px;
+  }
+  
+  .hero-visual {
+    padding: 20px 10px;
+    min-height: 350px;
+  }
+  
+  .hero-image-container {
+    max-width: 320px;
+  }
+  
+  .floating-elements {
+    width: 130%;
+    height: 130%;
+    top: -15%;
+    left: -15%;
+  }
+  
+  .floating-card {
+    padding: 8px 12px;
+    font-size: 11px;
+    min-width: 90px;
+    border-radius: 12px;
+  }
+  
+  .card-icon {
+    font-size: 16px;
+  }
+  
+  .card-text {
+    font-size: 11px;
+  }
+  
+  .card-1 {
+    top: 15%;
+    right: 5%;
+  }
+  
+  .card-2 {
+    bottom: 12%;
+    left: 8%;
+  }
+  
+  .card-3 {
+    top: 48%;
+    right: 8%;
   }
   
   .shape {
-    opacity: 0.5;
+    opacity: 0.3;
   }
   
   .shape-1 {
@@ -463,5 +548,59 @@
   .shape-3 {
     width: 100px;
     height: 100px;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 390px) {
+  .hero {
+    padding: 70px 0 30px;
+  }
+  
+  .hero-title {
+    font-size: 28px;
+  }
+  
+  .hero-subtitle {
+    font-size: 15px;
+  }
+  
+  .hero-visual {
+    min-height: 300px;
+    padding: 15px 5px;
+  }
+  
+  .hero-image-container {
+    max-width: 280px;
+  }
+  
+  .floating-card {
+    padding: 6px 10px;
+    font-size: 10px;
+    min-width: 80px;
+    border-radius: 10px;
+  }
+  
+  .card-icon {
+    font-size: 14px;
+  }
+  
+  .card-text {
+    font-size: 10px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 20px;
+    font-size: 14px;
+    max-width: 250px;
+  }
+  
+  .stat-number {
+    font-size: 24px;
+  }
+  
+  .stat-label {
+    font-size: 12px;
   }
 }

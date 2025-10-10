@@ -7,7 +7,7 @@
   grid-template-columns: 2fr 1fr;
   gap: 40px;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
   padding: 40px;
   background: linear-gradient(135deg, var(--color-secondary-blue) 0%, var(--color-primary-dark) 100%);
   border-radius: 16px;
@@ -33,15 +33,15 @@
 .demand-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  margin-bottom: 50px;
+  gap: 40px;
+  margin-bottom: 35px;
 }
 
 .stats-title {
   font-size: 36px;
   font-weight: 800;
   color: var(--color-secondary-blue);
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .stat-card {

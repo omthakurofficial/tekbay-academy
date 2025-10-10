@@ -6,7 +6,7 @@
 .pricing-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 40px;
   align-items: center;
 }
 
@@ -23,7 +23,7 @@
 .pricing-title {
   font-size: 42px;
   font-weight: 800;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 1.2;
 }
 
