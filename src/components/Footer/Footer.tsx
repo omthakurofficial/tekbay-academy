@@ -29,6 +29,14 @@ const Footer: React.FC<FooterProps> = ({ onJoinNow }) => {
 
           <div className="footer-links">
             <div className="footer-column">
+              <h4 className="footer-title">About</h4>
+              <ul className="footer-list">
+                <li><Link to="/about-academy">About Academy</Link></li>
+                <li><a href="https://tekbay.digital" target="_blank" rel="noopener noreferrer">About TekBay</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-column">
               <h4 className="footer-title">Program</h4>
               <ul className="footer-list">
                 <li><a href="#program">Cloud Apprenticeship</a></li>

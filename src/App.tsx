@@ -11,6 +11,7 @@ import FAQs from './components/FAQs/FAQs';
 import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions/TermsAndConditions';
+import AboutUsAcademy from './components/AboutUsAcademy/AboutUsAcademy';
 import RegistrationModal from './components/RegistrationModal/RegistrationModal';
 
 // Home page component
@@ -40,6 +41,7 @@ const App: React.FC = () => {
         <Header onJoinNow={handleJoinNow} />
         <Routes>
           <Route path="/" element={<HomePage onJoinNow={handleJoinNow} />} />
+          <Route path="/about-academy" element={<AboutUsAcademy />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         </Routes>
