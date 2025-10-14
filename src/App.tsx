@@ -22,8 +22,8 @@ const HomePage: React.FC<{ onJoinNow: () => void }> = ({ onJoinNow }) => {
       <Hero onJoinNow={onJoinNow} />
       <ProgramOverview />
       <Benefits />
-      <Pricing />
-      <Demand />
+      <Pricing onJoinNow={onJoinNow} />
+      <Demand onJoinNow={onJoinNow} />
       <FAQs />
     </>
   );
@@ -43,7 +43,7 @@ const App: React.FC = () => {
         <Header onJoinNow={handleJoinNow} />
         <Routes>
           <Route path="/" element={<HomePage onJoinNow={handleJoinNow} />} />
-          <Route path="/about-academy" element={<AboutUsAcademy />} />
+          <Route path="/about-academy" element={<AboutUsAcademy onJoinNow={handleJoinNow} />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         </Routes>

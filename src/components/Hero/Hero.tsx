@@ -52,8 +52,8 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
                 <span className="stat-label">To Certification</span>
               </div>
               <div className="stat">
-                <span className="stat-number">500+</span>
-                <span className="stat-label">Success Stories</span>
+                <span className="stat-number">350+</span>
+                <span className="stat-label">Get Certified</span>
               </div>
             </div>
           </div>

@@ -17,20 +17,13 @@
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
   margin-bottom: 15px;
 }
 
 .footer-logo-image {
-  width: 50px;
   height: 50px;
+  width: auto;
   object-fit: contain;
-}
-
-.footer-logo-text {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -1px;
 }
 
 .footer-tagline {

@@ -1,12 +1,18 @@
 import React from 'react';
 import './Benefits.css';
 import { getAssetPath } from '../../utils/assetUtils';
+  ];   {
+      icon: '🎓',
+      text: '300+ Students Passed',
+    },
+    {
+      icon: '💻',
+      text: '40% Working In Leading Tech Companies',
+    },
+  ];enefits.css';
+import { getAssetPath } from '../../utils/assetUtils';
 
-interface BenefitsProps {
-  onJoinNow?: () => void;
-}
-
-const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
+const Benefits: React.FC = () => {
   const benefits = [
     {
       icon: '📚',
@@ -30,28 +36,13 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
     },
   ];
 
-  const additionalCards = [
-    {
-      icon: '🌍',
-      title: 'Global Certification',
-      description: 'Worldwide recognized and validated certificate that opens doors globally',
-      type: 'certification'
-    },
-    {
-      icon: '💰',
-      title: 'Join Now Benefits',
-      description: 'Fully refundable when you pass the AWS exam (subject to taxes). Lucky draw among top scorers (above 990) to win MacBook every 6 months.',
-      type: 'join-now'
-    }
-  ];
-
   const stats = [
     {
       icon: '🎓',
       text: '300+ Students Passed',
     },
     {
-      icon: '💻',
+      icon: '�',
       text: '40% Working In Leading Tech Companies',
     },
   ];
