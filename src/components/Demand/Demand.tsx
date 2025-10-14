@@ -1,7 +1,11 @@
 import React from 'react';
 import './Demand.css';
 
-const Demand: React.FC = () => {
+interface DemandProps {
+  onJoinNow?: () => void;
+}
+
+const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
   const stats = [
     {
       icon: '☁️',
@@ -69,7 +73,7 @@ const Demand: React.FC = () => {
             of Businesses<br />
             by 2027
           </h2>
-          <p className="demand-question">ARE YOU READY?</p>
+          <p className="demand-question" onClick={onJoinNow}>ARE YOU READY?</p>
         </div>
 
         <div className="demand-content">
@@ -121,9 +125,9 @@ const Demand: React.FC = () => {
           <div className="final-offer">
             <div className="offer-badge">Limited Seats</div>
             <div className="offer-price">
-              <span className="offer-original">Originally ₹20,000</span>
+              <span className="offer-original">Originally ₹25,000</span>
               <span className="offer-arrow">→</span>
-              <span className="offer-current">Limited time offer ₹9,997</span>
+              <span className="offer-current">Limited time offer ₹10,000</span>
             </div>
             <p className="offer-note">[Inclusive of AWS Exam Fee Worth USD 150]</p>
           </div>

@@ -2,7 +2,11 @@ import React from 'react';
 import './Pricing.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
-const Pricing: React.FC = () => {
+interface PricingProps {
+  onJoinNow?: () => void;
+}
+
+const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
   const features = [
     {
       icon: '🏆',
@@ -12,7 +16,7 @@ const Pricing: React.FC = () => {
     {
       icon: '💰',
       title: 'Fully Refundable',
-      description: 'Program INR 9997*',
+      description: 'Program INR 10000*',
     },
     {
       icon: '💻',
@@ -54,18 +58,21 @@ const Pricing: React.FC = () => {
             </div>
             
             <div className="refund-banner">
-              <h3 className="refund-title">100%<br />REFUND</h3>
-              <p className="refund-subtitle">on Certification!</p>
+              <div className="refund-content">
+                <h3 className="refund-title">100%<br />REFUND</h3>
+                <p className="refund-subtitle">on Certification!</p>
+              </div>
+              <button className="join-now-btn" onClick={onJoinNow}>JOIN NOW</button>
             </div>
 
             <div className="price-box">
               <div className="price-original">
                 Originally<br />
-                <span className="price-striked">₹20,000</span>
+                <span className="price-striked">₹25,000</span>
               </div>
               <div className="price-offer">
                 Limited time offer<br />
-                <span className="price-current">₹9,997</span>
+                <span className="price-current">₹10,000</span>
                 <p className="price-note">Inclusive of AWS Exam Fee Worth USD 150</p>
               </div>
             </div>

@@ -2,7 +2,11 @@ import React from 'react';
 import './Benefits.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
-const Benefits: React.FC = () => {
+interface BenefitsProps {
+  onJoinNow?: () => void;
+}
+
+const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
   const benefits = [
     {
       icon: '📚',
@@ -24,6 +28,21 @@ const Benefits: React.FC = () => {
       icon: '👨‍🏫',
       title: 'Learn from certified cloud experts',
     },
+  ];
+
+  const additionalCards = [
+    {
+      icon: '🌍',
+      title: 'Global Certification',
+      description: 'Worldwide recognized and validated certificate that opens doors globally',
+      type: 'certification'
+    },
+    {
+      icon: '💰',
+      title: 'Join Now Benefits',
+      description: 'Fully refundable when you pass the AWS exam (subject to taxes). Lucky draw among top scorers (above 990) to win MacBook every 6 months.',
+      type: 'join-now'
+    }
   ];
 
   const stats = [

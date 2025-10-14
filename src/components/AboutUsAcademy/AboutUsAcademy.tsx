@@ -1,7 +1,11 @@
 import React from 'react';
 import './AboutUsAcademy.css';
 
-const AboutUsAcademy: React.FC = () => {
+interface AboutUsAcademyProps {
+  onJoinNow?: () => void;
+}
+
+const AboutUsAcademy: React.FC<AboutUsAcademyProps> = ({ onJoinNow }) => {
   return (
     <div className="about-us-academy">
       <div className="container">
@@ -64,6 +68,23 @@ const AboutUsAcademy: React.FC = () => {
                 <div className="highlight-icon">⏱️</div>
                 <h3>8 Weeks</h3>
                 <p>Intensive but manageable timeline to get you certified fast</p>
+              </div>
+              <div className="highlight-card">
+                <div className="highlight-icon">🌍</div>
+                <h3>Global Certification</h3>
+                <p>Earn a worldwide recognized and validated certificate that opens doors globally</p>
+              </div>
+              <div className="highlight-card special-offer-card">
+                <div className="highlight-icon">🎯</div>
+                <h3>Special Offer</h3>
+                <div className="offer-details">
+                  <p>• Fully refundable when you pass the AWS Exam</p>
+                  <p>• Subject to applicable taxes</p>
+                  <p>• Lucky draw among top scorers (Above 990) to win MacBook every 6 months</p>
+                </div>
+                <button className="join-now-card-btn" onClick={onJoinNow}>
+                  JOIN NOW
+                </button>
               </div>
             </div>
           </div>

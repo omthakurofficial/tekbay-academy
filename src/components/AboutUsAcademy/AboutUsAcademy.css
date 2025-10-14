@@ -121,6 +121,58 @@
   margin: 0;
 }
 
+/* Special Offer Card Styles */
+.special-offer-card {
+  background: linear-gradient(135deg, #f1c40f 0%, #e67e22 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.special-offer-card::before {
+  content: '🎁';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 60px;
+  opacity: 0.1;
+  transform: rotate(15deg);
+}
+
+.offer-details {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.offer-details p {
+  font-size: 13px;
+  margin: 8px 0;
+  padding-left: 10px;
+  opacity: 1;
+  font-weight: 500;
+}
+
+.join-now-card-btn {
+  background: linear-gradient(45deg, var(--color-secondary-blue), #2c3e50);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.join-now-card-btn:hover {
+  background: linear-gradient(45deg, #2c3e50, var(--color-secondary-blue));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .about-us-academy {
@@ -154,6 +206,15 @@
 
   .highlight-card {
     padding: 20px;
+  }
+
+  .join-now-card-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .offer-details p {
+    font-size: 12px;
   }
 }
 
