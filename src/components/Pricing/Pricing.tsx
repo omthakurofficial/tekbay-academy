@@ -30,15 +30,28 @@ const Pricing: React.FC = () => {
     <section className="pricing section" id="pricing">
       <div className="container">
         <div className="pricing-content">
-          <div className="pricing-image">
-            <img src={getAssetPath('/student-macbook.jpg')} alt="Student with MacBook" />
+          <div className="pricing-image-section">
+            <div className="pricing-image">
+              <img src={getAssetPath('/student-macbook.jpg')} alt="Student with MacBook" />
+            </div>
+            
+            <div className="terms">
+              <h4 className="terms-title">Terms & Conditions</h4>
+              <p className="terms-text">
+                * Fully Refundable when you pass the AWS Exam. Subjected to Taxes.<br />
+                ** Lucky draw among Top Scorers (Above 990) to win MacBook every 6 months.
+              </p>
+            </div>
           </div>
 
           <div className="pricing-details">
-            <h2 className="pricing-title">
-              TekBay AWS<br />
-              Apprenticeship Program
-            </h2>
+            <div className="title-section">
+              <div className="title-decoration"></div>
+              <h2 className="pricing-title">
+                TekBay AWS<br />
+                Apprenticeship Program
+              </h2>
+            </div>
             
             <div className="refund-banner">
               <h3 className="refund-title">100%<br />REFUND</h3>
@@ -67,14 +80,6 @@ const Pricing: React.FC = () => {
                   <p className="feature-description">{feature.description}</p>
                 </div>
               ))}
-            </div>
-
-            <div className="terms">
-              <h4 className="terms-title">Terms & Conditions</h4>
-              <p className="terms-text">
-                * Fully Refundable when you pass the AWS Exam. Subjected to Taxes.<br />
-                ** Lucky draw among Top Scorers (Above 990) to win MacBook every 6 months.
-              </p>
             </div>
           </div>
         </div>

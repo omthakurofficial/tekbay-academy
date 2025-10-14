@@ -1,6 +1,16 @@
 import React from 'react';
 import './Benefits.css';
 import { getAssetPath } from '../../utils/assetUtils';
+  ];   {
+      icon: '🎓',
+      text: '300+ Students Passed',
+    },
+    {
+      icon: '💻',
+      text: '40% Working In Leading Tech Companies',
+    },
+  ];enefits.css';
+import { getAssetPath } from '../../utils/assetUtils';
 
 const Benefits: React.FC = () => {
   const benefits = [
@@ -32,7 +42,7 @@ const Benefits: React.FC = () => {
       text: '300+ Students Passed',
     },
     {
-      icon: '💻',
+      icon: '�',
       text: '40% Working In Leading Tech Companies',
     },
   ];
