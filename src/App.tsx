@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/global.css';
+import PromoBanner from './components/PromoBanner/PromoBanner';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import ProgramOverview from './components/ProgramOverview/ProgramOverview';
@@ -38,6 +39,7 @@ const App: React.FC = () => {
   return (
     <Router basename="/tekbay-academy">
       <div className="App">
+        <PromoBanner onJoinNow={handleJoinNow} />
         <Header onJoinNow={handleJoinNow} />
         <Routes>
           <Route path="/" element={<HomePage onJoinNow={handleJoinNow} />} />

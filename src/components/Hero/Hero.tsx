@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
@@ -7,6 +8,12 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
+  const navigate = useNavigate();
+
+  const handleReadMore = () => {
+    navigate('/about-academy');
+  };
+
   return (
     <section className="hero">
       <div className="hero-background">
@@ -33,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
             </p>
             <div className="hero-cta">
               <button className="btn-primary" onClick={onJoinNow}>Start Learning Today</button>
-              <button className="btn-secondary">Watch Demo</button>
+              <button className="btn-secondary" onClick={handleReadMore}>Read More</button>
             </div>
             <div className="hero-stats">
               {/* <div className="stat">
