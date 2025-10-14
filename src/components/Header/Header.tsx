@@ -95,13 +95,9 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo" onClick={closeMenu}>
-            <img src={getAssetPath('/images/logo.png')}
-                 alt="TekBay" 
+            <img src={getAssetPath('/images/Logo Horizontal.png')}
+                 alt="TekBay Academy" 
                  className="logo-image" />
-            <span className="logo-text">
-              <span className="logo-tek">Tek</span>
-              <span className="logo-bay">Bay</span>
-            </span>
           </Link>
           <div className="mobile-menu-button" onClick={toggleMenu}>
             <div className={`menu-icon ${menuOpen ? 'open' : ''}`}>

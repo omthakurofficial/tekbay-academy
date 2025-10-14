@@ -14,13 +14,9 @@ const Footer: React.FC<FooterProps> = ({ onJoinNow }) => {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <img src={getAssetPath('/images/logo.png')}
-                   alt="TekBay" 
+              <img src={getAssetPath('/images/Logo Horizontal.png')}
+                   alt="TekBay Academy" 
                    className="footer-logo-image" />
-              <span className="footer-logo-text">
-                <span className="logo-tek">Tek</span>
-                <span className="logo-bay">Bay</span>
-              </span>
             </div>
             <p className="footer-tagline">
               Your Bridge to the Cloud
