@@ -7,8 +7,8 @@
 
 .footer-content {
   display: grid;
-  grid-template-columns: 2fr 2fr;
-  gap: 40px;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
   margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -30,6 +30,7 @@
   font-size: 16px;
   opacity: 0.8;
   font-weight: 600;
+  margin-bottom: 25px;
 }
 
 .footer-links {
@@ -63,6 +64,28 @@
 .footer-list a:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+.footer-locations {
+  margin-top: 15px;
+}
+
+.location-section {
+  margin-bottom: 18px;
+}
+
+.location-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary-beige);
+  margin-bottom: 8px;
+}
+
+.location-address {
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .footer-bottom {
@@ -114,8 +137,12 @@
 }
 
 @media (max-width: 992px) {
+  .footer-content {
+    gap: 40px;
+  }
+  
   .footer-links {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
   }
 }

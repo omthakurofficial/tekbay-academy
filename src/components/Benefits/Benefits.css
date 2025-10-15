@@ -73,7 +73,7 @@
 }
 
 .trainers-card {
-  background: linear-gradient(135deg, #a8b2ff 0%, #b8c5ff 100%);
+  background: #eef1ff;
   padding: 12px;
   border-radius: 16px;
   text-align: center;
@@ -84,17 +84,6 @@
   min-height: fit-content;
   margin-top: 0;
   border: 2px solid rgba(255, 255, 255, 0.8);
-}
-
-.trainers-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12, #e74c3c);
-  border-radius: 16px 16px 0 0;
 }
 
 .trainers-image-container {
@@ -203,20 +192,20 @@
 }
 
 .credential-badge {
-  background: linear-gradient(135deg, #4a6cf7 0%, #667eea 100%);
-  color: white;
+  background: #FF9900;
+  color: #252F3E;
   padding: 8px 14px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(74, 108, 247, 0.2);
+  box-shadow: 0 2px 8px rgba(255, 153, 0, 0.2);
   max-width: 100%;
   transition: all 0.3s ease;
-  border: 1px solid rgba(74, 108, 247, 0.3);
+  border: 1px solid rgba(255, 153, 0, 0.3);
 }
 
 .credential-badge:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
-  background: linear-gradient(135deg, #5a7cf8 0%, #768eeb 100%);
+  box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+  background: #E6870A;
 }
 
 .credential-text {
@@ -240,11 +229,11 @@
   align-items: center;
   gap: 12px;
   padding: 14px 18px;
-  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  background: #eef1ff;
   border-radius: 10px;
-  color: white;
+  color: #2c3e50;
   font-weight: 700;
-  box-shadow: 0 3px 12px rgba(74, 144, 226, 0.2);
+  box-shadow: 0 3px 12px rgba(168, 178, 255, 0.2);
   transition: all 0.3s ease;
   border-left: 3px solid #f39c12;
   position: relative;
@@ -252,8 +241,8 @@
 }
 
 .achievement-item:first-child {
-  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-  box-shadow: 0 3px 12px rgba(46, 204, 113, 0.2);
+  background: #eef1ff;
+  box-shadow: 0 3px 12px rgba(168, 178, 255, 0.2);
   border-left-color: #e74c3c;
 }
 
@@ -270,12 +259,12 @@
 
 .achievement-item:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 6px 18px rgba(168, 178, 255, 0.3);
   border-left-width: 5px;
 }
 
 .achievement-item:first-child:hover {
-  box-shadow: 0 6px 18px rgba(46, 204, 113, 0.3);
+  box-shadow: 0 6px 18px rgba(168, 178, 255, 0.3);
 }
 
 .achievement-icon {

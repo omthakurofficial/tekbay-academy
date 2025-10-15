@@ -21,9 +21,36 @@ const Footer: React.FC<FooterProps> = ({ onJoinNow }) => {
             <p className="footer-tagline">
               Your Bridge to the Cloud
             </p>
+            
+            
           </div>
 
           <div className="footer-links">
+            <div className="footer-column">
+              <h4 className="footer-title">Contact Us</h4>
+              <ul className="footer-list">
+                <li><a href="mailto:apprenticeship@tekbay.digital">apprenticeship@tekbay.digital</a></li>
+              </ul>
+              
+              <div className="footer-locations">
+                <div className="location-section">
+                  <h5 className="location-title">India:</h5>
+                  <p className="location-address">
+                    K-7, Kirti Nagar,<br />
+                    New Delhi - 110015<br />
+                    India
+                  </p>
+                </div>
+                
+                <div className="location-section">
+                  <h5 className="location-title">Nepal:</h5>
+                  <p className="location-address">
+                    Behind Swiss Embassy, Ekantakuna,<br />
+                    Lalitpur - 44700
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="footer-column">
               <h4 className="footer-title">About</h4>
               <ul className="footer-list">
@@ -41,13 +68,7 @@ const Footer: React.FC<FooterProps> = ({ onJoinNow }) => {
               </ul>
             </div>
 
-            <div className="footer-column">
-              <h4 className="footer-title">Contact</h4>
-              <ul className="footer-list">
-                <li><a href="mailto:apprentice@tekbay.digital">apprentice@tekbay.digital</a></li>
-                <li><a href="#contact">Get in Touch</a></li>
-              </ul>
-            </div>
+            
 
             <div className="footer-column">
               <h4 className="footer-title">Legal</h4>

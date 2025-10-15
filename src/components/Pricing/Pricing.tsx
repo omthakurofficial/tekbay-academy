@@ -16,7 +16,7 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
     {
       icon: '💰',
       title: 'Fully Refundable',
-      description: 'Program INR 10000*',
+      description: 'Program INR 9,999*',
     },
     {
       icon: '💻',
@@ -68,11 +68,11 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
             <div className="price-box">
               <div className="price-original">
                 Originally<br />
-                <span className="price-striked">₹25,000</span>
+                <span className="price-striked">₹24,999</span>
               </div>
               <div className="price-offer">
                 Limited time offer<br />
-                <span className="price-current">₹10,000</span>
+                <span className="price-current">₹9,999</span>
                 <p className="price-note">Inclusive of AWS Exam Fee Worth USD 150</p>
               </div>
             </div>

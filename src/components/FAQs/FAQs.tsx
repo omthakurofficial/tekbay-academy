@@ -16,7 +16,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "What is the program fee?",
-      answer: "₹9,997 (includes AWS exam fee worth $150). Fully refundable if you pass the exam."
+      answer: "₹9,999 (includes AWS exam fee worth $150). Fully refundable if you pass the exam."
     },
     {
       question: "How long is the program?",
