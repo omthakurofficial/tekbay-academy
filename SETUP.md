@@ -109,6 +109,191 @@ This creates an optimized build in the `build/` folder.
 
 ## 🌐 Deployment
 
+### Deploy to AWS Lightsail (Recommended for Production)
+
+**Prerequisites:**
+- AWS Lightsail instance running (Ubuntu 20.04 or later recommended)
+- SSH access to your Lightsail instance
+- Domain name (optional but recommended)
+
+**Step-by-Step Lightsail Deployment:**
+
+#### 1️⃣ Connect to Your Lightsail Instance
+```bash
+ssh -i /path/to/your-key.pem ubuntu@your-lightsail-ip
+```
+
+#### 2️⃣ Install Node.js and npm
+```bash
+# Update system packages
+sudo apt update
+sudo apt upgrade -y
+
+# Install Node.js 18.x (LTS)
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verify installation
+node --version
+npm --version
+```
+
+#### 3️⃣ Install Nginx (Web Server)
+```bash
+# Install Nginx
+sudo apt install -y nginx
+
+# Start and enable Nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
+#### 4️⃣ Clone Your Repository
+```bash
+# Navigate to web directory
+cd /var/www/
+
+# Clone your repository
+sudo git clone https://github.com/omthakurofficial/tekbay-academy.git
+
+# Set permissions
+sudo chown -R $USER:$USER tekbay-academy
+cd tekbay-academy
+```
+
+#### 5️⃣ Install Dependencies and Build
+```bash
+# Install project dependencies
+npm install
+
+# Build production version
+npm run build
+```
+
+#### 6️⃣ Configure Nginx
+```bash
+# Create Nginx configuration
+sudo nano /etc/nginx/sites-available/tekbay
+```
+
+**Paste this configuration:**
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name your-domain.com www.your-domain.com;  # Replace with your domain or Lightsail IP
+    
+    root /var/www/tekbay-academy/build;
+    index index.html;
+    
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    # Cache static assets
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    # Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss application/javascript application/json;
+}
+```
+
+**Save and exit** (Ctrl+X, then Y, then Enter)
+
+#### 7️⃣ Enable the Site
+```bash
+# Create symbolic link
+sudo ln -s /etc/nginx/sites-available/tekbay /etc/nginx/sites-enabled/
+
+# Remove default site (optional)
+sudo rm /etc/nginx/sites-enabled/default
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Reload Nginx
+sudo systemctl reload nginx
+```
+
+#### 8️⃣ Configure Firewall
+```bash
+# Allow HTTP and HTTPS
+sudo ufw allow 'Nginx Full'
+sudo ufw allow OpenSSH
+sudo ufw enable
+```
+
+#### 9️⃣ Set Up SSL Certificate (Optional but Recommended)
+```bash
+# Install Certbot
+sudo apt install -y certbot python3-certbot-nginx
+
+# Get SSL certificate
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+
+# Auto-renewal is set up automatically
+```
+
+#### 🔄 Update Deployment (When You Push Changes)
+```bash
+# SSH into your Lightsail instance
+ssh -i /path/to/your-key.pem ubuntu@your-lightsail-ip
+
+# Navigate to project directory
+cd /var/www/tekbay-academy
+
+# Pull latest changes
+git pull origin main
+
+# Install any new dependencies
+npm install
+
+# Rebuild
+npm run build
+
+# Reload Nginx (if needed)
+sudo systemctl reload nginx
+```
+
+#### 🤖 Automated Deployment Script
+Create a deployment script for easier updates:
+
+```bash
+# Create script
+nano ~/deploy-tekbay.sh
+```
+
+**Add this content:**
+```bash
+#!/bin/bash
+echo "🚀 Deploying TekBay Academy..."
+cd /var/www/tekbay-academy
+git pull origin main
+npm install
+npm run build
+sudo systemctl reload nginx
+echo "✅ Deployment complete!"
+```
+
+**Make it executable:**
+```bash
+chmod +x ~/deploy-tekbay.sh
+```
+
+**Run it anytime:**
+```bash
+~/deploy-tekbay.sh
+```
+
+---
+
 ### Deploy to Netlify (Free):
 1. Run `npm run build`
 2. Drag the `build` folder to Netlify: https://app.netlify.com/drop
