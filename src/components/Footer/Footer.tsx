@@ -22,35 +22,47 @@ const Footer: React.FC<FooterProps> = ({ onJoinNow }) => {
               Your Bridge to the Cloud
             </p>
             
-            
-          </div>
-
-          <div className="footer-links">
-            <div className="footer-column">
-              <h4 className="footer-title">Contact Us</h4>
-              <ul className="footer-list">
-                <li><a href="mailto:apprenticeship@tekbay.digital">apprenticeship@tekbay.digital</a></li>
-              </ul>
+            <div className="footer-contact-info">
+              <h4 className="contact-title">Contact Us</h4>
+              <div className="contact-email">
+                <a href="mailto:apprenticeship@tekbay.digital">apprenticeship@tekbay.digital</a>
+              </div>
               
               <div className="footer-locations">
-                <div className="location-section">
-                  <h5 className="location-title">India:</h5>
-                  <p className="location-address">
-                    K-7, Kirti Nagar,<br />
-                    New Delhi - 110015<br />
-                    India
-                  </p>
+                <div className="location-item">
+                  <span className="location-icon">📍</span>
+                  <div className="location-details">
+                    <span className="location-label">USA:</span>
+                    <span className="location-text">3580 Unita St, Unit 10 Denver, CO 80238</span>
+                  </div>
                 </div>
                 
-                <div className="location-section">
-                  <h5 className="location-title">Nepal:</h5>
-                  <p className="location-address">
-                    Behind Swiss Embassy, Ekantakuna,<br />
-                    Lalitpur - 44700
-                  </p>
+                <div className="location-item">
+                  <span className="location-icon">📍</span>
+                  <div className="location-details">
+                    <span className="location-label">INDIA:</span>
+                    <span className="location-text">K-7, Kirti Nagar, New Delhi - 110015</span>
+                  </div>
+                </div>
+                
+                <div className="location-item">
+                  <span className="location-icon">📍</span>
+                  <div className="location-details">
+                    <span className="location-label">NEPAL:</span>
+                    <span className="location-text">Behind Swiss Embassy, Ekantakuna, Lalitpur - 44700</span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="footer-links">
+            {/* <div className="footer-column">
+              <h4 className="footer-title">Contact</h4>
+              <ul className="footer-list">
+                <li><a href="#contact">Get in Touch</a></li>
+              </ul>
+            </div> */}
             <div className="footer-column">
               <h4 className="footer-title">About</h4>
               <ul className="footer-list">
