@@ -1,0 +1,651 @@
+import React, { useState, useMemo } from 'react';
+import './RegistrationModal.css';
+
+interface RegistrationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+interface TestCenter {
+  state: string;
+  city: string;
+  name: string;
+  address: string;
+}
+
+interface FormData {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  country: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  phoneNumber: string;
+  email: string;
+  educationLevel: string;
+  degreeName: string;
+  learningPreference: string;
+  testCenterState: string;
+  testCenterCity: string;
+  testCenterName: string;
+}
+
+// Test Center Data from CSV
+const TEST_CENTERS: TestCenter[] = [
+  { state: "Andhra Pradesh", city: "Visakhapatnam", name: "Pearson Professional Centers-Visakhapatnam", address: "Address 1, Visakhapatnam, Andhra Pradesh" },
+  { state: "Andhra Pradesh", city: "Vijayawada", name: "SRK Institute of Technology", address: "Near Ramavarappadu Ring, Enikepadu, Opp Pratap Industries, NH-5, Vijayawada, Andhra Pradesh 521108" },
+  { state: "Andhra Pradesh", city: "Vijayawada", name: "Siddhartha IAS Academy", address: "D.NO 32-26-113, 2nd Floor, Maruthi Nagar, Vijayawada, Andhra Pradesh 520004" },
+  { state: "Andhra Pradesh", city: "Vijayawada", name: "Dr. Computer.in IT and Ecom Service", address: "Flat No. FF1 & FF2 Ramaneeyam, Old No.4-71 (New No.4-80), Rajula Bazar, Ramvarpaddu, Vijayawada, Andhra Pradesh 521108" },
+  { state: "Andhra Pradesh", city: "Guntur", name: "CONCOMSE EDUCATION", address: "FLAT NO: 505, 12-545/a GARUDA ENCLAVE, OPP MANIPAL HOSPITAL, GUNTUR DISTRICT, TADEPALLI, Andhra Pradesh 522501" },
+  { state: "Andhra Pradesh", city: "Guntur", name: "KL University", address: "Green Fields, Vaddeswaram, Guntur, Vijaywada, Andhra Pradesh 522502" },
+  { state: "Andhra Pradesh", city: "Gudlavalleru", name: "Gudlavalleru Engineering College", address: "Seshadri Rao Knowledge Village, Krishna District, Gudlavalleru, Andhra Pradesh 521356" },
+  { state: "Andhra Pradesh", city: "Ongole", name: "Brilliant Computer Education", address: "DNo: 20-06-15(2), Anjaiah Road, Prakasam District, Ongole, Andhra Pradesh 523001" },
+  { state: "Assam", city: "Guwahati", name: "Animation World", address: "3rd Floor, yubraj palace, Krishna nagar road, Flyover U Turn, ward No 12, Guwahati, Assam 781003" },
+  { state: "Assam", city: "Guwahati", name: "Assam Don Bosco University", address: "Airport Road, Azara, Nowapara, Guwahati, Assam 781017" },
+  { state: "Bihar", city: "Patna", name: "BALAJI IMPEX", address: "G-5, Shaligram Complex, Near BN College, Ashok Rajpath, Patna, Bihar 800004" },
+  { state: "Bihar", city: "Patna", name: "Yash Infotech", address: "Hubnet Technologies Pvt.ltd, 2nd floor, J.J Complex, East Boring Canal Road, Patna, Bihar 800001" },
+  { state: "Bihar", city: "Patna", name: "Itechnoplus Education and Solution Pvt. Ltd", address: "1st Floor, Pratiksha Bhawan, BSNL Exchange Compund, Khajpura, Patna, Bihar 800014" },
+  { state: "Goa", city: "Margao", name: "IP Gates", address: "6th Floor, Pereira Plaza, Opp. Old Hospicio Hospital, Margao, Goa 403601" },
+  { state: "Gujarat", city: "Ahmedabad", name: "Xamindia Private Limited", address: "S. No. 33/1/2, B/h. Viral Housing, Amreda House, Sindhubhavan Road, Bodakdev, Ahmedabad, Gujarat 380054" },
+  { state: "Gujarat", city: "Ahmedabad", name: "GANPAT UNIVERSITY- CITY OFFICE", address: "Office 105-106, Ganesh Meridian, Block-A, Opp Kargil Petrol Pump, Chanakyapuri, Nr Gujarat High Court, Sola, SG Highway, Ahmedabad, Gujarat 380060" },
+  { state: "Gujarat", city: "Ahmedabad", name: "Indo American Education Society", address: "301-302, Sun Square above IDFC Bank, Off CG Road Navrangpura, Ahmedabad, Gujarat 380009" },
+  { state: "Gujarat", city: "Ahmedabad", name: "Siddhi Techsoft and Management Pvt Ltd", address: "F/6,19,20,21,22, Maruti Complex, Ranip, Ahmedabad, Gujarat 382480" },
+  { state: "Gujarat", city: "Ahmedabad", name: "Medhavi Skills University", address: "Office No. 604, 6th Floor, Aayushyaman Plaza, Vasant Vihar 2, Nava Naroda, Near Vithal Plaza, Ahmedabad, Gujarat 382330" },
+  { state: "Gujarat", city: "Surat", name: "Sysethics Services", address: "222, Second Floor, Shiven Shoppers, Opposite Gangeshwar Mahadev Temple, Near Honey Park Circle, Surat, Gujarat 395009" },
+  { state: "Gujarat", city: "Surat", name: "Virani Softech", address: "A-805, RJD Gajera Business Hub, Near Kiran Hospital, Oppsite Jewel Star, Katargam, Surat, Gujarat 395004" },
+  { state: "Gujarat", city: "Surat", name: "AURO University", address: "Earthspace, Hazira Road, Opp ONGC, Next to Toyota, Bhatpore, Surat, Gujarat 394510" },
+  { state: "Gujarat", city: "Surat", name: "WEETECH INSTITUTE PRIVATE LIMITED", address: "A-401, Astha Square, Near Kapodra-Utran Bridge, Utran, Surat, Gujarat 394105" },
+  { state: "Gujarat", city: "Surat", name: "Bhagwan Mahavir University", address: "SR NO 149, BBA Building Ground Floor, Beside SRM Print and Xerox, Behind VIP Road Bharthana, Vesu, Surat, Gujarat 395017" },
+  { state: "Gujarat", city: "Vadodara", name: "Anuptech Equipments Pvt Ltd", address: "B35, Krishna Industrial Estate, Opposite BIDC, Gorwa, Vadodara, Gujarat 390016" },
+  { state: "Gujarat", city: "Vadodara", name: "D.K. Shah NDT Training Institute", address: "401 Cascade Complex, nr. Channi Jakat Naka, Vadodara, Gujarat 390024" },
+  { state: "Gujarat", city: "Vadodara", name: "SHREETIK INFOTECH", address: "3rd Floor Gokulesh Complex, Opp Collector Bunglow RC Dutt Road, Alkapuri, Vadodara, Gujarat 390007" },
+  { state: "Gujarat", city: "Vadodara", name: "Baroda Institute of Technology", address: "B-208, Manubhai Tower, Opposite Maharaja Sayajirao University, Sayajigunj, Vadodara, Gujarat 390005" },
+  { state: "Gujarat", city: "Vadodara", name: "Sigma University", address: "Post Bakrol Ajwa Nimeta road, Waghodia, Vadodara, Gujarat 390019" },
+  { state: "Gujarat", city: "Rajkot", name: "Swift Computer Technology", address: "Office No. 504, Wing B, Pramukh Swami Arcade, Near Trikon Baug, Dr. Yagnik Road, Rajkot, Gujarat 360001" },
+  { state: "Gujarat", city: "Rajkot", name: "Shri Labhubhai Trivedi Institute of Eng and Tech", address: "Kalavad Road, Near GEC, Rajkot, Gujarat 360005" },
+  { state: "Gujarat", city: "Changa", name: "CHAROTAR UNIVERSITY SCIENCE OF TECHNOLOGY", address: "Education Campus Changa, Computer Engineering Department, Charusat, Changa, Gujarat 388421" },
+  { state: "Haryana", city: "Gurugram", name: "Talent Study Circle", address: "3rd Floor, Gaurav Plaza, Opposite Metro Pillar No. 50, Sikanderpur, Gurugram, Haryana 122002" },
+  { state: "Haryana", city: "Gurugram", name: "Sushant University", address: "Golf Course Road, Sector - 55, Gurugram, Haryana 122003" },
+  { state: "Haryana", city: "Faridabad", name: "JL Global Ventures", address: "TA-03, Third Floor, Crown Plaza Mall, Faridabad, Haryana 121001" },
+  { state: "Haryana", city: "Karnal", name: "Australasia Institute of English", address: "inside Sylvia Consultants, Mukul Tower, Behind Bus Stand, DAV(PG) College Road, OPP Mahila Ashram, Karnal, Haryana 132001" },
+  { state: "Himachal Pradesh", city: "Solan", name: "Secure Net Technologies", address: "# 21, HBC, Phase-1, Saproon, Solan, Himachal Pradesh 173211" },
+  { state: "Jharkhand", city: "Ranchi", name: "Infinity Academy", address: "2nd Floor, Amravati Complex, Circular Road (Beside B.I.T. Ext. Center), Lalpur Chowk, Ranchi, Jharkhand 834001" },
+  { state: "Jharkhand", city: "Jamshedpur", name: "DBMS Career Academy", address: "B. H. Area, Road No. 7, Near T. S. Flat, Kadma, Jamshedpur, Jharkhand 831005" },
+  { state: "Jharkhand", city: "Dhanbad", name: "Ten Software", address: "1st Floor, Flat No-102, Shivam Colony, Bhuiphore, Govindpur Road, Dhanbad, Jharkhand 828109" },
+  { state: "Karnataka", city: "Bengaluru", name: "PEAR Academy", address: "Level 1, 27 Ulsoor Road, Sivanchetti Garden, Bengaluru, Karnataka 560042" },
+  { state: "Karnataka", city: "Bengaluru", name: "iDomains Technologies", address: "82/1, 2nd floor, 2nd Main road, KHB colony, Koramangala 5th block, Next to FAB hotels, Near Jyoti Nivas College, Bangalore, Karnataka 560095" },
+  { state: "Karnataka", city: "Bengaluru", name: "Ally Tech Services", address: "B1, Bannerghatta Slip Road, KEB Colony, New Gurappana Palya, 1st Stage, BTM Layout 1, Bengaluru, Karnataka 560029" },
+  { state: "Karnataka", city: "Bengaluru", name: "Tvaksa Technologies Pvt. Ltd.", address: "# 1281 21st Main, J P Nagar 2nd Phase, Bangalore, Karnataka 560078" },
+  { state: "Karnataka", city: "Bengaluru", name: "REVA University", address: "REVA University, Rukmini knowledge park Kattigenahalli, Yelahanka, Bangalore, Karnataka 560064" },
+  { state: "Karnataka", city: "Mysuru", name: "AIMIT", address: "905/4, 4th Main, 1st Cross, Vidyaranyapuram, Mysore, Karnataka 570008" },
+  { state: "Karnataka", city: "Mysuru", name: "MYRA School of Business", address: "Power Grid Road, Opp. Varsha Cables, Infosys 1.5 Kms, Maidanahalli, Yelwala to KRS Road, opp. Power Grid, Mysore, Karnataka 571130" },
+  { state: "Karnataka", city: "DHARWAD", name: "E TECHNOLOGY", address: "2ND FLOOR, KANOJ BUILDING, OPP TO LAXMI THEATRE, DHARWAD, Karnataka 580001" },
+  { state: "Kerala", city: "Angamally", name: "RIGHTROBIN", address: "13/541-F, AMK, Kannapilly Tower, Karukutty, Angamally, Kerala 683576" },
+  { state: "Kerala", city: "Aluva", name: "Netware IT Solutions", address: "Building No. XV111/37(1), Mukkath Tower, Bye Pass Junction, Aluva, Kerala 683101" },
+  { state: "Kerala", city: "Thiruvananthapuram", name: "ST. THOMAS INSTITUTE FOR SCIENCE & TECHNOLOGY", address: "Mar Chrysostam Nagar, Kazhakoottam Thycadu Road, Kattaikonam, Thiruvananthapuram, Kerala 685584" },
+  { state: "Kerala", city: "Thiruvananthapuram", name: "GlobalTrack Technologies Pvt Ltd", address: "KRISHNA', TC 15/121, ALTHARA NAGAR, B-29, SASTHAMANGALAM.P.O, Trivandrum, Kerala 695010" },
+  { state: "Kerala", city: "Thiruvananthapuram", name: "Networkz Systems", address: "Bhadra Center, 3rd Floor, Opp Dhanya & Remya Theatres, Ayurveda College JN., Trivandrum, Kerala 695001" },
+  { state: "Kerala", city: "Kochi", name: "CRESCO SAFE", address: "37/3329 D, 2nd Floor, Omkar Building, Asariparambu Road, Edapally PO, Kochi, Kerala 682024" },
+  { state: "Kerala", city: "Kochi", name: "Rajagiri College Of Social Sciences", address: "Rajagiri School of Management, Rajagiri Valley P.O, Kakkanad, Kochi, Kerala 682039" },
+  { state: "Kerala", city: "Kozhikode", name: "Forun Testing and Educational Services", address: "4th Floor, Kadooli Tower, Vandipetta Jn, West Nadakkavu, Calicut - 673011, Kozhikode, Kerala 673011" },
+  { state: "Kerala", city: "Kozhikode", name: "MEDIA LIVE", address: "Media Live, DOOR NO 6/1216 C, FIRST FLOOR, YEMPEES TOWER, P T USHA ROAD, CALICUT, KOZHIKODE, Kerala 673032" },
+  { state: "Kerala", city: "Thrissur", name: "Vidya Academy of Science & Technology (VAST)", address: "SunTower Building, East Fort, Thrissur, Kerala 680005" },
+  { state: "Kerala", city: "Kottayam", name: "R-3 Info Solution", address: "NKV buildings, Northgate, Vaikom P O Vaikom, Kottayam, Kerala 686141" },
+  { state: "Kerala", city: "Kannur", name: "Compact Systems", address: "Compact Systems, 3rdFloor, Shabeena Complex, Thavakkara, Kannur, Kerala 670002" },
+  { state: "Madhya Pradesh", city: "Indore", name: "Orlando Academy", address: "20-21, Press Complex, 1st Floor, Above Mahanagar Press, Behind Dainik Bhaskar, Indore, Madhya Pradesh 452001" },
+  { state: "Madhya Pradesh", city: "Indore", name: "iTrainu Technologies", address: "203, 2nd floor, Orange Business Park, Bhanwarkuan, Indore, Madhya Pradesh 452014" },
+  { state: "Madhya Pradesh", city: "Bhopal", name: "Lakshmi Narain College of Technology Excellence", address: "Kalchuri Nagar, Raisen Road, Bhopal, Madhya Pradesh 462021" },
+  { state: "Madhya Pradesh", city: "Bhopal", name: "Prema Software Solution", address: "35-B, Indrapuri, Behind New Indian Coffee House, Bhopal, Madhya Pradesh 462021" },
+  { state: "Madhya Pradesh", city: "Jabalpur", name: "Rockford Softsol-Computer Academy &Training Center", address: "741, Near Rockford Foundation School, Mahanadda Road, Madan Mahal, Jabalpur, Madhya Pradesh 482001" },
+  { state: "Madhya Pradesh", city: "Ujjain", name: "MANAL SOFTECH PRIVATE LIMITED", address: "2nd Floor, 22, Atharva Building, Near Vasavada Petrol Pump, Above Avanti Hospital Office, Freeganj, Ujjain, Madhya Pradesh 456010" },
+  { state: "Maharashtra", city: "Mumbai", name: "Span Labs", address: "B209-210, Sagar Tech Plaza, Opposite Hotel Chakra Sakinaka, Andheri East, Mumbai, Maharashtra 400072" },
+  { state: "Maharashtra", city: "Mumbai", name: "InTech Computer Institute", address: "Office No. 3022, 1 Aerocity, NIBR Compound, Saki Naka, Safed Pool, Mumbai, Maharashtra 400072" },
+  { state: "Maharashtra", city: "Mumbai", name: "GIIT Computer Institute", address: "Ground Floor No-6, Suyog Apartment, Near ICICI Bank, Liberty Garden, Road No-3, Malad West, Mumbai, Maharashtra 400064" },
+  { state: "Maharashtra", city: "Pune", name: "Nityashree Infosystems Private Limited", address: "Office No-333, 3rd Floor, Shree Ganesh Galaxy, Near Ashoka Hotel, Alandi Road, Pune, Maharashtra 412105" },
+  { state: "Maharashtra", city: "Pune", name: "Tech Bodhi Solutions LLP", address: "Office No. 105, Vascon Garnets Bay, Viman Nagar, 5th Mile, Nagar Rd, next to Four Points by Sheraton, Pune, Maharashtra 411014" },
+  { state: "Maharashtra", city: "Pune", name: "Vinsys It Services (I) Pvt. Ltd.", address: "L401 to L409, 3rd floor, Megacenter, Behind Noble Hospital, Near Magarpatta Corner, Hadapsar, Pune, Maharashtra 411028" },
+  { state: "Maharashtra", city: "Pune", name: "GATS", address: "Office 1, Symphony 'C', Ashok Nagar, Range Hills Rd, Off PuneUniversity Rd, Pune, Maharashtra 411020" },
+  { state: "Maharashtra", city: "Thane", name: "Magnum IELTS English Academy", address: "1st Floor Krishna Plaza 102/103/104, Near Railway Station, Thane West, Thane, Maharashtra 400601" },
+  { state: "Maharashtra", city: "Navi Mumbai", name: "Tech-Act", address: "C-64 TTC Industrial Area, Near Sunravi Bus Stop, Turbhe, Navi Mumbai, Maharashtra 400705" },
+  { state: "Maharashtra", city: "Nashik", name: "Keyworld Software Solutions Private Limited", address: "2nd Floor, Akshad Complex, Vinar Nagar, Near Nashik Vesh, Sinnar, Nashik, Maharashtra 422103" },
+  { state: "Maharashtra", city: "Aurangabad", name: "Atharv Computers", address: "21, Gayatri Society, N-8, ClDCO, near baliram patil high school, cidco, Aurangabad, Maharashtra 431003" },
+  { state: "Odisha", city: "Bhubaneswar", name: "Royal Institute Of Information & Management", address: "C-103, 1st Floor, Damayanti Apartment, Behera Sahi, Nayapalli, Bhubaneswar, Odisha 751012" },
+  { state: "Odisha", city: "Bhubaneswar", name: "CredenceSoft Private Limited", address: "DCB-711, DLF Cyber City, Infocity, Patia, Bhubaneswar, Odisha 751024" },
+  { state: "Punjab", city: "Phagwara", name: "GNA University", address: "Sri Hargobindgarh, Hoshiarpur Road, Phagwara, Punjab 144405" },
+  { state: "Punjab", city: "Ludhiana", name: "TCY Learning Solutions Pvt Ltd.", address: "463-G, BRS Nagar, Ferozepur Road, Near ICICI Bank, Ludhiana, Punjab 141001" },
+  { state: "Punjab", city: "Ludhiana", name: "Aricent Solutions Pvt. Ltd", address: "401, 4th Floor, Novelty Plaza, Opp. Hotel Park Plaza, Bhaiwala Chowk, Ferozepur Road, Ludhiana, Punjab 141001" },
+  { state: "Punjab", city: "Amritsar", name: "Amritsar College Of Engineering & Technology", address: "12 Km Milestone, Amritsar-Jalandhar GT Road, Near Jandiala Toll Plaza, Amritsar, Punjab 143001" },
+  { state: "Punjab", city: "Patiala", name: "Multani Mal Modi College, Patiala", address: "Modi College, Near Sunami Gate, Lower Mall, Patiala, Punjab 147001" },
+  { state: "Punjab", city: "Jalandhar", name: "Pearson Professional Centers-Jalandhar 2 PUN", address: "VCN Building, First floor, COOL ROAD 37/2, VCN TOWER, Near STATE BANK OF INDIA, Jalandhar, Punjab 144001" },
+  { state: "Punjab", city: "Mohali", name: "Him Technology Private Limited", address: "3rd Floor, Imperial Tower D186B, Sector 74, Industrial Area Phase 8b, Mohali, Punjab 160055" },
+  { state: "Rajasthan", city: "Jaipur", name: "Akashdeep PG Girls College", address: "Sector 11, Agarwal Farm, Mansarovar, Jaipur, Rajasthan 302020" },
+  { state: "Rajasthan", city: "Jaipur", name: "Evalult Digital Private Limited", address: "E-103, Road No. 7, Vishwakarma Industrial Area, Jaipur, Rajasthan 302013" },
+  { state: "Rajasthan", city: "Jaipur", name: "Yagyavalkya Institute of Technology", address: "YIT Lane, RIICO Industrial Area, Opp Chokhi Dhani, Tonk Road, NH 12, Sitapura, Jaipur, Rajasthan 302022" },
+  { state: "Rajasthan", city: "Udaipur", name: "HINT", address: "11, Swami Nagar, Near Swami Sikshan Sansthan, Bhuwana, Udaipur, Rajasthan 313004" },
+  { state: "Tamil Nadu", city: "Chennai", name: "Vectra Technosoft Pvt. LTD", address: "1&2, Jhaver Plaza, 4th Floor, IA, Nungambakkam High Road, Nungambakkam, Chennai, Tamil Nadu 600034" },
+  { state: "Tamil Nadu", city: "Chennai", name: "ICT Academy", address: "IITM Research Park, E6-03, Block-E, 6th Floor, Kanagam Road, Taramani, Chennai, Tamil Nadu 600113" },
+  { state: "Tamil Nadu", city: "Vellore", name: "Vellore Institute of Technology", address: "M.G.R Block, Room No.221, Centre for Technical Support, Thiruvalam Road, Katpadi, Vellore, Tamil Nadu 632014" },
+  { state: "Tamil Nadu", city: "Coimbatore", name: "RVS College of Arts and Science", address: "242, Trichy Road, Sulur, Coimbatore, Tamil Nadu 641402" },
+  { state: "Tamil Nadu", city: "Salem", name: "Rajaji Institute of Technology", address: "Kombadipatty Periya Seeragapadi, Veerapandi, Salem - Kochi National H'way, SALEM, Tamil Nadu 636308" },
+  { state: "Tamil Nadu", city: "Tiruchirappalli", name: "Systech Hardware & Networking Academy (P) Ltd.", address: "129, Aruvi Block, 1st Floor, St. Paul's Complex, Bharatiyar Salai, Cantonment, Trichy, Tamil Nadu 620001" },
+  { state: "Tamil Nadu", city: "Tirunelveli", name: "I Tech Academy", address: "# 28, NISA Complex, 2nd Floor, Tiruchendur Road, Murugankuruchi, Palayamkottai, Tirunelveli, Tamil Nadu 627002" },
+  { state: "Telangana", city: "Hyderabad", name: "KL University", address: "Miyapur road, Near Sai Baba Temple, Bowrampet, Hyderabad, Telangana 500043" },
+  { state: "Telangana", city: "Hyderabad", name: "vPrompt eServices Private Limited", address: "Plot No.68 Phase -1 Staff Road, Gunrock Enclave Diamond Point, Secunderabad, Telangana 500009" },
+  { state: "Telangana", city: "Hyderabad", name: "Cegonsoft Technologies", address: "308 3RD FLOOR ALLURI TRADE CENTER, BESIDE J C BROTHERS, BHAGYA NAGAR COLONY, KPHB, Hyderabad, Telangana 500072" },
+  { state: "Telangana", city: "Hyderabad", name: "CONCOMSE EDUCATION", address: "KOLAN HARITHA COMPLEX, H.No. 3-100/2/B, 3rd Floor, ABOVE AXIS BANK, NIZAMPET MAIN ROAD, HYDERABAD, Telangana 500090" },
+  { state: "Uttar Pradesh", city: "Noida", name: "Amity University", address: "Sector 125, Noida, Uttar Pradesh 201313" },
+  { state: "Uttar Pradesh", city: "Lucknow", name: "Aptech Computer Education", address: "Hazratganj, Lucknow, Uttar Pradesh 226001" },
+  { state: "Uttar Pradesh", city: "Kanpur", name: "CSJM University", address: "Kalyanpur, Kanpur, Uttar Pradesh 208024" },
+  { state: "West Bengal", city: "Kolkata", name: "Techno India", address: "Salt Lake, Kolkata, West Bengal 700091" },
+  { state: "West Bengal", city: "Kolkata", name: "Webel Technology Campus", address: "DH Block, Salt Lake, Kolkata, West Bengal 700064" }
+];
+
+const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    country: '',
+    city: '',
+    state: '',
+    zipcode: '',
+    phoneNumber: '',
+    email: '',
+    educationLevel: '',
+    degreeName: '',
+    learningPreference: '',
+    testCenterState: '',
+    testCenterCity: '',
+    testCenterName: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Get unique states from test centers
+  const availableStates = useMemo(() => {
+    const states = [...new Set(TEST_CENTERS.map(tc => tc.state))].sort();
+    return states;
+  }, []);
+
+  // Get cities for selected state
+  const availableCities = useMemo(() => {
+    if (!formData.testCenterState) return [];
+    const cities = [...new Set(
+      TEST_CENTERS
+        .filter(tc => tc.state === formData.testCenterState)
+        .map(tc => tc.city)
+    )].sort();
+    return cities;
+  }, [formData.testCenterState]);
+
+  // Get test centers for selected state and city
+  const availableTestCenters = useMemo(() => {
+    if (!formData.testCenterState || !formData.testCenterCity) return [];
+    return TEST_CENTERS.filter(
+      tc => tc.state === formData.testCenterState && tc.city === formData.testCenterCity
+    );
+  }, [formData.testCenterState, formData.testCenterCity]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    
+    // Reset dependent fields when parent selection changes
+    if (name === 'testCenterState') {
+      setFormData(prev => ({
+        ...prev,
+        testCenterState: value,
+        testCenterCity: '',
+        testCenterName: ''
+      }));
+    } else if (name === 'testCenterCity') {
+      setFormData(prev => ({
+        ...prev,
+        testCenterCity: value,
+        testCenterName: ''
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Validate required fields
+      const requiredFields = {
+        firstName: 'First Name',
+        lastName: 'Last Name', 
+        country: 'Country',
+        city: 'City',
+        state: 'State',
+        zipcode: 'Zipcode',
+        phoneNumber: 'Phone Number',
+        email: 'Email Address',
+        educationLevel: 'Education Level',
+        learningPreference: 'Learning Preference',
+        testCenterState: 'Test Center State',
+        testCenterCity: 'Test Center City',
+        testCenterName: 'Test Center'
+      };
+
+      for (const [field, label] of Object.entries(requiredFields)) {
+        if (!formData[field as keyof FormData]) {
+          alert(`Please fill in the ${label} field.`);
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
+      // Create formatted data for submission
+      const submissionData = {
+        personalInfo: {
+          fullName: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
+          firstName: formData.firstName,
+          middleName: formData.middleName,
+          lastName: formData.lastName
+        },
+        address: {
+          country: formData.country,
+          city: formData.city,
+          state: formData.state,
+          zipcode: formData.zipcode
+        },
+        contact: {
+          phoneNumber: formData.phoneNumber,
+          email: formData.email
+        },
+        education: {
+          level: formData.educationLevel,
+          degree: formData.degreeName
+        },
+        preferences: {
+          learningType: formData.learningPreference
+        },
+        testCenter: formData.testCenterName ? {
+          state: formData.testCenterState,
+          city: formData.testCenterCity,
+          name: formData.testCenterName,
+          address: TEST_CENTERS.find(
+            tc => tc.state === formData.testCenterState && 
+                  tc.city === formData.testCenterCity && 
+                  tc.name === formData.testCenterName
+          )?.address || 'N/A'
+        } : null,
+        submissionDate: new Date().toISOString()
+      };
+
+      // Get test center details for email
+      const testCenterInfo = formData.testCenterName 
+        ? TEST_CENTERS.find(
+            tc => tc.state === formData.testCenterState && 
+                  tc.city === formData.testCenterCity && 
+                  tc.name === formData.testCenterName
+          )
+        : null;
+
+      // For now, we'll create a formatted email as fallback
+      // But you can replace this with an API call to your backend
+      const subject = encodeURIComponent('TekBay AWS Apprenticeship Program Registration');
+      const body = encodeURIComponent(`
+New Registration for TekBay AWS Apprenticeship Program
+
+PERSONAL INFORMATION:
+Name: ${submissionData.personalInfo.fullName}
+- First Name: ${formData.firstName}
+- Middle Name: ${formData.middleName || 'N/A'}
+- Last Name: ${formData.lastName}
+
+ADDRESS:
+- Country: ${formData.country}
+- City: ${formData.city}
+- State: ${formData.state}
+- Zipcode: ${formData.zipcode}
+
+CONTACT:
+- Phone Number: ${formData.phoneNumber}
+- Email Address: ${formData.email}
+
+EDUCATION:
+- Level: ${formData.educationLevel}
+- Degree Name: ${formData.degreeName || 'N/A'}
+
+LEARNING PREFERENCE:
+- Interested in: ${formData.learningPreference}
+
+TEST CENTER PREFERENCE (India):
+${testCenterInfo ? `- State: ${testCenterInfo.state}
+- City: ${testCenterInfo.city}
+- Test Center: ${testCenterInfo.name}
+- Address: ${testCenterInfo.address}` : '- Not Selected'}
+
+Submitted on: ${new Date().toLocaleString()}
+
+---
+This registration was submitted through the TekBay website.
+      `);
+
+      // Show success message first
+      setSubmitStatus('success');
+      
+      // Wait a moment, then open email client
+      setTimeout(() => {
+        const mailtoLink = `mailto:apprenticeship@tekbay.digital?subject=${subject}&body=${body}`;
+        window.open(mailtoLink, '_blank');
+      }, 1000);
+      
+      // Close modal after 3 seconds
+      setTimeout(() => {
+        onClose();
+        setSubmitStatus('idle');
+        setFormData({
+          firstName: '',
+          middleName: '',
+          lastName: '',
+          country: '',
+          city: '',
+          state: '',
+          zipcode: '',
+          phoneNumber: '',
+          email: '',
+          educationLevel: '',
+          degreeName: '',
+          learningPreference: '',
+          testCenterState: '',
+          testCenterCity: '',
+          testCenterName: ''
+        });
+      }, 3000);
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2>Join TekBay AWS Apprenticeship Program</h2>
+          <button className="modal-close" onClick={onClose}>&times;</button>
+        </div>
+
+        <form className="registration-form" onSubmit={handleSubmit}>
+          <div className="form-section">
+            <h3>Legal Full Name</h3>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="firstName">First Name *</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="middleName">Middle Name</label>
+                <input
+                  type="text"
+                  id="middleName"
+                  name="middleName"
+                  value={formData.middleName}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastName">Last Name *</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Address</h3>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="country">Country *</label>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="city">City *</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="state">State *</label>
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="zipcode">Zipcode *</label>
+                <input
+                  type="text"
+                  id="zipcode"
+                  name="zipcode"
+                  value={formData.zipcode}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Contact Information</h3>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Personal Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Education</h3>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="educationLevel">Education Level *</label>
+                <select
+                  id="educationLevel"
+                  name="educationLevel"
+                  value={formData.educationLevel}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select Education Level</option>
+                  <option value="High School">High School</option>
+                  <option value="Associate Degree">Associate Degree</option>
+                  <option value="Bachelor's Degree">Bachelor's Degree</option>
+                  <option value="Master's Degree">Master's Degree</option>
+                  <option value="Doctorate">Doctorate</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="degreeName">Degree Name</label>
+                <input
+                  type="text"
+                  id="degreeName"
+                  name="degreeName"
+                  value={formData.degreeName}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Computer Science, Engineering"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Learning Preference</h3>
+            <div className="form-group">
+              <label htmlFor="learningPreference">Interested in *</label>
+              <select
+                id="learningPreference"
+                name="learningPreference"
+                value={formData.learningPreference}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select Learning Preference</option>
+                <option value="In-person live classes">In-person live classes</option>
+                <option value="Pre-recorded sessions">Pre-recorded sessions</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-section">
+            <h3>Test Center Preference (India) *</h3>
+            <p className="form-section-note">Select your preferred test center location in India for certification exams (Required)</p>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="testCenterState">State *</label>
+                <select
+                  id="testCenterState"
+                  name="testCenterState"
+                  value={formData.testCenterState}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select State</option>
+                  {availableStates.map(state => (
+                    <option key={state} value={state}>{state}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="testCenterCity">City *</label>
+                <select
+                  id="testCenterCity"
+                  name="testCenterCity"
+                  value={formData.testCenterCity}
+                  onChange={handleInputChange}
+                  disabled={!formData.testCenterState}
+                  required
+                >
+                  <option value="">Select City</option>
+                  {availableCities.map(city => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="testCenterName">Test Center *</label>
+              <select
+                id="testCenterName"
+                name="testCenterName"
+                value={formData.testCenterName}
+                onChange={handleInputChange}
+                disabled={!formData.testCenterCity}
+                required
+              >
+                <option value="">Select Test Center</option>
+                {availableTestCenters.map((center, index) => (
+                  <option key={index} value={center.name}>
+                    {center.name}
+                  </option>
+                ))}
+              </select>
+              {formData.testCenterName && (
+                <div className="test-center-address">
+                  <small>
+                    <strong>Address:</strong>{' '}
+                    {TEST_CENTERS.find(
+                      tc => tc.state === formData.testCenterState && 
+                            tc.city === formData.testCenterCity && 
+                            tc.name === formData.testCenterName
+                    )?.address}
+                  </small>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="form-actions">
+            <div className="form-info">
+              <p>🔒 Your information is secure and will be sent to apprenticeship@tekbay.digital</p>
+            </div>
+            {submitStatus === 'success' && (
+              <div className="success-message">
+                ✅ Registration submitted successfully! Your email client will open to send your application to apprenticeship@tekbay.digital
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="error-message">
+                ❌ Please fill in all required fields and try again.
+              </div>
+            )}
+            <button 
+              type="submit" 
+              className="submit-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Processing...' : 'Submit Application'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default RegistrationModal;

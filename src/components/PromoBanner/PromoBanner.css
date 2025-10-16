@@ -33,24 +33,10 @@
 }
 
 .promo-banner-content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 12px 60px 12px 20px;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.promo-banner-content:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
-}
-
-.promo-banner-content:active {
-  transform: translateY(0);
 }
 
 .promo-banner-close {
@@ -86,79 +72,100 @@
 .promo-banner-main {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 30px;
   width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
-.promo-badge {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 10px 20px;
-  border-radius: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 32px rgba(32, 29, 63, 0.1);
-}
-
-.discount {
-  background: linear-gradient(135deg, #ff6b6b, #ff5722);
-  color: white;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-  animation: pulse 2s infinite;
-}
-
-.unlimited {
-  font-weight: 700;
-  font-size: 14px;
+/* Text Section */
+.promo-text-section h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
   color: #201d3f;
-  background: linear-gradient(135deg, #ffffff, #f0f2f2);
-  padding: 6px 16px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(32, 29, 63, 0.1);
-}
-
-.promo-text {
-  flex: 1;
-  text-align: center;
-  min-width: 300px;
-}
-
-.promo-text h2 {
-  margin: 0 0 10px 0;
-  font-size: 20px;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(32, 29, 63, 0.3);
+  text-shadow: 0 2px 4px rgba(32, 29, 63, 0.2);
   line-height: 1.3;
+  white-space: nowrap;
 }
 
-.countdown {
+/* Pricing Section */
+.pricing-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.original-price {
   font-size: 14px;
+  font-weight: 700;
+  color: #ff0000;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  line-height: 1;
+}
+
+.limited-offer {
+  font-size: 15px;
+  font-weight: 500;
+  color: #201d3f;
+  line-height: 1;
+}
+
+.offer-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #10b981;
+  text-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  line-height: 1;
+}
+
+.exam-fee-note {
+  font-size: 10px;
+  font-weight: 500;
+  color: #201d3f;
+  opacity: 0.85;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Countdown Section */
+.countdown-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.countdown-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #201d3f;
+  line-height: 1;
 }
 
 .countdown-timer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: rgba(255, 255, 255, 0.2);
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 25px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(32, 29, 63, 0.1);
 }
 
 .time-unit {
@@ -172,13 +179,16 @@
   font-weight: bold;
   font-size: 16px;
   line-height: 1;
+  color: white;
 }
 
 .time-label {
-  font-size: 10px;
-  opacity: 0.8;
+  font-size: 9px;
+  opacity: 0.85;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: white;
+  margin-top: 2px;
 }
 
 .separator {
@@ -186,8 +196,10 @@
   opacity: 0.7;
   font-size: 16px;
   margin: 0 2px;
+  color: white;
 }
 
+/* CTA Button */
 .promo-cta {
   flex-shrink: 0;
 }
@@ -199,7 +211,7 @@
   padding: 12px 28px;
   border-radius: 30px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(32, 29, 63, 0.3);
@@ -207,6 +219,7 @@
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .cta-button::before {
@@ -227,41 +240,230 @@
 .cta-button:hover {
   background: linear-gradient(135deg, #5b7fe8, #4ecdc4);
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(91, 127, 232, 0.4);
-  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 35px rgba(32, 29, 63, 0.4);
 }
 
-.cta-button:active {
-  transform: translateY(0);
-}
+
 
 /* Animations */
 @keyframes slideDown {
   from {
-    opacity: 0;
     transform: translateY(-100%);
+    opacity: 0;
   }
   to {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(1);
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
   }
-  50% { 
+  50% {
     transform: scale(1.05);
-    box-shadow: 0 6px 25px rgba(255, 107, 107, 0.6);
   }
 }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .promo-banner-main {
+    gap: 20px;
+  }
+
+  .promo-text-section h2 {
+    font-size: 16px;
+  }
+
+  .offer-price {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 992px) {
+  .promo-banner-content {
+    padding: 12px 50px 12px 15px;
+  }
+
+  .promo-banner-main {
+    gap: 15px;
+  }
+
+  .promo-text-section h2 {
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .price-box {
+    padding: 6px 15px;
+  }
+
+  .original-price {
+    font-size: 12px;
+  }
+
+  .limited-offer {
+    font-size: 13px;
+  }
+
+  .offer-price {
+    font-size: 22px;
+  }
+
+  .exam-fee-note {
+    font-size: 9px;
+  }
+
+  .countdown-label {
+    font-size: 12px;
+  }
+
+  .time-value {
+    font-size: 14px;
+  }
+
+  .time-label {
+    font-size: 8px;
+  }
+
+  .cta-button {
+    padding: 10px 24px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-banner-main {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .promo-text-section {
+    width: 100%;
+    text-align: center;
+  }
+
+  .promo-text-section h2 {
+    font-size: 13px;
+  }
+
+  .pricing-section,
+  .countdown-section {
+    flex: 1 1 auto;
+  }
+
+  .promo-cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-banner-content {
+    padding: 10px 40px 10px 10px;
+  }
+
+  .promo-banner-close {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    right: 10px;
+  }
+
+  .promo-text-section h2 {
+    font-size: 12px;
+  }
+
+  .price-box {
+    padding: 5px 12px;
+  }
+
+  .original-price {
+    font-size: 11px;
+  }
+
+  .limited-offer {
+    font-size: 12px;
+  }
+
+  .offer-price {
+    font-size: 20px;
+  }
+
+  .exam-fee-note {
+    font-size: 8px;
+  }
+
+  .countdown-timer {
+    padding: 5px 10px;
+    gap: 4px;
+  }
+
+  .time-unit {
+    min-width: 28px;
+  }
+
+  .time-value {
+    font-size: 12px;
+  }
+
+  .time-label {
+    font-size: 7px;
+  }
+
+  .separator {
+    font-size: 12px;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .promo-banner {
+    border: 2px solid white;
+  }
+  
+  .price-box,
+  .countdown-timer {
+    border: 1px solid white;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .promo-banner {
+    animation: none;
+  }
+  
+  .cta-button:hover {
+    transform: none;
+  }
+  
+  .promo-banner-close:hover {
+    transform: translateY(-50%);
+  }
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -281,6 +483,22 @@
   
   .promo-text h2 {
     font-size: 16px;
+  }
+  
+  .offer-price {
+    font-size: 28px;
+  }
+  
+  .exam-fee-note {
+    font-size: 10px;
+  }
+  
+  .original-price {
+    font-size: 16px;
+  }
+  
+  .originally-label {
+    font-size: 12px;
   }
   
   .countdown {
@@ -303,12 +521,11 @@
   
   .cta-button {
     padding: 10px 20px;
-    font-size: 13px;
+    font-size: 12px;
   }
   
   .promo-badge {
-    padding: 6px 12px;
-    gap: 6px;
+    padding: 8px 16px;
   }
   
   .discount,
@@ -326,6 +543,22 @@
   .promo-text h2 {
     font-size: 14px;
     margin: 0 0 6px 0;
+  }
+  
+  .offer-price {
+    font-size: 24px;
+  }
+  
+  .exam-fee-note {
+    font-size: 9px;
+  }
+  
+  .original-price {
+    font-size: 14px;
+  }
+  
+  .originally-label {
+    font-size: 11px;
   }
   
   .countdown {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import './PromoBanner.css';
 
 interface PromoBannerProps {
@@ -14,8 +13,6 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
     minutes: 0,
     seconds: 0
   });
-  const location = useLocation();
-  const navigate = useNavigate();
 
   // Countdown timer effect
   useEffect(() => {
@@ -45,76 +42,54 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
     setIsVisible(false);
   };
 
-  const handleNavigateToPricing = () => {
-    // If we're not on the home page, navigate to home first
-    if (location.pathname !== '/') {
-      navigate('/');
-      // Wait for navigation to complete, then scroll
-      setTimeout(() => {
-        const element = document.getElementById('pricing');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      // We're already on home page, just scroll to pricing
-      const element = document.getElementById('pricing');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   if (!isVisible) return null;
 
   return (
     <div className="promo-banner">
-      <div 
-        className="promo-banner-content" 
-        onClick={handleNavigateToPricing}
-        title="Click to view our pricing plans"
-      >
+      <div className="promo-banner-content">
         <button 
           className="promo-banner-close" 
-          onClick={(e) => {
-            e.stopPropagation();
-            handleClose();
-          }}
+          onClick={handleClose}
           aria-label="Close banner"
         >
           ✕
         </button>
         
         <div className="promo-banner-main">
-          <div className="promo-badge">
-            <span className="discount">100% REFUND</span>
-            <span className="unlimited">Certification</span>
+          <div className="promo-text-section">
+            <h2>Join us & get certified with 100% REFUND on Certification!</h2>
           </div>
           
-          <div className="promo-text">
-            <h2>Join us & get certified with 100% REFUND on Certification!</h2>
-            <div className="countdown">
-              <span>Limited time offer ends in: </span>
-              <div className="countdown-timer">
-                <span className="time-unit">
-                  <span className="time-value">{timeLeft.days.toString().padStart(2, '0')}</span>
-                  <span className="time-label">Days</span>
-                </span>
-                <span className="separator">:</span>
-                <span className="time-unit">
-                  <span className="time-value">{timeLeft.hours.toString().padStart(2, '0')}</span>
-                  <span className="time-label">Hrs</span>
-                </span>
-                <span className="separator">:</span>
-                <span className="time-unit">
-                  <span className="time-value">{timeLeft.minutes.toString().padStart(2, '0')}</span>
-                  <span className="time-label">Min</span>
-                </span>
-                <span className="separator">:</span>
-                <span className="time-unit">
-                  <span className="time-value">{timeLeft.seconds.toString().padStart(2, '0')}</span>
-                  <span className="time-label">Sec</span>
-                </span>
+          <div className="pricing-section">
+            <div className="price-box">
+              <span className="original-price">Originally ₹24,999</span>
+              <span className="limited-offer">Limited time offer</span>
+              <span className="offer-price">₹9,999</span>
+              <span className="exam-fee-note">Inclusive of AWS Exam Fee Worth USD 150</span>
+            </div>
+          </div>
+          
+          <div className="countdown-section">
+            <span className="countdown-label">Limited time offer ends in:</span>
+            <div className="countdown-timer">
+              <div className="time-unit">
+                <span className="time-value">{timeLeft.days.toString().padStart(2, '0')}</span>
+                <span className="time-label">DAYS</span>
+              </div>
+              <span className="separator">:</span>
+              <div className="time-unit">
+                <span className="time-value">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                <span className="time-label">HRS</span>
+              </div>
+              <span className="separator">:</span>
+              <div className="time-unit">
+                <span className="time-value">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                <span className="time-label">MIN</span>
+              </div>
+              <span className="separator">:</span>
+              <div className="time-unit">
+                <span className="time-value">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                <span className="time-label">SEC</span>
               </div>
             </div>
           </div>
@@ -122,14 +97,13 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
           <div className="promo-cta">
             <button 
               className="cta-button"
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 if (onJoinNow) {
                   onJoinNow();
                 }
               }}
             >
-              Join Now
+              JOIN NOW
             </button>
           </div>
         </div>

@@ -1,10 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import './RegistrationModal.css';
-
-interface RegistrationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { useNavigate } from 'react-router-dom';
+import './RegistrationPage.css';
 
 interface TestCenter {
   state: string;
@@ -244,7 +240,8 @@ const TEST_CENTERS: TestCenter[] = [
     { state: "Ladakh", city: "No Test Center", name: "No Test Center", address: "No Test Center" }
 ];
 
-const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose }) => {
+const RegistrationPage: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     middleName: '',
@@ -443,44 +440,23 @@ This registration was submitted through the TekBay website.
         window.open(mailtoLink, '_blank');
       }, 1000);
       
-      // Close modal after 3 seconds
+      // Redirect to home after 5 seconds
       setTimeout(() => {
-        onClose();
-        setSubmitStatus('idle');
-        setFormData({
-          firstName: '',
-          middleName: '',
-          lastName: '',
-          country: '',
-          city: '',
-          state: '',
-          zipcode: '',
-          phoneNumber: '',
-          email: '',
-          educationLevel: '',
-          degreeName: '',
-          learningPreference: '',
-          testCenterState: '',
-          testCenterCity: '',
-          testCenterName: ''
-        });
-      }, 3000);
+        navigate('/');
+      }, 5000);
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
-    } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2>Join TekBay AWS Apprenticeship Program</h2>
-          <button className="modal-close" onClick={onClose}>&times;</button>
+    <div className="registration-page">
+      <div className="registration-container">
+        <div className="registration-header">
+          <h1>Join TekBay AWS Apprenticeship Program</h1>
+          <p>Complete the form below to start your cloud career journey</p>
         </div>
 
         <form className="registration-form" onSubmit={handleSubmit}>
@@ -651,6 +627,7 @@ This registration was submitted through the TekBay website.
                 <option value="">Select Learning Preference</option>
                 <option value="In-person live classes">In-person live classes</option>
                 <option value="Pre-recorded sessions">Pre-recorded sessions</option>
+                
               </select>
             </div>
           </div>
@@ -729,7 +706,7 @@ This registration was submitted through the TekBay website.
             </div>
             {submitStatus === 'success' && (
               <div className="success-message">
-                ✅ Registration submitted successfully! Your email client will open to send your application to apprenticeship@tekbay.digital
+                ✅ Registration submitted successfully! Your email client will open to send your application. Redirecting to home page...
               </div>
             )}
             {submitStatus === 'error' && (
@@ -744,6 +721,13 @@ This registration was submitted through the TekBay website.
             >
               {isSubmitting ? 'Processing...' : 'Submit Application'}
             </button>
+            <button 
+              type="button" 
+              className="cancel-btn"
+              onClick={() => navigate('/')}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>
@@ -751,4 +735,4 @@ This registration was submitted through the TekBay website.
   );
 };
 
-export default RegistrationModal;
+export default RegistrationPage;

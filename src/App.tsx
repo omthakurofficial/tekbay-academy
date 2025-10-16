@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './styles/global.css';
+import ScrollToTop from './components/ScrollToTop';
 import PromoBanner from './components/PromoBanner/PromoBanner';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
@@ -13,47 +14,57 @@ import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions/TermsAndConditions';
 import AboutUsAcademy from './components/AboutUsAcademy/AboutUsAcademy';
-import RegistrationModal from './components/RegistrationModal/RegistrationModal';
+import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 
-// Home page component
-const HomePage: React.FC<{ onJoinNow: () => void }> = ({ onJoinNow }) => {
+// Home page component - using navigate hook
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+  
+  const handleJoinNow = () => {
+    navigate('/register');
+  };
+
   return (
     <>
-      <Hero onJoinNow={onJoinNow} />
+      <Hero onJoinNow={handleJoinNow} />
       <ProgramOverview />
       <Benefits />
-      <Pricing onJoinNow={onJoinNow} />
-      <Demand onJoinNow={onJoinNow} />
+      <Pricing onJoinNow={handleJoinNow} />
+      <Demand onJoinNow={handleJoinNow} />
       <FAQs />
     </>
   );
 };
 
 const App: React.FC = () => {
-  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+  return (
+    <Router basename="/tekbay-academy">
+      <AppContent />
+    </Router>
+  );
+};
+
+const AppContent: React.FC = () => {
+  const navigate = useNavigate();
 
   const handleJoinNow = () => {
-    setIsRegistrationModalOpen(true);
+    navigate('/register');
   };
 
   return (
-    <Router basename="/tekbay-academy">
-      <div className="App">
-        <PromoBanner onJoinNow={handleJoinNow} />
-        <Header onJoinNow={handleJoinNow} />
-        <Routes>
-          <Route path="/" element={<HomePage onJoinNow={handleJoinNow} />} />
-          <Route path="/about-academy" element={<AboutUsAcademy onJoinNow={handleJoinNow} />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        </Routes>
-        <Footer onJoinNow={handleJoinNow} />
-        <RegistrationModal 
-          isOpen={isRegistrationModalOpen} 
-          onClose={() => setIsRegistrationModalOpen(false)} 
-        />
-      </div>
-    </Router>
+    <div className="App">
+      <ScrollToTop />
+      <PromoBanner onJoinNow={handleJoinNow} />
+      <Header onJoinNow={handleJoinNow} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/about-academy" element={<AboutUsAcademy onJoinNow={handleJoinNow} />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      </Routes>
+      <Footer onJoinNow={handleJoinNow} />
+    </div>
   );
 };
 
