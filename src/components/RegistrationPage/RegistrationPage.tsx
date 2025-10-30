@@ -27,6 +27,9 @@ interface FormData {
   testCenterName: string;
 }
 
+// 🔥 GOOGLE APPS SCRIPT WEB APP URL - UPDATED WITH YOUR DEPLOYMENT
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/adex.ltd/s/AKfycbwR2yMipKzF1RPd3Cfn8xWs68VQWhKqhqiLu8zRW6vUb3mT-Rj_f40UCfwZjOqkqhVpWA/exec';
+
 // Test Center Data from CSV
 const TEST_CENTERS: TestCenter[] = [
     { state: "Andhra Pradesh", city: "Visakhapatnam", name: "Pearson Professional Centers-Visakhapatnam", address: "Address 1, Visakhapatnam, Andhra Pradesh" },
@@ -343,45 +346,7 @@ const RegistrationPage: React.FC = () => {
         }
       }
 
-      // Create formatted data for submission
-      const submissionData = {
-        personalInfo: {
-          fullName: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
-          firstName: formData.firstName,
-          middleName: formData.middleName,
-          lastName: formData.lastName
-        },
-        address: {
-          country: formData.country,
-          city: formData.city,
-          state: formData.state,
-          zipcode: formData.zipcode
-        },
-        contact: {
-          phoneNumber: formData.phoneNumber,
-          email: formData.email
-        },
-        education: {
-          level: formData.educationLevel,
-          degree: formData.degreeName
-        },
-        preferences: {
-          learningType: formData.learningPreference
-        },
-        testCenter: formData.testCenterName ? {
-          state: formData.testCenterState,
-          city: formData.testCenterCity,
-          name: formData.testCenterName,
-          address: TEST_CENTERS.find(
-            tc => tc.state === formData.testCenterState && 
-                  tc.city === formData.testCenterCity && 
-                  tc.name === formData.testCenterName
-          )?.address || 'N/A'
-        } : null,
-        submissionDate: new Date().toISOString()
-      };
-
-      // Get test center details for email
+      // Get test center details for submission
       const testCenterInfo = formData.testCenterName 
         ? TEST_CENTERS.find(
             tc => tc.state === formData.testCenterState && 
@@ -390,63 +355,83 @@ const RegistrationPage: React.FC = () => {
           )
         : null;
 
-      // For now, we'll create a formatted email as fallback
-      // But you can replace this with an API call to your backend
-      const subject = encodeURIComponent('TekBay AWS Apprenticeship Program Registration');
-      const body = encodeURIComponent(`
-New Registration for TekBay AWS Apprenticeship Program
+      // Prepare data for Google Sheets
+      const submissionData = {
+        firstName: formData.firstName,
+        middleName: formData.middleName,
+        lastName: formData.lastName,
+        country: formData.country,
+        city: formData.city,
+        state: formData.state,
+        zipcode: formData.zipcode,
+        phoneNumber: formData.phoneNumber,
+        email: formData.email,
+        educationLevel: formData.educationLevel,
+        degreeName: formData.degreeName,
+        learningPreference: formData.learningPreference,
+        testCenterState: formData.testCenterState,
+        testCenterCity: formData.testCenterCity,
+        testCenterName: formData.testCenterName,
+        testCenterAddress: testCenterInfo?.address || 'N/A'
+      };
 
-PERSONAL INFORMATION:
-Name: ${submissionData.personalInfo.fullName}
-- First Name: ${formData.firstName}
-- Middle Name: ${formData.middleName || 'N/A'}
-- Last Name: ${formData.lastName}
+      console.log('📤 Submitting to Google Sheets:', submissionData);
+      console.log('🌐 Using URL:', GOOGLE_SCRIPT_URL);
 
-ADDRESS:
-- Country: ${formData.country}
-- City: ${formData.city}
-- State: ${formData.state}
-- Zipcode: ${formData.zipcode}
+      // Submit to Google Sheets via Apps Script
+      try {
+        console.log('🔄 Making fetch request...');
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(submissionData)
+        });
 
-CONTACT:
-- Phone Number: ${formData.phoneNumber}
-- Email Address: ${formData.email}
-
-EDUCATION:
-- Level: ${formData.educationLevel}
-- Degree Name: ${formData.degreeName || 'N/A'}
-
-LEARNING PREFERENCE:
-- Interested in: ${formData.learningPreference}
-
-TEST CENTER PREFERENCE (India):
-${testCenterInfo ? `- State: ${testCenterInfo.state}
-- City: ${testCenterInfo.city}
-- Test Center: ${testCenterInfo.name}
-- Address: ${testCenterInfo.address}` : '- Not Selected'}
-
-Submitted on: ${new Date().toLocaleString()}
-
----
-This registration was submitted through the TekBay website.
-      `);
-
-      // Show success message first
-      setSubmitStatus('success');
+        console.log('📡 Response received:', response);
+        console.log('📊 Response status:', response.status);
+        console.log('📋 Response ok:', response.ok);
+        
+        if (response.ok) {
+          const result = await response.text();
+          console.log('✅ Form submitted successfully! Response:', result);
+          setSubmitStatus('success');
+        } else {
+          const errorText = await response.text();
+          console.error('❌ Response not ok:', response.status, errorText);
+          throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
+        }
+      } catch (fetchError) {
+        console.error('🚫 Fetch error:', fetchError);
+        console.log('🔄 Trying with no-cors mode...');
+        
+        try {
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(submissionData)
+          });
+          
+          console.log('✅ Form submitted with no-cors mode!');
+          setSubmitStatus('success');
+        } catch (noCorsError) {
+          console.error('❌ No-cors also failed:', noCorsError);
+          throw noCorsError;
+        }
+      }
       
-      // Wait a moment, then open email client
-      setTimeout(() => {
-        const mailtoLink = `mailto:apprenticeship@tekbay.digital?subject=${subject}&body=${body}`;
-        window.open(mailtoLink, '_blank');
-      }, 1000);
-      
-      // Redirect to home after 5 seconds
+      // Redirect to home after 3 seconds
       setTimeout(() => {
         navigate('/');
-      }, 5000);
+      }, 3000);
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
     }
   };

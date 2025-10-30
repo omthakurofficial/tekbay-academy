@@ -105,7 +105,7 @@ const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
                 </div>
               ))}
               <div className="entry-salary">
-                Entry-level AWS pros earn <strong>₹18 LPA</strong> on average
+                Entry-level AWS pros earn <strong>INR 18 LPA</strong> on average
               </div>
             </div>
           </div>
@@ -125,9 +125,9 @@ const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
           <div className="final-offer">
             <div className="offer-badge">Limited Seats</div>
             <div className="offer-price">
-              <span className="offer-original">Originally ₹24,999</span>
+              <span className="offer-original">Originally INR24,999</span>
               <span className="offer-arrow">→</span>
-              <span className="offer-current">Limited time offer ₹9,999</span>
+              <span className="offer-current">Limited time offer INR 9,999</span>
             </div>
             <p className="offer-note">[Inclusive of AWS Exam Fee Worth USD 150]</p>
           </div>

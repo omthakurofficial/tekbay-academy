@@ -62,9 +62,9 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
           
           <div className="pricing-section">
             <div className="price-box">
-              <span className="original-price">Originally ₹24,999</span>
+              <span className="original-price">Originally INR 24,999</span>
               <span className="limited-offer">Limited time offer</span>
-              <span className="offer-price">₹9,999</span>
+              <span className="offer-price">INR 9,999</span>
               <span className="exam-fee-note">Inclusive of AWS Exam Fee Worth USD 150</span>
             </div>
           </div>
