@@ -1,8 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RegistrationPage.css';
+import { useCountry } from '../../contexts/CountryContext';
 
 interface TestCenter {
+  country?: string;
   state: string;
   city: string;
   name: string;
@@ -240,16 +242,20 @@ const TEST_CENTERS: TestCenter[] = [
     { state: "Puducherry", city: "Puducherry", name: "RVC IT Services", address: "9A, 2nd Floor, Gandhi Street\nShanthi Nagar\nLawspet\nPuducherry\nPuducherry 605008\nIndia" },
     { state: "Jammu & Kashmir", city: "Jammu", name: "Tantray Online Services Pvt Ltd", address: "Lane No. 1\nOpp AM Hyundai Automobile Showroom\nNH Byepass, Near Baba Dairy,Malik Market\nJammu\nJammu & Kashmir 180015\nIndia" },
     { state: "Jammu & Kashmir", city: "Srinagar", name: "Iqbal Institute of Technology & Management", address: "Narakara Road\nLaloo, Sheshgari Bagh, Hyderpora\nLand mark: Primary Health Centre Laloo\nSrinagar\nJammu & Kashmir 190014\nIndia" },
-    { state: "Ladakh", city: "No Test Center", name: "No Test Center", address: "No Test Center" }
+    { state: "Ladakh", city: "No Test Center", name: "No Test Center", address: "No Test Center" },
+    
+    // Nepal Test Centers
+    { country: "Nepal", state: "Bagmati", city: "Kathmandu", name: "Education Park", address: "Civil Mall, Kathmandu 44600" }
 ];
 
 const RegistrationPage: React.FC = () => {
   const navigate = useNavigate();
+  const { selectedCountry, getCurrentCountryName } = useCountry();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     middleName: '',
     lastName: '',
-    country: '',
+    country: getCurrentCountryName(), // Initialize with selected country
     city: '',
     state: '',
     zipcode: '',
@@ -266,36 +272,62 @@ const RegistrationPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Get unique states from test centers
+  // Get unique states from test centers for the selected country
   const availableStates = useMemo(() => {
-    const states = [...new Set(TEST_CENTERS.map(tc => tc.state))].sort();
+    const countryToFilter = formData.country || getCurrentCountryName();
+    const states = [...new Set(
+      TEST_CENTERS
+        .filter(tc => (tc.country || 'India') === countryToFilter)
+        .map(tc => tc.state)
+    )].sort();
     return states;
-  }, []);
+  }, [formData.country, selectedCountry, getCurrentCountryName]);
 
-  // Get cities for selected state
+  // Get cities for selected state and country
   const availableCities = useMemo(() => {
     if (!formData.testCenterState) return [];
+    const countryToFilter = formData.country || getCurrentCountryName();
     const cities = [...new Set(
       TEST_CENTERS
-        .filter(tc => tc.state === formData.testCenterState)
+        .filter(tc => (tc.country || 'India') === countryToFilter && tc.state === formData.testCenterState)
         .map(tc => tc.city)
     )].sort();
     return cities;
-  }, [formData.testCenterState]);
+  }, [formData.testCenterState, formData.country, selectedCountry, getCurrentCountryName]);
 
-  // Get test centers for selected state and city
+  // Get test centers for selected state, city, and country
   const availableTestCenters = useMemo(() => {
     if (!formData.testCenterState || !formData.testCenterCity) return [];
+    const countryToFilter = formData.country || getCurrentCountryName();
     return TEST_CENTERS.filter(
-      tc => tc.state === formData.testCenterState && tc.city === formData.testCenterCity
+      tc => (tc.country || 'India') === countryToFilter && tc.state === formData.testCenterState && tc.city === formData.testCenterCity
     );
-  }, [formData.testCenterState, formData.testCenterCity]);
+  }, [formData.testCenterState, formData.testCenterCity, formData.country, selectedCountry, getCurrentCountryName]);
+
+  // Reset test center selections when country changes
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      country: getCurrentCountryName(), // Set country based on context
+      testCenterState: '',
+      testCenterCity: '',
+      testCenterName: ''
+    }));
+  }, [selectedCountry, getCurrentCountryName]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     
     // Reset dependent fields when parent selection changes
-    if (name === 'testCenterState') {
+    if (name === 'country') {
+      setFormData(prev => ({
+        ...prev,
+        country: value,
+        testCenterState: '',
+        testCenterCity: '',
+        testCenterName: ''
+      }));
+    } else if (name === 'testCenterState') {
       setFormData(prev => ({
         ...prev,
         testCenterState: value,
@@ -488,14 +520,18 @@ const RegistrationPage: React.FC = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="country">Country *</label>
-                <input
-                  type="text"
+                <select
                   id="country"
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
                   required
-                />
+                  className="country-select"
+                >
+                  <option value="">Select Country</option>
+                  <option value="India">India</option>
+                  <option value="Nepal">Nepal</option>
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="city">City *</label>

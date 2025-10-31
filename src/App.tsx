@@ -15,6 +15,7 @@ import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions/TermsAndConditions';
 import AboutUsAcademy from './components/AboutUsAcademy/AboutUsAcademy';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
+import { CountryProvider } from './contexts/CountryContext';
 
 // Home page component - using navigate hook
 const HomePage: React.FC = () => {
@@ -38,9 +39,11 @@ const HomePage: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router basename="/tekbay-academy">
-      <AppContent />
-    </Router>
+    <CountryProvider>
+      <Router basename="/tekbay-academy">
+        <AppContent />
+      </Router>
+    </CountryProvider>
   );
 };
 

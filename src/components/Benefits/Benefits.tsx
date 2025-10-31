@@ -40,7 +40,7 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
     {
       icon: '💰',
       title: 'Join Now Benefits',
-      description: 'Fully refundable when you pass the AWS exam (subject to taxes). Lucky draw among top scorers (above 990) to win MacBook every 6 months.',
+      description: `Fully refundable when you pass the AWS exam (subject to taxes). Lucky draw among top scorers (above 990) to win MacBook every 6 months.`,
       type: 'join-now'
     }
   ];

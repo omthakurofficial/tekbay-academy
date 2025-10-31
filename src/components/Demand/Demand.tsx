@@ -1,11 +1,22 @@
 import React from 'react';
 import './Demand.css';
+import { useCountry } from '../../contexts/CountryContext';
 
 interface DemandProps {
   onJoinNow?: () => void;
 }
 
 const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
+  const { selectedCountry, getCurrentPricing } = useCountry();
+  const pricing = getCurrentPricing();
+  
+  // Define salary information for each country
+  const salaryInfo = {
+    india: { currency: 'INR', amount: '18 LPA' },
+    nepal: { currency: 'NPR', amount: '15-20 LPA' }
+  };
+  
+  const currentSalary = salaryInfo[selectedCountry];
   const stats = [
     {
       icon: '☁️',
@@ -105,7 +116,7 @@ const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
                 </div>
               ))}
               <div className="entry-salary">
-                Entry-level AWS pros earn <strong>INR 18 LPA</strong> on average
+                Entry-level AWS pros earn <strong>{currentSalary.currency} {currentSalary.amount}</strong> on average
               </div>
             </div>
           </div>
@@ -125,9 +136,9 @@ const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
           <div className="final-offer">
             <div className="offer-badge">Limited Seats</div>
             <div className="offer-price">
-              <span className="offer-original">Originally INR24,999</span>
+              <span className="offer-original">Originally {pricing.symbol}{pricing.originalPrice}</span>
               <span className="offer-arrow">→</span>
-              <span className="offer-current">Limited time offer INR 9,999</span>
+              <span className="offer-current">Limited time offer {pricing.symbol}{pricing.offerPrice}</span>
             </div>
             <p className="offer-note">[Inclusive of AWS Exam Fee Worth USD 150]</p>
           </div>

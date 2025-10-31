@@ -1,12 +1,15 @@
 import React from 'react';
 import './Pricing.css';
 import { getAssetPath } from '../../utils/assetUtils';
+import { useCountry } from '../../contexts/CountryContext';
 
 interface PricingProps {
   onJoinNow?: () => void;
 }
 
 const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
+  const { getCurrentPricing } = useCountry();
+  const pricing = getCurrentPricing();
   const features = [
     {
       icon: '🏆',
@@ -16,7 +19,7 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
     {
       icon: '💰',
       title: 'Fully Refundable',
-      description: 'Program INR 9,999*',
+      description: `Program ${pricing.symbol}${pricing.offerPrice}*`,
     },
     {
       icon: '💻',
@@ -42,7 +45,7 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
             <div className="terms">
               <h4 className="terms-title">Terms & Conditions</h4>
               <p className="terms-text">
-                * Fully Refundable when you pass the AWS Exam. Subjected to Taxes.<br />
+                * Fully Refundable when you pass the AWS Exam. One time fixed transaction costs of Rs 500 for every refund processed.<br />
                 ** Lucky draw among Top Scorers (Above 990) to win MacBook every 6 months.
               </p>
             </div>
@@ -68,11 +71,11 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
             <div className="price-box">
               <div className="price-original">
                 Originally<br />
-                <span className="price-striked">INR 24,999</span>
+                <span className="price-striked">{pricing.symbol}{pricing.originalPrice}</span>
               </div>
               <div className="price-offer">
                 Limited time offer<br />
-                <span className="price-current">INR 9,999</span>
+                <span className="price-current">{pricing.symbol}{pricing.offerPrice}</span>
                 <p className="price-note">Inclusive of AWS Exam Fee Worth USD 150</p>
               </div>
             </div>

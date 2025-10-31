@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { getAssetPath } from '../../utils/assetUtils';
+import { useCountry } from '../../contexts/CountryContext';
 
 const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { selectedCountry, setSelectedCountry, getCurrentCountryName } = useCountry();
   
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -25,8 +28,11 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (aboutDropdownOpen && !target.closest('.nav-dropdown')) {
+      if (aboutDropdownOpen && !target.closest('.nav-dropdown.about-dropdown')) {
         setAboutDropdownOpen(false);
+      }
+      if (countryDropdownOpen && !target.closest('.nav-dropdown.country-dropdown')) {
+        setCountryDropdownOpen(false);
       }
     };
 
@@ -34,7 +40,7 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [aboutDropdownOpen]);
+  }, [aboutDropdownOpen, countryDropdownOpen]);
   
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -43,10 +49,22 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
   const closeMenu = () => {
     setMenuOpen(false);
     setAboutDropdownOpen(false);
+    setCountryDropdownOpen(false);
   };
 
   const toggleAboutDropdown = () => {
     setAboutDropdownOpen(!aboutDropdownOpen);
+    setCountryDropdownOpen(false);
+  };
+
+  const toggleCountryDropdown = () => {
+    setCountryDropdownOpen(!countryDropdownOpen);
+    setAboutDropdownOpen(false);
+  };
+
+  const handleCountrySelect = (country: 'india' | 'nepal') => {
+    setSelectedCountry(country);
+    setCountryDropdownOpen(false);
   };
 
   const handleAboutTekBayClick = () => {
@@ -109,7 +127,7 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
           {menuOpen && <div className="menu-overlay" onClick={closeMenu}></div>}
           <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
             <Link to="/" className="logo-link" style={{ display: 'none' }}>Home</Link>
-            <div className="nav-dropdown">
+            <div className="nav-dropdown about-dropdown">
               <button 
                 onClick={toggleAboutDropdown} 
                 className="nav-link nav-button dropdown-toggle"
@@ -133,6 +151,34 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
             <a href="https://learn.tekbay.academy" target="_blank" rel="noopener noreferrer" className="nav-link" onClick={closeMenu}>LMS Access</a>
             <button onClick={() => handleNavClick('pricing')} className="nav-link nav-button">Pricing</button>
             <button onClick={() => handleNavClick('faqs')} className="nav-link nav-button">FAQs</button>
+            
+            <div className="nav-dropdown country-dropdown">
+              <button 
+                onClick={toggleCountryDropdown} 
+                className="nav-link nav-button dropdown-toggle country-selector"
+                aria-expanded={countryDropdownOpen}
+              >
+                🌍 {getCurrentCountryName()}
+                <span className={`dropdown-arrow ${countryDropdownOpen ? 'open' : ''}`}>▾</span>
+              </button>
+              {countryDropdownOpen && (
+                <div className="dropdown-menu">
+                  <button 
+                    onClick={() => handleCountrySelect('india')} 
+                    className={`dropdown-item ${selectedCountry === 'india' ? 'active' : ''}`}
+                  >
+                    🇮🇳 India
+                  </button>
+                  <button 
+                    onClick={() => handleCountrySelect('nepal')} 
+                    className={`dropdown-item ${selectedCountry === 'nepal' ? 'active' : ''}`}
+                  >
+                    🇳🇵 Nepal
+                  </button>
+                </div>
+              )}
+            </div>
+            
             <button onClick={handleJoinNow} className="nav-link nav-button cta-button">Join Now</button>
           </nav>
         </div>

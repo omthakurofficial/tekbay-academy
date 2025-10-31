@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PromoBanner.css';
+import { useCountry } from '../../contexts/CountryContext';
 
 interface PromoBannerProps {
   onJoinNow?: () => void;
@@ -13,6 +14,8 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
     minutes: 0,
     seconds: 0
   });
+  const { getCurrentPricing } = useCountry();
+  const pricing = getCurrentPricing();
 
   // Countdown timer effect
   useEffect(() => {
@@ -62,9 +65,9 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
           
           <div className="pricing-section">
             <div className="price-box">
-              <span className="original-price">Originally INR 24,999</span>
+              <span className="original-price">Originally {pricing.symbol}{pricing.originalPrice}</span>
               <span className="limited-offer">Limited time offer</span>
-              <span className="offer-price">INR 9,999</span>
+              <span className="offer-price">{pricing.symbol}{pricing.offerPrice}</span>
               <span className="exam-fee-note">Inclusive of AWS Exam Fee Worth USD 150</span>
             </div>
           </div>
