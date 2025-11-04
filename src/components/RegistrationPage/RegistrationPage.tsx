@@ -245,7 +245,8 @@ const TEST_CENTERS: TestCenter[] = [
     { state: "Ladakh", city: "No Test Center", name: "No Test Center", address: "No Test Center" },
     
     // Nepal Test Centers
-    { country: "Nepal", state: "Bagmati", city: "Kathmandu", name: "Education Park", address: "Civil Mall, Kathmandu 44600" }
+    { country: "Nepal", state: "Bagmati", city: "Kathmandu", name: "Education Park", address: "Civil Mall, Kathmandu 44600" },
+    { country: "Nepal", state: "Bagmati", city: "Lalitpur", name: "Brighter Tomorrow Pvt. Ltd.", address: "Kumaripati, Lalitpur (Nearest Land Mark: Nirvana College)" }
 ];
 
 const RegistrationPage: React.FC = () => {
@@ -281,7 +282,7 @@ const RegistrationPage: React.FC = () => {
         .map(tc => tc.state)
     )].sort();
     return states;
-  }, [formData.country, selectedCountry, getCurrentCountryName]);
+  }, [formData.country, getCurrentCountryName]);
 
   // Get cities for selected state and country
   const availableCities = useMemo(() => {
@@ -293,7 +294,7 @@ const RegistrationPage: React.FC = () => {
         .map(tc => tc.city)
     )].sort();
     return cities;
-  }, [formData.testCenterState, formData.country, selectedCountry, getCurrentCountryName]);
+  }, [formData.testCenterState, formData.country, getCurrentCountryName]);
 
   // Get test centers for selected state, city, and country
   const availableTestCenters = useMemo(() => {
@@ -302,7 +303,17 @@ const RegistrationPage: React.FC = () => {
     return TEST_CENTERS.filter(
       tc => (tc.country || 'India') === countryToFilter && tc.state === formData.testCenterState && tc.city === formData.testCenterCity
     );
-  }, [formData.testCenterState, formData.testCenterCity, formData.country, selectedCountry, getCurrentCountryName]);
+  }, [formData.testCenterState, formData.testCenterCity, formData.country, getCurrentCountryName]);
+
+  // Get learning preferences based on selected country
+  const availableLearningPreferences = useMemo(() => {
+    const countryToFilter = formData.country || getCurrentCountryName();
+    if (countryToFilter === 'Nepal') {
+      return ['Physical classes'];
+    } else {
+      return ['In-person live classes', 'Pre-recorded sessions'];
+    }
+  }, [formData.country, getCurrentCountryName]);
 
   // Reset test center selections when country changes
   useEffect(() => {
@@ -323,6 +334,7 @@ const RegistrationPage: React.FC = () => {
       setFormData(prev => ({
         ...prev,
         country: value,
+        learningPreference: '', // Reset learning preference when country changes
         testCenterState: '',
         testCenterCity: '',
         testCenterName: ''
@@ -646,16 +658,18 @@ const RegistrationPage: React.FC = () => {
                 required
               >
                 <option value="">Select Learning Preference</option>
-                <option value="In-person live classes">In-person live classes</option>
-                <option value="Pre-recorded sessions">Pre-recorded sessions</option>
-                
+                {availableLearningPreferences.map((preference) => (
+                  <option key={preference} value={preference}>
+                    {preference}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
           <div className="form-section">
-            <h3>Test Center Preference (India) *</h3>
-            <p className="form-section-note">Select your preferred test center location in India for certification exams (Required)</p>
+            <h3>Test Center Preference *</h3>
+            <p className="form-section-note">Select your preferred test center location in India & Nepal for certification exams (Required) *</p>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="testCenterState">State *</label>

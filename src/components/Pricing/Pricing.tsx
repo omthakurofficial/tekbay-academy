@@ -45,8 +45,9 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
             <div className="terms">
               <h4 className="terms-title">Terms & Conditions</h4>
               <p className="terms-text">
-                * Fully Refundable when you pass the AWS Exam. One time fixed transaction costs of Rs 500 for every refund processed.<br />
-                ** Lucky draw among Top Scorers (Above 990) to win MacBook every 6 months.
+                * Fully Refundable when you pass the AWS Exam.<br />
+                ** One time fixed transaction costs of Rs 500 for refund.<br />
+                *** Lucky draw among Top Scorers (Above 990) to win MacBook.
               </p>
             </div>
           </div>
@@ -77,6 +78,14 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
                 Limited time offer<br />
                 <span className="price-current">{pricing.symbol}{pricing.offerPrice}</span>
                 <p className="price-note">Inclusive of AWS Exam Fee Worth USD 150</p>
+                <a 
+                  href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="aws-guide-link"
+                >
+                  📋 Official AWS Exam Guide
+                </a>
               </div>
             </div>
 
