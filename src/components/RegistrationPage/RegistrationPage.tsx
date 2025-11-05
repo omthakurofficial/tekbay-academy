@@ -733,6 +733,10 @@ const RegistrationPage: React.FC = () => {
                 </div>
               )}
             </div>
+            
+            <div className="test-center-note">
+              <p><strong>Note:</strong> Test center is subjected to change according to seat availability.</p>
+            </div>
           </div>
 
           <div className="form-actions">

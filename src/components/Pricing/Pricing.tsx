@@ -8,8 +8,32 @@ interface PricingProps {
 }
 
 const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
-  const { getCurrentPricing } = useCountry();
+  const { getCurrentPricing, getCurrentCountryName } = useCountry();
   const pricing = getCurrentPricing();
+  const currentCountry = getCurrentCountryName();
+  
+  // Get terms based on country
+  const getTermsAndConditions = () => {
+    if (currentCountry === 'Nepal') {
+      return (
+        <>
+          * Fully Refundable when you pass the AWS Exam.<br />
+          ** Lucky draw among Top Scorers (Above 990) to win MacBook every 12 months.
+        </>
+      );
+    } else {
+      // India (default)
+      return (
+        <>
+          * Fully Refundable when you pass the AWS Exam.<br />
+          ** One time fixed transaction costs of Rs 500 for refund.<br />
+          *** When you pass the exam within 2 weeks from course end.<br />
+          *** Lucky draw among Top Scorers (Above 990) to win MacBook every 6 months.
+        </>
+      );
+    }
+  };
+
   const features = [
     {
       icon: '🏆',
@@ -45,9 +69,7 @@ const Pricing: React.FC<PricingProps> = ({ onJoinNow }) => {
             <div className="terms">
               <h4 className="terms-title">Terms & Conditions</h4>
               <p className="terms-text">
-                * Fully Refundable when you pass the AWS Exam.<br />
-                ** One time fixed transaction costs of Rs 500 for refund.<br />
-                *** Lucky draw among Top Scorers (Above 990) to win MacBook.
+                {getTermsAndConditions()}
               </p>
             </div>
           </div>
