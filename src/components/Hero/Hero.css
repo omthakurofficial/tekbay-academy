@@ -265,21 +265,27 @@
 }
 
 .card-1 {
-  top: 10%;
-  right: 5%;
+  top: 16%;
+  right: 10%;
   animation-delay: 0s;
 }
 
 .card-2 {
-  bottom: 20%;
-  left: 5%;
+  bottom: 16%;
+  left: 10%;
   animation-delay: 1.5s;
 }
 
 .card-3 {
-  top: 45%;
-  right: 5%;
+  bottom: 16%;
+  right: 10%;
   animation-delay: 3s;
+}
+
+.card-4 {
+  top: 16%;
+  left: 10%;
+  animation-delay: 4.5s;
 }
 
 .card-icon {
@@ -336,17 +342,22 @@
   
   .card-1 {
     top: 8%;
-    right: 3%;
+    right: 6%;
   }
   
   .card-2 {
-    bottom: 18%;
-    left: 2%;
+    bottom: 12%;
+    left: 6%;
   }
   
   .card-3 {
-    top: 48%;
-    right: 2%;
+    bottom: 12%;
+    right: 6%;
+  }
+  
+  .card-4 {
+    top: 8%;
+    left: 6%;
   }
 }
 
@@ -402,28 +413,34 @@
   }
   
   .floating-card {
-    padding: 10px 14px;
-    font-size: 12px;
-    min-width: 110px;
+    padding: 8px 10px;
+    font-size: 11px;
+    min-width: 95px;
+    gap: 8px;
   }
   
   .card-icon {
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .card-1 {
-    top: 12%;
+    top: 8%;
     right: 5%;
   }
   
   .card-2 {
-    bottom: 15%;
+    bottom: 10%;
     left: 5%;
   }
   
   .card-3 {
-    top: 50%;
+    bottom: 10%;
     right: 5%;
+  }
+  
+  .card-4 {
+    top: 8%;
+    left: 5%;
   }
 }
 
@@ -502,33 +519,39 @@
   }
   
   .floating-card {
-    padding: 8px 12px;
-    font-size: 11px;
-    min-width: 90px;
-    border-radius: 12px;
+    padding: 6px 8px;
+    font-size: 10px;
+    min-width: 80px;
+    border-radius: 10px;
+    gap: 6px;
   }
   
   .card-icon {
-    font-size: 16px;
+    font-size: 14px;
   }
   
   .card-text {
-    font-size: 11px;
+    font-size: 9px;
   }
   
   .card-1 {
-    top: 15%;
-    right: 5%;
+    top: 6%;
+    right: 4%;
   }
   
   .card-2 {
-    bottom: 12%;
-    left: 8%;
+    bottom: 8%;
+    left: 4%;
   }
   
   .card-3 {
-    top: 48%;
-    right: 8%;
+    bottom: 8%;
+    right: 4%;
+  }
+  
+  .card-4 {
+    top: 6%;
+    left: 4%;
   }
   
   .shape {

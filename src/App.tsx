@@ -6,6 +6,7 @@ import PromoBanner from './components/PromoBanner/PromoBanner';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import ProgramOverview from './components/ProgramOverview/ProgramOverview';
+import Testimonials from './components/Testimonials/Testimonials';
 import Benefits from './components/Benefits/Benefits';
 import Pricing from './components/Pricing/Pricing';
 import Demand from './components/Demand/Demand';
@@ -30,6 +31,7 @@ const HomePage: React.FC = () => {
       <Hero onJoinNow={handleJoinNow} />
       <ProgramOverview />
       <Benefits />
+      <Testimonials />
       <Pricing onJoinNow={handleJoinNow} />
       <Demand onJoinNow={handleJoinNow} />
       <FAQs />

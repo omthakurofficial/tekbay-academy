@@ -30,25 +30,10 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
     },
   ];
 
-  const additionalCards = [
-    {
-      icon: '🌍',
-      title: 'Global Certification',
-      description: 'Worldwide recognized and validated certificate that opens doors globally',
-      type: 'certification'
-    },
-    {
-      icon: '💰',
-      title: 'Join Now Benefits',
-      description: `Fully refundable when you pass the AWS exam (subject to taxes). Lucky draw among top scorers (above 990) to win MacBook every 6 months.`,
-      type: 'join-now'
-    }
-  ];
-
   const stats = [
     {
       icon: '🎓',
-      text: '300+ Students Passed',
+      text: '350+ Students Passed',
     },
     {
       icon: '💻',

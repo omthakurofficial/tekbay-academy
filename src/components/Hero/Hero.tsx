@@ -30,12 +30,12 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
               <span>🚀 Start Your Cloud Journey</span>
             </div>
             <h1 className="hero-title">
-              Learn Cloud,<br />
+              Learn, Certify,<br />
               <span className="title-accent">Build Your</span><br />
               Future
             </h1>
             <p className="hero-subtitle">
-              From Zero to AWS Certified Cloud Hero in Just 8 Weeks!<br />
+              From Zero to AWS Certified Hero in just a few weeks!<br />
               <span className="subtitle-highlight">Join 1000+ students who transformed their careers</span>
             </p>
             <div className="hero-cta">
@@ -48,7 +48,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
                 <span className="stat-label">Job Placement</span>
               </div> */}
               <div className="stat">
-                <span className="stat-number">8 Weeks</span>
+                <span className="stat-number">8-10 Weeks</span>
                 <span className="stat-label">To Certification</span>
               </div>
               <div className="stat">
@@ -73,6 +73,10 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
                 <div className="floating-card card-3">
                   <div className="card-icon">💼</div>
                   <div className="card-text">Career Ready</div>
+                </div>
+                <div className="floating-card card-4">
+                  <div className="card-icon">🤖</div>
+                  <div className="card-text">AI Powered</div>
                 </div>
               </div>
             </div>

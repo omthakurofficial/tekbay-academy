@@ -195,7 +195,7 @@
 }
 
 .final-offer {
-  background: linear-gradient(90deg, var(--color-secondary-blue) 0%, #f1c40f 100%);
+  background: linear-gradient(90deg, var(--color-secondary-blue) 0%, var(--color-primary-dark) 100%);
   padding: 25px 40px;
   border-radius: 8px;
   display: flex;
