@@ -146,7 +146,7 @@ const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
 
         <div className="cta-section">
           <p className="cta-text">For any further enquiries contact:</p>
-          <a href="mailto:apprentice@tekbay.digital" className="cta-email">apprentice@tekbay.digital</a>
+          <a href="mailto:apprentice@tekbay.digital" className="cta-email">apprenticeship@tekbay.digital</a>
         </div>
       </div>
     </section>
