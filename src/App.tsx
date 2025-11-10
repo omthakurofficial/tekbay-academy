@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
 const App: React.FC = () => {
   return (
     <CountryProvider>
-      <Router basename="/tekbay-academy">
+      <Router basename="/">
         <AppContent />
       </Router>
     </CountryProvider>

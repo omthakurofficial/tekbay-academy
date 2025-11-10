@@ -1,37 +1,44 @@
-name: Deploy TekBay Academy
+name: Deploy React App to Lightsail
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main  # change if you use another branch
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Build project
-      run: npm run build
-      env:
-        CI: false
-        
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        cname: # Add your custom domain here if you have one
+      - name: Deploy latest code on Lightsail
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          script: |
+            echo "Navigating to app directory..."
+            cd /home/ec2-user/TekBay
+
+            echo "Pulling latest code..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "Cleaning old local build..."
+            rm -rf build
+
+            echo "Installing dependencies..."
+            npm ci
+
+            echo "Building React app..."
+            npm run build
+
+            echo "Replacing old deployed build..."
+            sudo rm -rf /usr/share/nginx/html/*
+            sudo cp -r build/* /usr/share/nginx/html/
+
+            echo "Restarting NGINX..."
+            sudo systemctl restart nginx
+
+            echo "Deployment complete!"
+
