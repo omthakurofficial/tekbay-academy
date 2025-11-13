@@ -36,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinNow }) => {
             </h1>
             <p className="hero-subtitle">
               From Zero to AWS Certified Hero in just a few weeks!<br />
-              <span className="subtitle-highlight">Join 1000+ students who transformed their careers</span>
+              <span className="subtitle-highlight">Join 350+ students who transformed their careers</span>
             </p>
             <div className="hero-cta">
               <button className="btn-primary" onClick={onJoinNow}>Start Learning Today</button>

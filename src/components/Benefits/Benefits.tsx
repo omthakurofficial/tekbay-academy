@@ -40,7 +40,7 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
       title: '100% Refund Guarantee*',
     },
     {
-      icon: '�📚',
+      icon: '📚',
       title: '60+ Hours of Guided Learning',
     },
     {
@@ -111,72 +111,100 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
           <div className="trainers-section">
             <div className="trainers-card">
               <div className="trainers-image-container">
-                <div className="combined-trainers-photo">
-                  <img 
-                    src={getAssetPath('/images/trainners.png')}
-                    alt="TekBay Trainers - Rojan Sedhai and Om Thakur"
-                    className="trainers-combined-image"
-                  />
-                </div>
-                
-                <div className="trainers-info">
-                  <div className="trainer-details">
-                    <div className="trainer-info-item">
-                      <div className="trainer-name-with-link">
-                        <span className="trainer-name">Rojan Sedhai</span>
-                        <a 
-                          href="https://www.linkedin.com/in/rojan-sedhai/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="linkedin-link"
-                          aria-label="Rojan Sedhai LinkedIn Profile"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
-                      </div>
+                {selectedProgram === 'saa' ? (
+                  <>
+                    <div className="saa-trainers-photo">
+                      <img 
+                        src={getAssetPath('/images/trainners.png')}
+                        alt="TekBay Trainers - Rojan Sedhai and Om Thakur"
+                        className="saa-trainers-image"
+                      />
                     </div>
-                    <div className="trainer-info-item">
-                      <div className="trainer-name-with-link">
-                        <span className="trainer-name">Om Thakur</span>
-                        <a 
-                          href="https://www.linkedin.com/in/omthakurofficial/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="linkedin-link"
-                          aria-label="Om Thakur LinkedIn Profile"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                        </a>
+                    
+                    <div className="trainers-info">
+                      <div className="trainer-details">
+                        <div className="trainer-info-item">
+                          <div className="trainer-name-with-link">
+                            <span className="trainer-name">Rojan Sedhai</span>
+                            <a 
+                              href="https://www.linkedin.com/in/rojan-sedhai/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="linkedin-link"
+                              aria-label="Rojan Sedhai LinkedIn Profile"
+                            >
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                            </a>
+                          </div>
+                        </div>
+                        <div className="trainer-info-item">
+                          <div className="trainer-name-with-link">
+                            <span className="trainer-name">Om Thakur</span>
+                            <a 
+                              href="https://www.linkedin.com/in/omthakurofficial/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="linkedin-link"
+                              aria-label="Om Thakur LinkedIn Profile"
+                            >
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                            </a>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  
-                  <div className="combined-credentials">
-                    {selectedProgram === 'saa' ? (
-                      <>
+                      
+                      <div className="combined-credentials">
                         <div className="credential-badge">
                           <span className="credential-text">AWS Certified Solution Architect - Professional</span>
                         </div>
                         <div className="credential-badge">
                           <span className="credential-text">AWS Academy Certified Educator</span>
                         </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="credential-badge">
-                          <span className="credential-text">AWS Certified Machine Learning - Associate</span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="ml-trainer-photo">
+                      <img 
+                        src={getAssetPath('/images/rahul banjara.png')}
+                        alt="TekBay ML Trainer - Rahul Dev Banjara"
+                        className="ml-trainer-image"
+                      />
+                    </div>
+                    
+                    <div className="ml-trainer-info">
+                      <div className="trainer-details">
+                        <div className="trainer-info-item">
+                          <div className="trainer-name-with-link">
+                            <span className="trainer-name">Rahul Dev Banjara</span>
+                            <a 
+                              href="https://www.linkedin.com/in/devrahulbanjara/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="linkedin-link"
+                              aria-label="Rahul Dev Banjara LinkedIn Profile"
+                            >
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                            </a>
+                          </div>
                         </div>
+                      </div>
+                      
+                      <div className="combined-credentials">
                         <div className="credential-badge">
-                          <span className="credential-text">AWS Academy Certified Educator</span>
+                          <span className="credential-text">AWS Certified Machine Learning Engineer - Associate</span>
                         </div>
-                      </>
-                    )}
-                  </div>
-                </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
               
               <div className="achievement-stats">

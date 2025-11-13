@@ -52,8 +52,8 @@
   border: 2px solid var(--color-secondary-blue);
   box-shadow: 0 8px 25px rgba(78, 205, 196, 0.15);
   transition: all 0.3s ease;
-  min-height: 280px;
-  max-height: 320px;
+  min-height: 320px;
+  max-height: 380px;
   display: flex;
   flex-direction: column;
   position: relative;

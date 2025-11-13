@@ -139,6 +139,32 @@
   padding: 4px;
 }
 
+/* Separate styles for SAA trainers (dual photo) */
+.saa-trainers-photo {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  padding: 4px;
+}
+
+/* Separate styles for ML trainer (single photo) */
+.ml-trainer-photo {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  padding: 4px;
+}
+
 .trainers-combined-image {
   width: 100%;
   height: auto;
@@ -146,9 +172,35 @@
   border-radius: 12px;
   filter: grayscale(0%);
   transition: all 0.3s ease;
+  object-fit: cover;
 }
 
-.trainers-combined-image:hover {
+/* SAA trainers image specific */
+.saa-trainers-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  filter: grayscale(0%);
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+/* ML trainer image specific - smaller to match proportions */
+.ml-trainer-image {
+  width: 70%;
+  height: 250px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  filter: grayscale(0%);
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+.trainers-combined-image:hover,
+.saa-trainers-image:hover,
+.ml-trainer-image:hover {
   filter: brightness(1.1);
   transform: scale(1.02);
 }
@@ -335,8 +387,13 @@
     text-align: center;
   }
   
-  .combined-trainers-photo {
+  .combined-trainers-photo,
+  .saa-trainers-photo {
     max-width: 300px;
+  }
+
+  .ml-trainer-photo {
+    max-width: 260px;
   }
   
   .trainers-info {
@@ -377,8 +434,17 @@
     font-size: 14px;
   }
   
-  .combined-trainers-photo {
+  .combined-trainers-photo,
+  .saa-trainers-photo {
     max-width: 260px;
+  }
+
+  .ml-trainer-photo {
+    max-width: 220px;
+  }
+
+  .ml-trainer-image {
+    max-height: 220px;
   }
   
   .trainers-info {

@@ -16,50 +16,50 @@ const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: "Priya Sharma",
-      photo: "👩‍💻",
-      techBackground: "Software Developer with 2 years experience",
-      currentRole: "AWS Cloud Engineer at TCS",
-      feedback: "TekBay's AWS certification program completely transformed my career. The hands-on projects and real-world scenarios helped me land a cloud engineer role."
+      name: "Nishant Karn",
+      photo: "👨‍💻",
+      techBackground: "Cloud Engineer",
+      currentRole: "AWS Certified Solutions Architect – Associate",
+      feedback: "This program has been a game-changer for me, deepening my AWS knowledge and boosting my confidence in designing cloud solutions. It has opened new career opportunities and strengthened my skills as a Cloud Engineer. Would I recommend it? Absolutely. The hands-on learning and real-world scenarios make it practical, relevant, and totally worth it."
     },
     {
       id: 2,
-      name: "Rajesh Kumar",
+      name: "Bibak Chand",
       photo: "👨‍💼",
-      techBackground: "Network Administrator with 3 years experience",
-      currentRole: "DevOps Engineer at Wipro",
-      feedback: "I was stuck in traditional IT support for years. TekBay's program gave me the confidence to transition to DevOps. The certification opened doors I never thought possible."
+      techBackground: "Cloud Computing Professional",
+      currentRole: "AWS Certified Solutions Architect – Associate",
+      feedback: "This program has opened us to the world of cloud computing as a whole. How we can leverage different aws services to solve the problems effectively. This course laid the foundations for using aws effectively variety of ways. Yes. This course is very good and absolutely recommend to everyone"
     },
     {
       id: 3,
-      name: "Sneha Patel",
-      photo: "👩‍🔬",
-      techBackground: "Recent Computer Science Graduate",
-      currentRole: "Cloud Solutions Architect at Infosys",
-      feedback: "As a fresher, TekBay's comprehensive training and placement support helped me secure a cloud architect position right out of college. Amazing program!"
+      name: "Utshab Subedi",
+      photo: "👨‍💻",
+      techBackground: "Cloud Professional",
+      currentRole: "AWS Certified Solutions Architect – Associate",
+      feedback: "The Cloud Apprenticeship Program has significantly accelerated my learning and career goals by providing hands-on experience with AWS under the guidance of industry-level expert trainers. The practical approach helped me build a strong foundation in cloud technologies while working on real-world projects. Additionally, the program offered valuable networking opportunities, allowing me to connect with like-minded professionals and expand my network. I would highly recommend this program to anyone looking to enhance their cloud skills and grow their career in the tech industry."
     },
     {
       id: 4,
-      name: "Amit Singh",
-      photo: "👨‍💻",
-      techBackground: "Java Developer with 4 years experience",
-      currentRole: "Senior Cloud Engineer at Accenture",
-      feedback: "The transition from traditional development to cloud was seamless with TekBay. I'm now leading cloud migration projects for enterprise clients."
+      name: "Samir Limbu",
+      photo: "👨‍💼",
+      techBackground: "Cloud Professional",
+      currentRole: "AWS Certified Solutions Architect – Associate",
+      feedback: "The Cloud Apprenticeship Program has significantly accelerated my learning and career goals by providing hands-on experience with AWS under the guidance of industry-level expert trainers. The practical approach helped me build a strong foundation in cloud technologies while working on real-world projects. Additionally, the program offered valuable networking opportunities, allowing me to connect with like-minded professionals and expand my network. I would highly recommend this program to anyone looking to enhance their cloud skills and grow their career in the tech industry."
     },
     {
       id: 5,
-      name: "Kavya Reddy",
-      photo: "👩‍🎓",
-      techBackground: "Data Analyst with 3 years experience",
-      currentRole: "Cloud Data Engineer at Microsoft",
-      feedback: "TekBay helped me combine my data skills with cloud expertise. Now I'm working with cutting-edge cloud technologies at Microsoft!"
+      name: "Astitwo Pandey",
+      photo: "👨‍🎓",
+      techBackground: "Cloud Computing Enthusiast",
+      currentRole: "AWS Certified Solutions Architect – Associate",
+      feedback: "The AWS cert is highly recognized and to give to get this for practically free offers people with interest in cloud career a big leap. Through this program I learned how to develop as well as troubleshoot the problem which is needed for a career improvement."
     },
     {
       id: 6,
       name: "Rohit Gupta",
       photo: "👨‍🎯",
       techBackground: "QA Engineer with 2 years experience",
-      currentRole: "Cloud Security Specialist at IBM",
+      currentRole: "AWS Certified Solutions Architect – Associate",
       feedback: "From testing to cloud security - TekBay made this career pivot possible. The practical labs and AWS certification preparation were outstanding."
     },
     {
@@ -67,7 +67,7 @@ const Testimonials: React.FC = () => {
       name: "Anita Verma",
       photo: "👩‍💼",
       techBackground: "Manual Tester with 1 year experience",
-      currentRole: "AWS Solutions Engineer at Cognizant",
+      currentRole: "AWS Certified Solutions Architect – Associate",
       feedback: "I went from manual testing to designing cloud solutions! TekBay's mentorship and real-world projects gave me the confidence to excel in cloud engineering."
     },
     {
@@ -75,7 +75,7 @@ const Testimonials: React.FC = () => {
       name: "Vishal Jain",
       photo: "👨‍🔧",
       techBackground: "System Administrator with 5 years experience",
-      currentRole: "Cloud Infrastructure Manager at Dell",
+      currentRole: "AWS Certified Solutions Architect – Associate",
       feedback: "After years in traditional IT, TekBay helped me modernize my skills. I'm now managing cloud infrastructure for a Fortune 500 company!"
     }
   ];
@@ -141,9 +141,6 @@ const Testimonials: React.FC = () => {
                     <div className="testimonial-info">
                       <h3 className="testimonial-name">{testimonial.name}</h3>
                       <p className="testimonial-role">{testimonial.currentRole}</p>
-                      <p className="testimonial-background">
-                        Previously: {testimonial.techBackground}
-                      </p>
                     </div>
                   </div>
 
