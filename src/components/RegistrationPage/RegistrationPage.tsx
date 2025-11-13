@@ -395,13 +395,6 @@ const RegistrationPage: React.FC = () => {
         }
       }
 
-      // Validate otherCourse when Other AWS Certified is selected
-      if (formData.coursePreference === 'Other AWS Certified' && !formData.otherCourse.trim()) {
-        alert('Please specify the AWS certification you\'re interested in.');
-        setIsSubmitting(false);
-        return;
-      }
-
       // Get test center details for submission
       const testCenterInfo = formData.testCenterName 
         ? TEST_CENTERS.find(
@@ -424,9 +417,7 @@ const RegistrationPage: React.FC = () => {
         email: formData.email,
         educationLevel: formData.educationLevel,
         degreeName: formData.degreeName,
-        coursePreference: formData.coursePreference === 'Other AWS Certified' 
-          ? `Other: ${formData.otherCourse}` 
-          : formData.coursePreference,
+        coursePreference: formData.coursePreference,
         learningPreference: formData.learningPreference,
         testCenterState: formData.testCenterState,
         testCenterCity: formData.testCenterCity,
@@ -675,21 +666,12 @@ const RegistrationPage: React.FC = () => {
                 <option value="">Select Course</option>
                 <option value="AWS Certified Solutions Architect - Associate">AWS Certified Solutions Architect - Associate</option>
                 <option value="AWS Certified Machine Learning Engineer - Associate">AWS Certified Machine Learning Engineer - Associate</option>
-                <option value="Other AWS Certified">Other AWS Certified</option>
               </select>
             </div>
-            {formData.coursePreference === 'Other AWS Certified' && (
-              <div className="form-group">
-                <label htmlFor="otherCourse">Specify Course *</label>
-                <input
-                  type="text"
-                  id="otherCourse"
-                  name="otherCourse"
-                  value={formData.otherCourse}
-                  onChange={handleInputChange}
-                  placeholder="Enter the AWS certification you're interested in"
-                  required
-                />
+            
+            {formData.coursePreference === 'AWS Certified Machine Learning Engineer - Associate' && (
+              <div className="course-prerequisite-note">
+                <p><strong>Note:</strong> AWS Certified Solutions Architect - Associate certification is a prerequisite for the program.</p>
               </div>
             )}
           </div>
