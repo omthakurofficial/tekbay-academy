@@ -23,6 +23,8 @@ interface FormData {
   email: string;
   educationLevel: string;
   degreeName: string;
+  coursePreference: string;
+  otherCourse: string;
   learningPreference: string;
   testCenterState: string;
   testCenterCity: string;
@@ -264,6 +266,8 @@ const RegistrationPage: React.FC = () => {
     email: '',
     educationLevel: '',
     degreeName: '',
+    coursePreference: '',
+    otherCourse: '',
     learningPreference: '',
     testCenterState: '',
     testCenterCity: '',
@@ -376,6 +380,7 @@ const RegistrationPage: React.FC = () => {
         phoneNumber: 'Phone Number',
         email: 'Email Address',
         educationLevel: 'Education Level',
+        coursePreference: 'Course Preference',
         learningPreference: 'Learning Preference',
         testCenterState: 'Test Center State',
         testCenterCity: 'Test Center City',
@@ -388,6 +393,13 @@ const RegistrationPage: React.FC = () => {
           setIsSubmitting(false);
           return;
         }
+      }
+
+      // Validate otherCourse when Other AWS Certified is selected
+      if (formData.coursePreference === 'Other AWS Certified' && !formData.otherCourse.trim()) {
+        alert('Please specify the AWS certification you\'re interested in.');
+        setIsSubmitting(false);
+        return;
       }
 
       // Get test center details for submission
@@ -412,6 +424,9 @@ const RegistrationPage: React.FC = () => {
         email: formData.email,
         educationLevel: formData.educationLevel,
         degreeName: formData.degreeName,
+        coursePreference: formData.coursePreference === 'Other AWS Certified' 
+          ? `Other: ${formData.otherCourse}` 
+          : formData.coursePreference,
         learningPreference: formData.learningPreference,
         testCenterState: formData.testCenterState,
         testCenterCity: formData.testCenterCity,
@@ -647,7 +662,40 @@ const RegistrationPage: React.FC = () => {
           </div>
 
           <div className="form-section">
-            <h3>Learning Preference</h3>
+            <h3>Courses Preference *</h3>
+            <div className="form-group">
+              <label htmlFor="coursePreference">Select Course *</label>
+              <select
+                id="coursePreference"
+                name="coursePreference"
+                value={formData.coursePreference}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select Course</option>
+                <option value="AWS Certified Solutions Architect - Associate">AWS Certified Solutions Architect - Associate</option>
+                <option value="AWS Certified Machine Learning Engineer - Associate">AWS Certified Machine Learning Engineer - Associate</option>
+                <option value="Other AWS Certified">Other AWS Certified</option>
+              </select>
+            </div>
+            {formData.coursePreference === 'Other AWS Certified' && (
+              <div className="form-group">
+                <label htmlFor="otherCourse">Specify Course *</label>
+                <input
+                  type="text"
+                  id="otherCourse"
+                  name="otherCourse"
+                  value={formData.otherCourse}
+                  onChange={handleInputChange}
+                  placeholder="Enter the AWS certification you're interested in"
+                  required
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="form-section">
+            <h3>Learning Preference *</h3>
             <div className="form-group">
               <label htmlFor="learningPreference">Interested in *</label>
               <select
