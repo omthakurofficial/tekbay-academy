@@ -147,7 +147,7 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
                 </div>
               )}
             </div>
-            <button onClick={() => handleNavClick('program')} className="nav-link nav-button">Program</button>
+            <button onClick={() => handleNavClick('benefits')} className="nav-link nav-button">Programs</button>
             <a href="https://learn.tekbay.academy" target="_blank" rel="noopener noreferrer" className="nav-link" onClick={closeMenu}>LMS Access</a>
             <button onClick={() => handleNavClick('pricing')} className="nav-link nav-button">Pricing</button>
             <button onClick={() => handleNavClick('faqs')} className="nav-link nav-button">FAQs</button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Benefits.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
@@ -6,8 +6,12 @@ interface BenefitsProps {
   onJoinNow?: () => void;
 }
 
+type ProgramType = 'saa' | 'ml';
+
 const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
-  const benefits = [
+  const [selectedProgram, setSelectedProgram] = useState<ProgramType>('saa');
+
+  const saaBenefits = [
     {
       icon: '📚',
       title: '45+ hours of guided learning',
@@ -30,6 +34,35 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
     },
   ];
 
+  const mlBenefits = [
+    {
+      icon: '💰',
+      title: '100% Refund Guarantee*',
+    },
+    {
+      icon: '�📚',
+      title: '60+ Hours of Guided Learning',
+    },
+    {
+      icon: '🎓',
+      title: 'Global AWS Certification',
+    },
+    {
+      icon: '🤖',
+      title: 'Real-World AI/ML Projects',
+    },
+    {
+      icon: '👨‍🏫',
+      title: 'AWS Certified Instructors',
+    },
+    {
+      icon: '💼 ',
+      title: 'Career & Placement Opportunities',
+    },
+  ];
+
+  const benefits = selectedProgram === 'saa' ? saaBenefits : mlBenefits;
+
   const stats = [
     {
       icon: '🎓',
@@ -44,7 +77,26 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
   return (
     <section className="benefits section" id="benefits">
       <div className="container">
-        <h2 className="benefits-title">Benefits of Our Program</h2>
+        <div className="program-tabs">
+          <button 
+            className={`program-tab ${selectedProgram === 'saa' ? 'active' : ''}`}
+            onClick={() => setSelectedProgram('saa')}
+          >
+            AWS SAA-C03
+          </button>
+          <button 
+            className={`program-tab ${selectedProgram === 'ml' ? 'active' : ''}`}
+            onClick={() => setSelectedProgram('ml')}
+          >
+            AWS MLA-C01
+          </button>
+        </div>
+        
+        <h2 className="benefits-title">
+          {selectedProgram === 'saa' 
+            ? 'Benefits of AWS SAA-C03 Program' 
+            : 'Benefits of MLA-C01 Program'}
+        </h2>
         
         <div className="benefits-layout">
           <div className="benefits-list">
@@ -104,12 +156,25 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
                   </div>
                   
                   <div className="combined-credentials">
-                    <div className="credential-badge">
-                      <span className="credential-text">AWS Certified Solution Architect - Professional</span>
-                    </div>
-                    <div className="credential-badge">
-                      <span className="credential-text">AWS Academy Certified Educator</span>
-                    </div>
+                    {selectedProgram === 'saa' ? (
+                      <>
+                        <div className="credential-badge">
+                          <span className="credential-text">AWS Certified Solution Architect - Professional</span>
+                        </div>
+                        <div className="credential-badge">
+                          <span className="credential-text">AWS Academy Certified Educator</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="credential-badge">
+                          <span className="credential-text">AWS Certified Machine Learning - Associate</span>
+                        </div>
+                        <div className="credential-badge">
+                          <span className="credential-text">AWS Academy Certified Educator</span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

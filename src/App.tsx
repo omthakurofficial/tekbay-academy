@@ -17,6 +17,7 @@ import TermsAndConditions from './components/TermsAndConditions/TermsAndConditio
 import AboutUsAcademy from './components/AboutUsAcademy/AboutUsAcademy';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import { CountryProvider } from './contexts/CountryContext';
+import { ProgramProvider } from './contexts/ProgramContext';
 
 // Home page component - using navigate hook
 const HomePage: React.FC = () => {
@@ -42,9 +43,11 @@ const HomePage: React.FC = () => {
 const App: React.FC = () => {
   return (
     <CountryProvider>
-      <Router basename="/">
-        <AppContent />
-      </Router>
+      <ProgramProvider>
+        <Router basename="/">
+          <AppContent />
+        </Router>
+      </ProgramProvider>
     </CountryProvider>
   );
 };

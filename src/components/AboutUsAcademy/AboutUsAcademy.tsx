@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AboutUsAcademy.css';
 
 interface AboutUsAcademyProps {
@@ -6,6 +7,7 @@ interface AboutUsAcademyProps {
 }
 
 const AboutUsAcademy: React.FC<AboutUsAcademyProps> = ({ onJoinNow }) => {
+  const navigate = useNavigate();
   return (
     <div className="about-us-academy">
       <div className="container">
@@ -22,10 +24,10 @@ const AboutUsAcademy: React.FC<AboutUsAcademyProps> = ({ onJoinNow }) => {
               <h2 className="section-title">Our Commitment to You: Free, Expert-Led Training</h2>
               <div className="section-content">
                 <p>
-                  We believe in your potential, and we're ready to invest in your future. That's why our comprehensive, 8-week training program is completely free.
+                  We believe in your potential, and we're ready to invest in your future. That's why our comprehensive training program is completely free.
                 </p>
                 <p>
-                  To ensure a committed and focused learning environment for everyone, we simply ask for a fully refundable security deposit when you enroll. Once you complete the program and successfully pass your official AWS Certified Solutions Architect - Associate exam, we refund your deposit in full. It's our way of partnering in your success—you bring the dedication, and we'll provide the expertise.
+                  To ensure a committed and focused learning environment for everyone, we simply ask for a fully refundable security deposit when you enroll. Once you complete the program and successfully pass your official AWS certification exam, we refund your deposit in full. It's our way of partnering in your success—you bring the dedication, and we'll provide the expertise.
                 </p>
               </div>
             </section>
@@ -64,10 +66,41 @@ const AboutUsAcademy: React.FC<AboutUsAcademyProps> = ({ onJoinNow }) => {
                 <h3>Career Ready</h3>
                 <p>Gain practical skills that employers are actively seeking</p>
               </div>
-              <div className="highlight-card">
+              <div className="highlight-card courses-card">
                 <div className="highlight-icon">⏱️</div>
-                <h3>8 Weeks</h3>
-                <p>Intensive but manageable timeline to get you certified fast</p>
+                <h3>Our Programs</h3>
+                <div className="courses-list">
+                  <button 
+                    className="course-link"
+                    onClick={() => {
+                      navigate('/');
+                      setTimeout(() => {
+                        const element = document.getElementById('benefits');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
+                  >
+                    <span className="course-name">AWS Certified Solutions Architect - Associate</span>
+                    <span className="course-duration">8 weeks (45+ Hrs)</span>
+                  </button>
+                  <button 
+                    className="course-link"
+                    onClick={() => {
+                      navigate('/');
+                      setTimeout(() => {
+                        const element = document.getElementById('benefits');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
+                  >
+                    <span className="course-name">AWS Certified ML Engineer - Associate</span>
+                    <span className="course-duration">10 Weeks (60+ Hrs)</span>
+                  </button>
+                </div>
               </div>
               <div className="highlight-card">
                 <div className="highlight-icon">🌍</div>
@@ -80,7 +113,7 @@ const AboutUsAcademy: React.FC<AboutUsAcademyProps> = ({ onJoinNow }) => {
                 <div className="offer-details">
                   <p>• Fully refundable when you pass the AWS Exam</p>
                   <p>• Subject to applicable taxes</p>
-                  <p>• Lucky draw among top scorers (Above 990) to win MacBook every 6 months</p>
+                  <p>• Lucky draw among top scorers (Above 990) to win MacBook</p>
                 </div>
                 <button className="join-now-card-btn" onClick={onJoinNow}>
                   JOIN NOW

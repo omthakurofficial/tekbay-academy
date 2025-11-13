@@ -3,6 +3,39 @@
   padding: 30px 0;
 }
 
+.program-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.program-tab {
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #3498db;
+  background: white;
+  color: #3498db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.program-tab:hover {
+  background: #e8f4f8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.program-tab.active {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+}
+
 .benefits-title {
   font-size: 28px;
   color: var(--color-secondary-blue);
@@ -282,6 +315,16 @@
 }
 
 @media (max-width: 968px) {
+  .program-tabs {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .program-tab {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+
   .benefits-layout {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -305,9 +348,19 @@
   .benefits {
     padding: 25px 0;
   }
+
+  .program-tabs {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .program-tab {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
   
   .benefits-title {
-    font-size: 22px;
+    font-size: 20px;
   }
   
   .benefit-item {
