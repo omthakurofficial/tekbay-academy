@@ -36,28 +36,25 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
 
   const mlBenefits = [
     {
-      icon: '💰',
-      title: '100% Refund Guarantee*',
-    },
-    {
       icon: '📚',
       title: '60+ Hours of Guided Learning',
     },
     {
       icon: '🎓',
-      title: 'Global AWS Certification',
+      title: 'Earn globally recognized AWS certification',
     },
     {
       icon: '🤖',
       title: 'Real-World AI/ML Projects',
     },
-    {
-      icon: '👨‍🏫',
-      title: 'AWS Certified Instructors',
-    },
+    
     {
       icon: '💼 ',
-      title: 'Career & Placement Opportunities',
+      title: 'Boost career & placement opportunities',
+    },
+    {
+      icon: '👨‍🏫',
+      title: 'Learn from certified AI/ML experts',
     },
   ];
 
