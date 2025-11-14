@@ -7,6 +7,7 @@ import { useCountry } from '../../contexts/CountryContext';
 const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [courseDropdownOpen, setCourseDropdownOpen] = useState(false);
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
       if (aboutDropdownOpen && !target.closest('.nav-dropdown.about-dropdown')) {
         setAboutDropdownOpen(false);
       }
+      if (courseDropdownOpen && !target.closest('.nav-dropdown.course-dropdown')) {
+        setCourseDropdownOpen(false);
+      }
       if (countryDropdownOpen && !target.closest('.nav-dropdown.country-dropdown')) {
         setCountryDropdownOpen(false);
       }
@@ -40,7 +44,7 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [aboutDropdownOpen, countryDropdownOpen]);
+  }, [aboutDropdownOpen, courseDropdownOpen, countryDropdownOpen]);
   
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -49,17 +53,26 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
   const closeMenu = () => {
     setMenuOpen(false);
     setAboutDropdownOpen(false);
+    setCourseDropdownOpen(false);
     setCountryDropdownOpen(false);
   };
 
   const toggleAboutDropdown = () => {
     setAboutDropdownOpen(!aboutDropdownOpen);
+    setCourseDropdownOpen(false);
+    setCountryDropdownOpen(false);
+  };
+
+  const toggleCourseDropdown = () => {
+    setCourseDropdownOpen(!courseDropdownOpen);
+    setAboutDropdownOpen(false);
     setCountryDropdownOpen(false);
   };
 
   const toggleCountryDropdown = () => {
     setCountryDropdownOpen(!countryDropdownOpen);
     setAboutDropdownOpen(false);
+    setCourseDropdownOpen(false);
   };
 
   const handleCountrySelect = (country: 'india' | 'nepal') => {
@@ -148,6 +161,32 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
               )}
             </div>
             <button onClick={() => handleNavClick('benefits')} className="nav-link nav-button">Programs</button>
+            <div className="nav-dropdown course-dropdown">
+              <button 
+                onClick={toggleCourseDropdown} 
+                className="nav-link nav-button dropdown-toggle"
+                aria-expanded={courseDropdownOpen}
+              >
+                Courses
+                <span className={`dropdown-arrow ${courseDropdownOpen ? 'open' : ''}`}>▾</span>
+              </button>
+              {courseDropdownOpen && (
+                <div className="dropdown-menu">
+                  <button 
+                    onClick={() => { closeMenu(); navigate('/courses/aws-solution-architect-associate'); }} 
+                    className="dropdown-item"
+                  >
+                    AWS Solution Architect - Associate
+                  </button>
+                  <button 
+                    onClick={() => { closeMenu(); navigate('/courses/aws-certified-machine-learning-engineer-associate'); }} 
+                    className="dropdown-item"
+                  >
+                    AWS ML Engineer - Associate
+                  </button>
+                </div>
+              )}
+            </div>
             <a href="https://learn.tekbay.academy" target="_blank" rel="noopener noreferrer" className="nav-link" onClick={closeMenu}>LMS Access</a>
             <button onClick={() => handleNavClick('pricing')} className="nav-link nav-button">Pricing</button>
             <button onClick={() => handleNavClick('faqs')} className="nav-link nav-button">FAQs</button>

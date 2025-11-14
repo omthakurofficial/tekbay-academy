@@ -16,6 +16,8 @@ import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './components/TermsAndConditions/TermsAndConditions';
 import AboutUsAcademy from './components/AboutUsAcademy/AboutUsAcademy';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
+import CourseDetailsSAA from './components/CourseDetails/CourseDetailsSAA';
+import CourseDetailsML from './components/CourseDetails/CourseDetailsML';
 import { CountryProvider } from './contexts/CountryContext';
 import { ProgramProvider } from './contexts/ProgramContext';
 
@@ -68,6 +70,8 @@ const AppContent: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/about-academy" element={<AboutUsAcademy onJoinNow={handleJoinNow} />} />
+        <Route path="/courses/aws-solution-architect-associate" element={<CourseDetailsSAA />} />
+        <Route path="/courses/aws-certified-machine-learning-engineer-associate" element={<CourseDetailsML />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
