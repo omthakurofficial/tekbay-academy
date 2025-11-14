@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
     <>
       <Hero onJoinNow={handleJoinNow} />
       <ProgramOverview />
-      <Benefits />
+      <Benefits onJoinNow={handleJoinNow} />
       <Testimonials />
       <Pricing onJoinNow={handleJoinNow} />
       <Demand onJoinNow={handleJoinNow} />

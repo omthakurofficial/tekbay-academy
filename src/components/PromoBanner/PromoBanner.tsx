@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './PromoBanner.css';
 import { useCountry } from '../../contexts/CountryContext';
 
@@ -7,6 +8,7 @@ interface PromoBannerProps {
 }
 
 const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -45,7 +47,8 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  // Hide banner on registration page or if manually closed
+  if (!isVisible || location.pathname === '/register') return null;
 
   return (
     <div className="promo-banner">
@@ -101,8 +104,11 @@ const PromoBanner: React.FC<PromoBannerProps> = ({ onJoinNow }) => {
             <button 
               className="cta-button"
               onClick={() => {
+                setIsVisible(false);
                 if (onJoinNow) {
-                  onJoinNow();
+                  setTimeout(() => {
+                    onJoinNow();
+                  }, 100);
                 }
               }}
             >

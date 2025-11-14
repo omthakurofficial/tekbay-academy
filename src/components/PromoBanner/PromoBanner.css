@@ -30,6 +30,7 @@
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   animation: shimmer 3s infinite;
+  pointer-events: none;
 }
 
 .promo-banner-content {
@@ -202,6 +203,8 @@
 /* CTA Button */
 .promo-cta {
   flex-shrink: 0;
+  position: relative;
+  z-index: 10;
 }
 
 .cta-button {
@@ -220,6 +223,8 @@
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .cta-button::before {
