@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CourseDetails.css';
+import { useCountry } from '../../contexts/CountryContext';
 
 const CourseDetailsSAA: React.FC = () => {
   const navigate = useNavigate();
+  const { selectedCountry } = useCountry();
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
   const [showAllModules, setShowAllModules] = useState(false);
 
   const handleJoinNow = () => {
     navigate('/register');
   };
+
+  // Country-specific data
+  const countryData = {
+    india: {
+      currency: '₹',
+      originalPrice: '24,999',
+      discountedPrice: '9,999',
+      courseType: 'Online/Pre-recorded'
+    },
+    nepal: {
+      currency: 'NPR',
+      originalPrice: '25,000',
+      discountedPrice: '12,000',
+      courseType: 'Physical On-Premise'
+    }
+  };
+
+  const currentCountry = countryData[selectedCountry];
 
   const toggleModule = (moduleNumber: number) => {
     setExpandedModule(expandedModule === moduleNumber ? null : moduleNumber);
@@ -138,12 +158,12 @@ const CourseDetailsSAA: React.FC = () => {
   ];
 
   const benefits = [
-    { icon: "💰", title: "100% Refund Guarantee*" },
-    { icon: "⏱️", title: "45+ Hours of Guided Learning" },
-    { icon: "🎓", title: "Global AWS Certification" },
-    { icon: "💼", title: "Real-World Cloud Projects" },
-    { icon: "👨‍🏫", title: "AWS Certified Instructors" },
-    { icon: "🚀", title: "Career & Placement Support" }
+    { icon: "📚", title: "45+ hours of guided learning" },
+    { icon: "⚙️", title: "Work with real-world cloud projects" },
+    { icon: "👨‍🏫", title: "Learn from certified cloud experts" },
+    { icon: "🎓", title: "Earn globally recognized AWS certification" },
+    { icon: "🤝", title: "Connect with industry professionals & peers" },
+    { icon: "💼", title: "Boost career & placement opportunities" }
   ];
 
   const testimonials = [
@@ -209,7 +229,7 @@ const CourseDetailsSAA: React.FC = () => {
             </div>
             <div className="overview-item">
               <span className="overview-label">Type</span>
-              <span className="overview-value">Online/Pre-recorded</span>
+              <span className="overview-value">{currentCountry.courseType}</span>
             </div>
             <div className="overview-item">
               <span className="overview-label">Certification</span>
@@ -429,8 +449,8 @@ const CourseDetailsSAA: React.FC = () => {
                 <div className="cta-price-block">
                   <span className="cta-price-label">Program Fee</span>
                   <div className="cta-prices">
-                    <span className="cta-original">₹24,999</span>
-                    <span className="cta-current">₹9,999</span>
+                    <span className="cta-original">{currentCountry.currency}{currentCountry.originalPrice}</span>
+                    <span className="cta-current">{currentCountry.currency}{currentCountry.discountedPrice}</span>
                   </div>
                   <span className="cta-refund">100% Refundable*</span>
                 </div>
@@ -453,8 +473,17 @@ const CourseDetailsSAA: React.FC = () => {
         <div className="container">
           <h3>Terms and Conditions</h3>
           <ul className="terms-list">
-            <li>* Fully refundable upon passing the AWS exam, with a fixed one-time transaction fee of ₹500.</li>
-            <li>** Lucky draw among Top Scorers (Above 990) to win a MacBook every 6 months.</li>
+            <li>* Fully Refundable when you pass the AWS Exam.</li>
+            {selectedCountry === 'india' && (
+              <>
+                <li>** One time fixed transaction costs of Rs 500 for refund.</li>
+                <li>*** When you pass the exam within 2 weeks from course end.</li>
+                <li>*** Lucky draw among Top Scorers (Above 990) to win MacBook every 6 months.</li>
+              </>
+            )}
+            {selectedCountry === 'nepal' && (
+              <li>** Lucky draw among Top Scorers (Above 990) to win MacBook every 12 months.</li>
+            )}
           </ul>
         </div>
       </section>

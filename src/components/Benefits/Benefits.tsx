@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Benefits.css';
 import { getAssetPath } from '../../utils/assetUtils';
 
@@ -10,6 +11,15 @@ type ProgramType = 'saa' | 'ml';
 
 const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
   const [selectedProgram, setSelectedProgram] = useState<ProgramType>('saa');
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    if (selectedProgram === 'saa') {
+      navigate('/courses/aws-solution-architect-associate');
+    } else {
+      navigate('/courses/aws-certified-machine-learning-engineer-associate');
+    }
+  };
 
   const saaBenefits = [
     {
@@ -214,6 +224,13 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="benefits-footer">
+          <button className="view-details-btn" onClick={handleViewDetails}>
+            View {selectedProgram === 'saa' ? 'SAA-C03' : 'MLA-C01'} Course Details
+            <span className="arrow-icon">→</span>
+          </button>
         </div>
       </div>
     </section>

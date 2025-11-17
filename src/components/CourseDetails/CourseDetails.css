@@ -2,9 +2,10 @@
 
 /* Hero Section */
 .course-hero {
-  background: var(--gradient-overlay), url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1920&q=80') center/cover;
+  background: var(--gradient-overlay), url('https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1920&q=80') center/cover;
   padding: 80px 0 60px;
   color: white;
+  background-attachment: fixed;
 }
 
 .course-hero-content {
