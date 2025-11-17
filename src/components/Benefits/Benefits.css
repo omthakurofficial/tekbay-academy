@@ -471,49 +471,44 @@
     font-size: 11px;
   }
   
-  .benefits-footer {
-    margin-top: 20px;
-  }
-  
-  .view-details-btn {
-    padding: 12px 24px;
-    font-size: 14px;
+  .view-details-btn-inline {
+    padding: 12px 20px;
+    font-size: 13px;
   }
 }
 
-/* Benefits Footer */
-.benefits-footer {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.view-details-btn {
-  padding: 16px 40px;
-  font-size: 16px;
+/* View Details Button - Inline with benefits */
+.view-details-btn-inline {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 14px;
   font-weight: 600;
   background: linear-gradient(135deg, #3498db, #2ecc71);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
   box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+  margin-top: 5px;
+  font-family: inherit;
 }
 
-.view-details-btn:hover {
+.view-details-btn-inline:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
   background: linear-gradient(135deg, #2980b9, #27ae60);
 }
 
-.view-details-btn .arrow-icon {
-  font-size: 18px;
+.view-details-btn-inline .arrow-icon {
+  font-size: 16px;
   transition: transform 0.3s ease;
 }
 
-.view-details-btn:hover .arrow-icon {
+.view-details-btn-inline:hover .arrow-icon {
   transform: translateX(5px);
 }

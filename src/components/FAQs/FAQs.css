@@ -6,7 +6,7 @@
 
 .faqs-header {
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
 .faqs-header h2 {
@@ -23,6 +23,39 @@
   font-size: 1.2rem;
   color: #b0b0b0;
   margin: 0;
+}
+
+.program-tabs-faq {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.program-tab-faq {
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #00d4ff;
+  background: rgba(255, 255, 255, 0.05);
+  color: #00d4ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.program-tab-faq:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.program-tab-faq.active {
+  background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
 }
 
 .faqs-list {
@@ -116,6 +149,16 @@
     font-size: 1rem;
   }
 
+  .program-tabs-faq {
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  .program-tab-faq {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+
   .faq-question {
     padding: 20px;
   }
@@ -135,5 +178,17 @@
 
   .faq-answer p {
     font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .program-tabs-faq {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .program-tab-faq {
+    padding: 10px 20px;
+    font-size: 14px;
   }
 }

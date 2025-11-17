@@ -101,8 +101,8 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
         
         <h2 className="benefits-title">
           {selectedProgram === 'saa' 
-            ? 'Benefits of AWS SAA-C03 Program' 
-            : 'Benefits of MLA-C01 Program'}
+            ? 'Benefits of AWS Certified Solutions Architect - Associate Program' 
+            : 'Benefits of AWS Certified Machine Learning - Associate Program'}
         </h2>
         
         <div className="benefits-layout">
@@ -113,6 +113,11 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
                 <p className="benefit-text">{benefit.title}</p>
               </div>
             ))}
+            
+            <button className="view-details-btn-inline" onClick={handleViewDetails}>
+              View {selectedProgram === 'saa' ? 'SAA-C03' : 'MLA-C01'} Course Details
+              <span className="arrow-icon">→</span>
+            </button>
           </div>
 
           <div className="trainers-section">
@@ -224,13 +229,6 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="benefits-footer">
-          <button className="view-details-btn" onClick={handleViewDetails}>
-            View {selectedProgram === 'saa' ? 'SAA-C03' : 'MLA-C01'} Course Details
-            <span className="arrow-icon">→</span>
-          </button>
         </div>
       </div>
     </section>
