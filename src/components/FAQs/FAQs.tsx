@@ -39,7 +39,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "Do I need prior AWS experience?",
-      answer: "No prior AWS experience is required. However, basic understanding of IT concepts like networking, databases, and operating systems is helpful. Our course starts from fundamentals and progressively builds your skills."
+      answer: "Absolutely not! No prior AWS or cloud experience is required. Our program is designed for beginners and welcomes both IT and non-IT professionals. Whether you're a fresh graduate, tech enthusiast, or career switcher, our structured curriculum will guide you from basic concepts to advanced AWS skills."
     },
     {
       question: "How do I access the training materials?",
@@ -75,7 +75,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "What are the prerequisites for AWS SAA-C03 exam?",
-      answer: "AWS recommends having at least one year of hands-on experience with AWS, but our comprehensive program is designed to prepare you even without prior AWS experience. Our hands-on labs and projects provide the practical exposure needed."
+      answer: "No specific prerequisites required! Whether you're from an IT background or a non-IT professional with a passion for technology, you can join this program. We welcome tech enthusiasts, fresh graduates, and career changers who are eager to learn cloud computing. Our comprehensive training starts from the basics and builds up your skills step-by-step."
     },
     {
       question: "How do I enroll?",
@@ -106,7 +106,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "Do I need prior machine learning experience?",
-      answer: "Basic programming knowledge (Python preferred) and understanding of mathematics (statistics, linear algebra) is recommended. Prior ML experience is helpful but not mandatory. Our course covers ML fundamentals and progressively advances to AWS-specific implementations."
+      answer: "No prior ML experience required! We welcome tech enthusiasts from both IT and non-IT backgrounds. While basic programming knowledge (Python preferred) is helpful, our course teaches everything from scratch. If you're passionate about technology and willing to learn, you're ready to start your AI/ML journey with us."
     },
     {
       question: "What programming languages are used?",
@@ -150,7 +150,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "What are the prerequisites for the AWS MLA-C01 exam?",
-      answer: "AWS recommends 1-2 years of experience in developing, training, and deploying ML models. Our program bridges this gap with comprehensive training and hands-on projects that provide equivalent practical experience."
+      answer: "No specific prerequisites needed! Open to IT professionals, non-IT career changers, and tech enthusiasts alike. Whether you're a fresh graduate or looking to pivot into AI/ML, our comprehensive program provides all the training and hands-on experience required to successfully pass the certification and launch your ML career."
     },
     {
       question: "How do I enroll?",

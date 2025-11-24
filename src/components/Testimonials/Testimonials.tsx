@@ -24,7 +24,7 @@ const Testimonials: React.FC = () => {
     },
     {
       id: 2,
-      name: "Bibak Chand",
+      name: "Bibek Chand",
       photo: "👨‍💼",
       techBackground: "Cloud Computing Professional",
       currentRole: "AWS Certified Solutions Architect – Associate",

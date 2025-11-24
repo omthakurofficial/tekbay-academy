@@ -276,7 +276,7 @@ const CourseDetailsSAA: React.FC = () => {
             <div className="why-compact-card">
               <div className="why-icon">💼</div>
               <h3>Career Advantage</h3>
-              <p>Earn up to ₹18 LPA on average</p>
+              <p>Earn up to {selectedCountry === 'india' ? '₹18 LPA' : 'NPR 10-15 LPA'} on average</p>
             </div>
             <div className="why-compact-card">
               <div className="why-icon">☁️</div>

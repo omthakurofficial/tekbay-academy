@@ -13,7 +13,7 @@ const Demand: React.FC<DemandProps> = ({ onJoinNow }) => {
   // Define salary information for each country
   const salaryInfo = {
     india: { currency: 'INR', amount: '18 LPA' },
-    nepal: { currency: 'NPR', amount: '15-20 LPA' }
+    nepal: { currency: 'NPR', amount: '10-15 LPA' }
   };
   
   const currentSalary = salaryInfo[selectedCountry];

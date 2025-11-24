@@ -276,7 +276,7 @@ const CourseDetailsML: React.FC = () => {
             <div className="why-compact-card">
               <div className="why-icon">💰</div>
               <h3>Premium Salaries</h3>
-              <p>Earn up to ₹25 LPA and above</p>
+              <p>Earn up to {selectedCountry === 'india' ? '₹25 LPA and above' : 'NPR 15-20 LPA'}</p>
             </div>
             <div className="why-compact-card">
               <div className="why-icon">🔮</div>
@@ -388,27 +388,14 @@ const CourseDetailsML: React.FC = () => {
       {/* Trainers */}
       <section className="course-section bg-light">
         <div className="container">
-          <h2 className="section-title">Meet Your Trainers</h2>
+          <h2 className="section-title">Meet Your Trainer</h2>
           <div className="trainers-compact-grid">
             <div className="trainer-compact-card">
               <div className="trainer-icon">👨‍🏫</div>
-              <h3>Om Thakur</h3>
-              <p className="trainer-experience">Cloud & ML Trainer | 5+ Years</p>
+              <h3>Rahul Dev Banjara</h3>
+              <p className="trainer-experience">AI/ML Engineer and Trainer</p>
               <a 
-                href="https://www.linkedin.com/in/omthakurofficial/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="trainer-linkedin"
-              >
-                LinkedIn →
-              </a>
-            </div>
-            <div className="trainer-compact-card">
-              <div className="trainer-icon">👨‍🏫</div>
-              <h3>Rojan Sedhai</h3>
-              <p className="trainer-experience">Cloud & ML Trainer | 5+ Years</p>
-              <a 
-                href="https://www.linkedin.com/in/rojan-sedhai/" 
+                href="https://www.linkedin.com/in/devrahulbanjara/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="trainer-linkedin"
