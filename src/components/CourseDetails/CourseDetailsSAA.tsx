@@ -411,7 +411,7 @@ const CourseDetailsSAA: React.FC = () => {
               <div className="trainer-info">
                 <h3>Om Thakur</h3>
                 <p className="trainer-title">Senior Cloud Architect & Trainer</p>
-                <p className="trainer-experience">5+ Years Experience</p>
+                <p className="trainer-experience">6+ Years Experience</p>
                 <div className="trainer-credentials">
                   <span className="credential-badge">AWS Certified</span>
                   <span className="credential-badge">Solutions Architect</span>
@@ -440,7 +440,7 @@ const CourseDetailsSAA: React.FC = () => {
               <div className="trainer-info">
                 <h3>Rojan Sedhai</h3>
                 <p className="trainer-title">Senior Cloud Architect & Trainer</p>
-                <p className="trainer-experience">5+ Years Experience</p>
+                <p className="trainer-experience">6+ Years Experience</p>
                 <div className="trainer-credentials">
                   <span className="credential-badge">AWS Certified</span>
                   <span className="credential-badge">Solutions Architect</span>
