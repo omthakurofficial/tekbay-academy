@@ -46,8 +46,8 @@
 
 .benefits-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  grid-template-columns: 0.7fr 1fr;
+  gap: 40px;
   align-items: start;
 }
 
@@ -62,8 +62,8 @@
 .benefit-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 18px 20px;
+  gap: 12px;
+  padding: 14px 16px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(44, 62, 80, 0.06);
@@ -78,20 +78,20 @@
 }
 
 .benefit-icon {
-  font-size: 32px;
-  min-width: 48px;
+  font-size: 28px;
+  min-width: 40px;
   text-align: center;
   background: linear-gradient(135deg, #3498db, #2ecc71);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  height: 40px;
   filter: grayscale(1);
 }
 
 .benefit-text {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-primary-dark);
   line-height: 1.4;
@@ -480,8 +480,8 @@
 /* View Details Button - Inline with benefits */
 .view-details-btn-inline {
   width: 100%;
-  padding: 14px 20px;
-  font-size: 14px;
+  padding: 12px 18px;
+  font-size: 13px;
   font-weight: 600;
   background: linear-gradient(135deg, #3498db, #2ecc71);
   color: white;
@@ -494,7 +494,7 @@
   justify-content: center;
   gap: 8px;
   box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-  margin-top: 5px;
+  margin-top: 8px;
   font-family: inherit;
 }
 

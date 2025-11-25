@@ -19,7 +19,8 @@ const CourseDetailsSAA: React.FC = () => {
       currency: '₹',
       originalPrice: '24,999',
       discountedPrice: '9,999',
-      courseType: 'Online/Pre-recorded'
+      courseType: 'In-Person Live Classes'
+      // courseType: 'Online/Pre-recorded' // Old value - can be uncommented if needed
     },
     nepal: {
       currency: 'NPR',
@@ -312,9 +313,6 @@ const CourseDetailsSAA: React.FC = () => {
                 18 comprehensive modules covering foundational to advanced AWS concepts
               </p>
             </div>
-            <button onClick={toggleShowAllModules} className="expand-all-btn">
-              {showAllModules ? '− Show Less' : '+ View All Modules'}
-            </button>
           </div>
           <div className="modules-accordion">
             {courseModules.slice(0, showAllModules ? courseModules.length : 4).map((module) => (
@@ -337,6 +335,18 @@ const CourseDetailsSAA: React.FC = () => {
                 )}
               </div>
             ))}
+            
+            {/* Action buttons at the bottom */}
+            <div className="curriculum-actions">
+              <button onClick={toggleShowAllModules} className="expand-modules-btn">
+                {showAllModules ? '− Show Less' : '+ View All Modules'}
+              </button>
+              {showAllModules && (
+                <button onClick={handleJoinNow} className="curriculum-join-btn">
+                  JOIN NOW
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </section>

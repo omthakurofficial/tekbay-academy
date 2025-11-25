@@ -79,7 +79,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "How do I enroll?",
-      answer: "Click the 'Join Now' button, fill out the registration form with your details, complete the payment, and you'll receive immediate access to the program materials and LMS platform."
+      answer: "Click the <a href='/register' style='color: #007bff; text-decoration: underline;'>Join Now</a> button, fill out the registration form with your details, complete the payment, and you'll receive immediate access to the program materials and LMS platform."
     }
   ];
 
@@ -90,7 +90,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "Who should take this program?",
-      answer: "This program is perfect for data scientists, ML engineers, software developers, data analysts, and IT professionals who want to specialize in machine learning and AI on the AWS platform. It's also suitable for graduates looking to enter the AI/ML field."
+      answer: "This program is ideal for data scientists, ML engineers, software developers, data analysts, and IT professionals looking to specialize in machine learning and AI on the AWS platform. It's also a great fit for graduates aiming to enter the AI/ML field. To enroll, candidates should have passed the AWS Certified Solutions Architect Associate Certification."
     },
     {
       question: "What is the program fee and what does it include?",
@@ -113,14 +113,14 @@ const FAQs: React.FC = () => {
       answer: "The primary language used is Python, which is the industry standard for machine learning. You'll use popular libraries like NumPy, Pandas, Scikit-learn, TensorFlow, and PyTorch along with AWS SDK (Boto3) for AWS integrations."
     },
     {
-      question: "How do I access the training materials?",
-      answer: "All lectures, hands-on labs, Jupyter notebooks, datasets, and resources are available on our Learning Management System (LMS). You'll get 24/7 access with lifetime validity, allowing you to revisit content anytime."
+      question: "How do I access the training material?",
+      answer: "All lectures, hands-on labs, Jupyter notebooks, datasets, and resources are available on our Learning Management System (LMS). You'll have 24/7 access to the training materials for a period of 6 months, allowing you to revisit and reinforce the content at your own pace."
     },
     {
-      question: "What is the refund policy for the ML program?",
+      question: "What is the refund policy?",
       answer: currentCountry === 'Nepal'
         ? "The program fee is 100% refundable when you pass the AWS MLA-C01 exam. Submit your exam score report for refund processing. Top scorers (above 990) are also eligible for a lucky draw to win a MacBook every 12 months."
-        : "The program fee is 100% refundable when you pass the AWS exam within 2 weeks from course end. A one-time transaction cost of Rs 500 applies for refund processing. Top scorers (above 990) can participate in a lucky draw to win a MacBook every 6 months."
+        : "The program fee is 100% refundable when you pass the AWS exam within 2 weeks from course end. A one-time transaction cost of Rs 500 applies for refund processing."
     },
     {
       question: "What makes this ML program unique?",
@@ -140,7 +140,7 @@ const FAQs: React.FC = () => {
     },
     {
       question: "Can I get placement assistance?",
-      answer: "Absolutely! We provide career support including portfolio building, resume optimization for ML roles, mock technical interviews, and connections to our network of hiring partners. Our alumni work at top tech companies and startups."
+      answer: "We offer comprehensive career support, including portfolio building and resume optimization tailored for machine learning roles. Additionally, we can facilitate placement by sharing your resume with our network of hiring partners. Our alumni have successfully joined top tech companies and startups, leveraging the connections and resources we provide to them."
     },
     {
       question: "Is this course online or offline?",
@@ -150,11 +150,11 @@ const FAQs: React.FC = () => {
     },
     {
       question: "What are the prerequisites for the AWS MLA-C01 exam?",
-      answer: "No specific prerequisites needed! Open to IT professionals, non-IT career changers, and tech enthusiasts alike. Whether you're a fresh graduate or looking to pivot into AI/ML, our comprehensive program provides all the training and hands-on experience required to successfully pass the certification and launch your ML career."
+      answer: "No specific prerequisites are required to get started! The program is open to IT professionals, non-IT career changers, and tech enthusiasts alike. However, to enroll, you should have passed the AWS Certified Solutions Architect Associate Certification. Whether you're a recent graduate or looking to pivot into AI/ML, our comprehensive program provides all the training and hands-on experience you need to successfully pass the certification and launch your ML career."
     },
     {
       question: "How do I enroll?",
-      answer: "Click the 'Join Now' button, complete the registration form, make the payment, and you'll receive immediate access to the program. You can start learning right away!"
+      answer: "Click the <a href='/register' style='color: #007bff; text-decoration: underline;'>Join Now</a> button, complete the registration form, make the payment, and you'll receive immediate access to the program. You can start learning right away!"
     }
   ];
 
@@ -204,7 +204,7 @@ const FAQs: React.FC = () => {
                 <span className="faq-icon">{activeIndex === index ? '−' : '+'}</span>
               </div>
               <div className={`faq-answer ${activeIndex === index ? 'show' : ''}`}>
-                <p>{faq.answer}</p>
+                <p dangerouslySetInnerHTML={{ __html: faq.answer }}></p>
               </div>
             </div>
           ))}

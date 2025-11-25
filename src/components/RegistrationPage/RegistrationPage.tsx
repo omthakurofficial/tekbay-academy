@@ -315,7 +315,7 @@ const RegistrationPage: React.FC = () => {
     if (countryToFilter === 'Nepal') {
       return ['Physical classes'];
     } else {
-      return ['In-person live classes', 'Pre-recorded sessions'];
+      return ['In-person live classes'];
     }
   }, [formData.country, getCurrentCountryName]);
 
