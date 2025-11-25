@@ -63,6 +63,20 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  /* High quality image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  /* Remove any default filters */
+  filter: none;
+  /* Ensure proper color profile */
+  color-profile: sRGB;
+  /* Sharp rendering */
+  image-rendering: auto;
+  /* Better quality scaling */
+  transform-origin: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .container {

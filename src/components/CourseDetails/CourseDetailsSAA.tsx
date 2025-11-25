@@ -405,7 +405,7 @@ const CourseDetailsSAA: React.FC = () => {
                 <img 
                   src="/images/Om Thakur Trainer.png" 
                   alt="Om Thakur - Cloud Trainer" 
-                  className="trainer-image"
+                  className="trainer-image om-thakur-image"
                 />
               </div>
               <div className="trainer-info">

@@ -577,16 +577,75 @@
   object-fit: cover;
   object-position: center top;
   transition: transform 0.3s ease;
+  /* High quality image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  /* Remove any unwanted filters */
+  filter: none;
+  /* Ensure proper color profile */
+  color-profile: sRGB;
+  /* Sharp rendering */
+  image-rendering: auto;
+}
+
+/* Specific styling for Rahul's image with optimal quality */
+.trainer-image.rahul-image {
+  object-position: center top;
+  /* High quality image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  /* Remove any unwanted filters for natural look */
+  filter: none;
+  /* Ensure proper color profile */
+  color-profile: sRGB;
+  /* Sharp rendering */
+  image-rendering: auto;
+}
+
+/* Specific styling for Om Thakur's image with contrast adjustment */
+.trainer-image.om-thakur-image {
+  object-position: center top;
+  /* High quality image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  /* Contrast and brightness adjustment for Om Thakur's image */
+  filter: contrast(1.1) brightness(1.05) saturate(1.05);
+  /* Ensure proper color profile */
+  color-profile: sRGB;
+  /* Sharp rendering */
+  image-rendering: auto;
 }
 
 /* Specific styling for Rojan's image if it needs cropping */
 .trainer-image.rojan-image {
   object-position: center 20%;
   transform: scale(1.1);
+  /* High quality image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  /* Remove any unwanted filters */
+  filter: none;
+  /* Ensure proper color profile */
+  color-profile: sRGB;
+  /* Sharp rendering */
+  image-rendering: auto;
 }
 
 .trainer-professional-card:hover .trainer-image {
   transform: scale(1.05);
+}
+
+.trainer-professional-card:hover .trainer-image.rahul-image {
+  transform: scale(1.05);
+}
+
+.trainer-professional-card:hover .trainer-image.om-thakur-image {
+  transform: scale(1.05);
+  filter: contrast(1.15) brightness(1.1) saturate(1.1);
 }
 
 .trainer-professional-card:hover .trainer-image.rojan-image {

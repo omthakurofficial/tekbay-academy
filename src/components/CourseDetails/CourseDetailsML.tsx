@@ -405,7 +405,7 @@ const CourseDetailsML: React.FC = () => {
                 <img 
                   src="/images/rahul banjara.png" 
                   alt="Rahul Dev Banjara - AI/ML Trainer" 
-                  className="trainer-image"
+                  className="trainer-image rahul-image"
                 />
               </div>
               <div className="trainer-info">
