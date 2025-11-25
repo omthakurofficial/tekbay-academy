@@ -183,7 +183,7 @@ const Benefits: React.FC<BenefitsProps> = ({ onJoinNow }) => {
                   <>
                     <div className="ml-trainer-photo">
                       <img 
-                        src={getAssetPath('/images/rahul banjara.png')}
+                        src={getAssetPath('/images/rahul banjara3.png')}
                         alt="TekBay ML Trainer - Rahul Dev Banjara"
                         className="ml-trainer-image"
                       />
