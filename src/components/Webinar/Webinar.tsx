@@ -80,19 +80,30 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
 
   return (
     <div className="min-h-screen bg-background webinar-entrance">
+      {/* Webinar Header - Simplified with logo and CTA only */}
+      <header className="header">
+        <div className="container">
+          <div className="header-content">
+            <a href="/" className="logo">
+              <img src="/images/Logo Horizontal.png"
+                   alt="TekBay Academy" 
+                   className="logo-image" />
+            </a>
+            <div className="nav-actions" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+              <button 
+                onClick={scrollToRegistration}
+                className="nav-link nav-button cta-button"
+              >
+                Claim Your Spot
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
       {/* Top Banner */}
       <div className="bg-gradient-tekbay text-white py-3 text-center">
         <p className="text-sm font-semibold">Limited Seats Only - Book Your Seat Quickly!</p>
-      </div>
-
-      {/* Floating CTA */}
-      <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 animate-bounce-slow">
-        <button 
-          onClick={scrollToRegistration}
-          className="shadow-lg bg-success hover:bg-success/90 text-success-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-base md:text-lg font-semibold"
-        >
-          Claim Your Spot
-        </button>
       </div>
 
       {/* Hero Section */}
@@ -376,11 +387,12 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
                 certification really helped me to take my career to the next level!
               </p>
               <div className="pt-4 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-chart-1/10 flex items-center justify-center">
-                  <svg className="h-6 w-6 text-chart-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="m9 12 2 2 4-4"></path>
-                    <path d="M21 12c.552 0 1.005-.449.95-.998a10.951 10.951 0 0 0-2.8-7.3 10.95 10.95 0 0 0-7.3-2.8C10.449 1.005 10 1.448 10 2s.449.95 1.002.95c2.24.082 4.281.982 5.77 2.47A8.95 8.95 0 0 1 19.05 11c.1.553.447 1 1 1Z"></path>
-                  </svg>
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
+                  <img 
+                    src="/images/saroj-mandal.png" 
+                    alt="Saroj Mandal"
+                    className="w-full h-full object-cover scale-110"
+                  />
                 </div>
                 <div>
                   <p className="font-semibold">Saroj Mandal</p>
@@ -396,11 +408,12 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
                 me the essential skills to land a high-paying AI Engineer role.
               </p>
               <div className="pt-4 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-chart-2/10 flex items-center justify-center">
-                  <svg className="h-6 w-6 text-chart-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="m9 12 2 2 4-4"></path>
-                    <path d="M21 12c.552 0 1.005-.449.95-.998a10.951 10.951 0 0 0-2.8-7.3 10.95 10.95 0 0 0-7.3-2.8C10.449 1.005 10 1.448 10 2s.449.95 1.002.95c2.24.082 4.281.982 5.77 2.47A8.95 8.95 0 0 1 19.05 11c.1.553.447 1 1 1Z"></path>
-                  </svg>
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
+                  <img 
+                    src="/images/sweta-sharma.png" 
+                    alt="Sweta Sharma"
+                    className="w-full h-full object-cover scale-110"
+                  />
                 </div>
                 <div>
                   <p className="font-semibold">Sweta Sharma</p>

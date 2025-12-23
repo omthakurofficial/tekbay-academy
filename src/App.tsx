@@ -68,12 +68,13 @@ const AppContent: React.FC = () => {
   
   // Don't show the promo banner on the webinar page
   const shouldShowPromoBanner = location.pathname !== '/webinar';
+  const shouldShowHeader = location.pathname !== '/webinar';
 
   return (
     <div className="App">
       <ScrollToTop />
       {shouldShowPromoBanner && <PromoBanner onJoinNow={handleJoinNow} />}
-      <Header onJoinNow={handleJoinNow} />
+      {shouldShowHeader && <Header onJoinNow={handleJoinNow} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegistrationPage />} />
