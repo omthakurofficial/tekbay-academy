@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './styles/global.css';
 import ScrollToTop from './components/ScrollToTop';
 import PromoBanner from './components/PromoBanner/PromoBanner';
@@ -18,6 +18,7 @@ import AboutUsAcademy from './components/AboutUsAcademy/AboutUsAcademy';
 import RegistrationPage from './components/RegistrationPage/RegistrationPage';
 import CourseDetailsSAA from './components/CourseDetails/CourseDetailsSAA';
 import CourseDetailsML from './components/CourseDetails/CourseDetailsML';
+import Webinar from './components/Webinar/Webinar';
 import { CountryProvider } from './contexts/CountryContext';
 import { ProgramProvider } from './contexts/ProgramContext';
 
@@ -56,15 +57,22 @@ const App: React.FC = () => {
 
 const AppContent: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleJoinNow = () => {
     navigate('/register');
   };
 
+  // Don't show the main footer on the webinar page since it has its own
+  const shouldShowFooter = location.pathname !== '/webinar';
+  
+  // Don't show the promo banner on the webinar page
+  const shouldShowPromoBanner = location.pathname !== '/webinar';
+
   return (
     <div className="App">
       <ScrollToTop />
-      <PromoBanner onJoinNow={handleJoinNow} />
+      {shouldShowPromoBanner && <PromoBanner onJoinNow={handleJoinNow} />}
       <Header onJoinNow={handleJoinNow} />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -72,10 +80,11 @@ const AppContent: React.FC = () => {
         <Route path="/about-academy" element={<AboutUsAcademy onJoinNow={handleJoinNow} />} />
         <Route path="/courses/aws-solution-architect-associate" element={<CourseDetailsSAA />} />
         <Route path="/courses/aws-certified-machine-learning-engineer-associate" element={<CourseDetailsML />} />
+        <Route path="/webinar" element={<Webinar onJoinNow={handleJoinNow} />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
-      <Footer onJoinNow={handleJoinNow} />
+      {shouldShowFooter && <Footer onJoinNow={handleJoinNow} />}
     </div>
   );
 };

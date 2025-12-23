@@ -50,6 +50,11 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
     setMenuOpen(!menuOpen);
   };
 
+  const getLogoDestination = () => {
+    // Logo always goes to home page
+    return '/';
+  };
+
   const closeMenu = () => {
     setMenuOpen(false);
     setAboutDropdownOpen(false);
@@ -125,7 +130,7 @@ const Header: React.FC<{ onJoinNow?: () => void }> = ({ onJoinNow }) => {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <Link to="/" className="logo" onClick={closeMenu}>
+          <Link to={getLogoDestination()} className="logo" onClick={closeMenu}>
             <img src={getAssetPath('/images/Logo Horizontal.png')}
                  alt="TekBay Academy" 
                  className="logo-image" />

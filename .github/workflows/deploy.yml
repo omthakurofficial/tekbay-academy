@@ -3,10 +3,20 @@ name: Deploy React App to Lightsail
 on:
   push:
     branches:
-      - main  # change if you use another branch
+      - main
+
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
 
 jobs:
   deploy:
+    # Run if:
+    # 1) push to main
+    # 2) PR merged into main
+    if: github.event_name == 'push' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -41,4 +51,3 @@ jobs:
             sudo systemctl restart nginx
 
             echo "Deployment complete!"
-
