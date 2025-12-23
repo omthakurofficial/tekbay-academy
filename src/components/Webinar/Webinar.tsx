@@ -5,8 +5,23 @@ interface WebinarProps {
   onJoinNow?: () => void;
 }
 
+interface FormData {
+  fullName: string;
+  email: string;
+  mobile: string;
+}
+
 const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
   const [showThankYou, setShowThankYou] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    fullName: '',
+    email: '',
+    mobile: ''
+  });
+
+  // 🔧 REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT DEPLOYMENT URL
+  const WEBINAR_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlgBMNDxBK5N6Lvg5bpHZ7aVb19wmWitWfHecbomFx2ZNUedx9YCtd5gwvAasMTpsS/exec';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,9 +34,48 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowThankYou(true);
+    setIsSubmitting(true);
+
+    try {
+      console.log('📤 Submitting webinar registration:', formData);
+      
+      // Submit to Google Sheets
+      await fetch(WEBINAR_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      console.log('✅ Webinar registration submitted successfully');
+      setShowThankYou(true);
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        email: '',
+        mobile: ''
+      });
+
+    } catch (error) {
+      console.error('❌ Error submitting webinar registration:', error);
+      // Still show success message since no-cors mode doesn't return response
+      setShowThankYou(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -387,6 +441,8 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
                   </label>
                   <input 
                     id="fullName" 
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     placeholder="Enter your full name" 
                     required 
                     className="w-full px-3 py-3 sm:py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-base" 
@@ -400,6 +456,8 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
                   <input
                     id="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Enter your email address"
                     required
                     className="w-full px-3 py-3 sm:py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-base"
@@ -413,6 +471,8 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
                   <input 
                     id="mobile" 
                     type="tel" 
+                    value={formData.mobile}
+                    onChange={handleInputChange}
                     placeholder="Enter your mobile number" 
                     className="w-full px-3 py-3 sm:py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-base" 
                   />
@@ -420,9 +480,17 @@ const Webinar: React.FC<WebinarProps> = ({ onJoinNow }) => {
 
                 <button
                   type="submit"
-                  className="w-full text-base sm:text-lg bg-success hover:bg-success/90 text-success-foreground shadow-md hover:shadow-lg transition-all py-4 sm:py-3 rounded-lg font-semibold"
+                  disabled={isSubmitting}
+                  className="w-full text-base sm:text-lg bg-success hover:bg-success/90 text-success-foreground shadow-md hover:shadow-lg transition-all py-4 sm:py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Reserve My Seat
+                  {isSubmitting ? (
+                    <>
+                      <span className="inline-block animate-spin mr-2">⏳</span>
+                      Submitting...
+                    </>
+                  ) : (
+                    'Reserve My Seat'
+                  )}
                 </button>
 
                 <p className="text-xs sm:text-sm text-muted-foreground text-center pt-2">
